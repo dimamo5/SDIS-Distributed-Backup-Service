@@ -15,5 +15,4 @@ public class Server {
         MDR_ip = mdr_ip;
         MDR_port = mdr_port;
     }
-
 }

@@ -24,10 +24,11 @@ public class File {
     File(String filename) {
         this.filename = filename;
         getHashFile();
+        splitFile();
     }
 
     public static void main(String args[]) {
-        new File("texto.txt");
+        new File("texto1.txt");
     }
 
     void getHashFile() {
@@ -73,16 +74,18 @@ public class File {
 
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
+            java.io.File fileDir =new java.io.File("files/"+filehash);
+            fileDir.mkdir();
 
-            byte buffer[] = new byte[Chunck.MAX_SIZE];
+            byte buffer[] = new byte[Chunck.MAX_CHUNCK_SIZE];
 
             int count = 0;
             while (true) {
-                int i = fs.read(buffer, 0, Chunck.MAX_SIZE);
+                int i = fs.read(buffer, 0, Chunck.MAX_CHUNCK_SIZE);
                 if (i == -1)
                     break;
 
-                String filenameOut = "files/" + filename + "_Chunck" + count;
+                String filenameOut = "files/" + filehash+"/" + count;
                 FileOutputStream fos = new FileOutputStream(filenameOut);
                 fos.write(buffer, 0, i);
                 fos.flush();

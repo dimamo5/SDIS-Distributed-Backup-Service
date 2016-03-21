@@ -7,8 +7,8 @@ public class Message {
     String body;
 
     Message(Header h, String data){
-        header = h;
-        body = data;
+        this.header = h;
+        this.body = data;
     }
 
 }

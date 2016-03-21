@@ -3,13 +3,16 @@
  */
 public class Chunk {
 
-    private int chunckNo;
+    private int chunkNo;
     private String fileId;
-    public static final int MAX_CHUNCK_SIZE=64000;
+    private byte[] data;
 
-    Chunk(String fileId, int chunckNo){
-        this.chunckNo=chunckNo;
+    public static final int MAX_CHUNK_SIZE =64000;
+
+    Chunk(String fileId, int chunkNo, byte[] data_block){
+        this.chunkNo = chunkNo;
         this.fileId=fileId;
+        this.data = data_block;
     }
 
 }

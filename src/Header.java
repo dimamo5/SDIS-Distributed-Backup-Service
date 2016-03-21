@@ -17,7 +17,20 @@ public class Header {
     private String type, version, sender_id, file_id,chunk_no,replic_deg;
     private String header="";
 
-    Header(String MessageType,String Version, String SenderId,String FileId,String ChunkNo, String ReplicationDeg){
+    @Override
+    public String toString() {
+        return "Header{" +
+                "type='" + type + '\'' +
+                ", version='" + version + '\'' +
+                ", sender_id='" + sender_id + '\'' +
+                ", file_id='" + file_id + '\'' +
+                ", chunk_no='" + chunk_no + '\'' +
+                ", replic_deg='" + replic_deg + '\'' +
+                ", header='" + header + '\'' +
+                '}';
+    }
+
+    Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
         type = MessageType;
         version = Version;
         sender_id = SenderId;
@@ -25,7 +38,7 @@ public class Header {
         chunk_no = ChunkNo;
         replic_deg = ReplicationDeg;
 
-        System.out.println(type+" "+version+" "+sender_id+" "+file_id+" "+chunk_no+" "+replic_deg);
+        System.out.println(this.toString());
 
         if (buildHeader() != 0){
             System.out.println("Incorrect header parameters \n");
@@ -43,10 +56,9 @@ public class Header {
             return -1;
 
         String file_id_to_64B_ascii = convertToHexString(file_id);
-        System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
+        //System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
 
         header = header.concat(type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF[0]+CRLF[1]+CRLF[0]+CRLF[1]);
-
         return 0;
     }
 
@@ -78,7 +90,6 @@ public class Header {
         Header h = new Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
 
         System.out.println(h.getHeaderMsg());
-
     }
 
 

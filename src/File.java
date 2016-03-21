@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class File {
     private String filename;
     private String filehash;
-    private ArrayList<Chunck> chunks = new ArrayList<Chunck>();
-    private static final int MAX_NO_CHUNKS = 10000;  //TODO: ALTERAR VALOR para 999.999 -> PODE TER ATÉ 1.000.000 CHUNKS
+    private ArrayList<Chunk> chunks = new ArrayList<Chunk>();
+    private static final int MAX_NO_CHUNKS = 999999;  // PODE TER ATÉ 1.000.000 CHUNKS
 
     File(String filename) {
         this.filename = filename;
@@ -70,18 +70,18 @@ public class File {
         System.out.println("filehash: " + this.filehash);
     }
 
-    ArrayList<Chunck> splitFile() {
+    ArrayList<Chunk> splitFile() {
 
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
             java.io.File fileDir =new java.io.File("files/"+filehash);
             fileDir.mkdir();
 
-            byte buffer[] = new byte[Chunck.MAX_CHUNCK_SIZE];
+            byte buffer[] = new byte[Chunk.MAX_CHUNK_SIZE];
 
             int count = 0;
             while (true) {
-                int i = fs.read(buffer, 0, Chunck.MAX_CHUNCK_SIZE);
+                int i = fs.read(buffer, 0, Chunk.MAX_CHUNK_SIZE);
                 if (i == -1)
                     break;
 
@@ -91,7 +91,7 @@ public class File {
                 fos.flush();
                 fos.close();
 
-                System.out.println("Created Chunck " + count);
+                System.out.println("Created Chunk " + count);
                 ++count;
             }
 

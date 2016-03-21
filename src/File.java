@@ -19,7 +19,7 @@ public class File {
     private String filename;
     private String filehash;
     private ArrayList<Chunck> chunks = new ArrayList<Chunck>();
-    private static final int MAX_NO_CHUNKS = 10000;
+    private static final int MAX_NO_CHUNKS = 10000;  //TODO: ALTERAR VALOR para 999.999 -> PODE TER ATÉ 1.000.000 CHUNKS
 
     File(String filename) {
         this.filename = filename;

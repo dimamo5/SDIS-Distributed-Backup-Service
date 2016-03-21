@@ -8,14 +8,14 @@ import java.util.regex.Pattern;
 
 public class Header {
 
-    public static final char CRLF[] = {0xD , 0xA}; //TODO corrigir isto
+    public static final char CRLF[] = {0xD,0xA}; //TODO corrigir isto
 
     private static final String versionPattern = "\\d.\\d";
     private static final int file_id_length = 32, //Bytes -> 256 bits (SHA256)
                              chunk_no_max_length = 6; //Bytes
 
     private String type, version, sender_id, file_id,chunk_no,replic_deg;
-    private String header;
+    private String header="";
 
     Header(String MessageType,String Version, String SenderId,String FileId,String ChunkNo, String ReplicationDeg){
         type = MessageType;
@@ -24,6 +24,8 @@ public class Header {
         file_id = FileId;
         chunk_no = ChunkNo;
         replic_deg = ReplicationDeg;
+
+        System.out.println(type+" "+version+" "+sender_id+" "+file_id+" "+chunk_no+" "+replic_deg);
 
         if (buildHeader() != 0){
             System.out.println("Incorrect header parameters \n");
@@ -43,18 +45,17 @@ public class Header {
         String file_id_to_64B_ascii = convertToHexString(file_id);
         System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
 
-        header.concat(type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF);
+        header = header.concat(type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF[0]+CRLF[1]+CRLF[0]+CRLF[1]);
 
         return 0;
     }
 
     private boolean checkParams(){
         return version.matches(versionPattern) && (file_id.length() == file_id_length) &&
-                (chunk_no.length() <= chunk_no_max_length) && (Integer.getInteger(replic_deg) <= 9);
+                (chunk_no.length() <= chunk_no_max_length) && (Integer.parseInt(replic_deg) <= 9);
     }
 
-    public static String convertToHexString(String string){
-       // return bytesToHex(file_id.getBytes());
+    private String convertToHexString(String string){
         String result = "" ;
         byte[] partitioned = string.getBytes();
         byte converted[] = new byte[string.length()*2];
@@ -73,6 +74,10 @@ public class Header {
 
 
     public static void main(String[] args){
+
+        Header h = new Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
+
+        System.out.println(h.getHeaderMsg());
 
     }
 

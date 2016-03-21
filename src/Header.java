@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Header {
 
-    public static final char CRLF[] = {0xD,0xA}; //TODO corrigir isto
+    public static final String CRLF = "\r\n"; //TODO corrigir isto
 
     private static final String versionPattern = "\\d.\\d";
     private static final int file_id_length = 32, //Bytes -> 256 bits (SHA256)
@@ -58,7 +58,7 @@ public class Header {
         String file_id_to_64B_ascii = convertToHexString(file_id);
         //System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
 
-        header = header.concat(type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF[0]+CRLF[1]+CRLF[0]+CRLF[1]);
+        header = header.concat(type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF);
         return 0;
     }
 

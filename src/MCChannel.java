@@ -18,6 +18,9 @@ public class MCChannel implements Runnable{
     public int port;
 
     MCChannel(InetAddress address, int port){
+        this.address = address;
+        this.port = port;
+
         //open connection
         try {
             socket = new MulticastSocket(port);
@@ -40,6 +43,7 @@ public class MCChannel implements Runnable{
 
             try {
                 socket.receive(packet);
+                //TODO handle packet
             } catch (IOException e) {
                 e.printStackTrace();
             }

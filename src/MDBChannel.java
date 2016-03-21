@@ -17,6 +17,9 @@ public class MDBChannel implements Runnable {
     public int port;
 
     MDBChannel(InetAddress address, int port){
+        this.address = address;
+        this.port = port;
+
         //open connection
         try {
             socket = new MulticastSocket(port);
@@ -39,6 +42,7 @@ public class MDBChannel implements Runnable {
 
             try {
                 socket.receive(packet);
+                //TODO Handle packet
             } catch (IOException e) {
                 e.printStackTrace();
             }

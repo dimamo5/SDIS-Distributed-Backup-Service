@@ -17,6 +17,9 @@ public class MDRChannel implements Runnable{
     public int port;
 
     MDRChannel(InetAddress address, int port){
+        this.address = address;
+        this.port = port;
+
         //open connection
         try {
             socket = new MulticastSocket(port);
@@ -39,6 +42,8 @@ public class MDRChannel implements Runnable{
 
             try {
                 socket.receive(packet);
+                //TODO HANDLE PACKET
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -91,6 +91,8 @@ public class File {
                 fos.flush();
                 fos.close();
 
+                //todo generate threads
+
                 System.out.println("Created Chunk " + count);
                 ++count;
             }

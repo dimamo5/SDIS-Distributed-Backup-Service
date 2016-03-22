@@ -6,16 +6,16 @@ public interface Protocol {
     public final String Version = "1.0";
 
     //BackUp sub-protocol
-    void PutChunkMessage(Chunk c);
-    void StoredMessage(String id);
+    void PutChunkMessage(String sender_id,Chunk c);
+    void StoredMessage(String sender_id, String file_id, String chunk_no);
 
     //Restore sub-protocol
-    void GetChunkMessage(String id);
-    void ChunkMessage(Chunk c);
+    void GetChunkMessage(String sender_id, String file_id, String chunk_no);
+    void ChunkMessage(String sender_id,Chunk c);
 
     //Deletion sub-protocol
-    void DeleteMessage(String id);
+    void DeleteMessage(String sender_id, String file_id);
 
     //Space reclaiming sub-protocol
-    void RemovedMessage(String id);
+    void RemovedMessage(String id, String file_id, String chunk_no);
 }

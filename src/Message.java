@@ -8,11 +8,15 @@ import java.util.Arrays;
 public class Message {
 
     Header header = null;
-    byte[] body = null;
+    byte[] body;
 
     //receives the byte[] from the packet.getData()
     Message(DatagramPacket  message){
         processMessage(message);
+    }
+
+    Message(Header header){
+        this.header = header;
     }
 
     Message(Header header, byte[] data){
@@ -20,7 +24,7 @@ public class Message {
         this.body = data;
     }
 
-    private void processMessage(DatagramPacket  message){
+    private void processMessage(DatagramPacket message){
 
         if(processHeader(message) && processBody(message)){
             System.out.println("Message processed");
@@ -47,7 +51,7 @@ public class Message {
         return true;
     }
 
-    private boolean processBody(DatagramPacket  message) {
+    private boolean processBody(DatagramPacket message) {
         InputStream is = new ByteArrayInputStream(message.getData());
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
@@ -66,11 +70,27 @@ public class Message {
         }
         while(ignore.length() != 0 );
 
-        //extract body data
-        //copyofrange reveals best performance in relation to new String(byte[]) + String.getChars()
-        body = Arrays.copyOfRange(message.getData(), ignored_length, message.getLength());
+        /*extract body data
+         *copyofrange reveals best performance in relation to new String(byte[]) + String.getChars() */
+        if(ignored_length != message.getLength()) //TODO VERIFICAR SE ISTO NAO DÁ PEIDO PARA PACKETS COM HEADER ONLY
+            body = Arrays.copyOfRange(message.getData(), ignored_length, message.getLength());
 
         return true;
+    }
+
+    public byte[] getMessageBytes(){
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(header.getHeaderMsg().length + body.length);
+        try {
+            outputStream.write(header.getHeaderMsg());
+            outputStream.write(body );
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("error concatenating message's header+body byte[]");
+            System.exit(1);
+        }
+
+       return outputStream.toByteArray();
     }
 
 }

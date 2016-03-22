@@ -31,6 +31,20 @@ public class File {
         new File("texto1.txt");
     }
 
+    //=============METHODS===========
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public String getFilehash() {
+        return filehash;
+    }
+
+    public ArrayList<Chunk> getChunks() {
+        return chunks;
+    }
+
     void getHashFile() {
         Path filepath = Paths.get(System.getProperty("user.dir") + "/files/" + filename);
 

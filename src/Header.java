@@ -30,6 +30,27 @@ public class Header {
                 '}';
     }
 
+    Header(byte[] header_info){
+        parseHeader(header_info);
+    }
+
+    private void parseHeader(byte[] header_info) {
+
+        String partitioned_header[] = new String(header_info).split("[ ]+"); //separa tokens intervalados por 1+ espaços
+
+        //TODO CONSIDERAMOS QUE O HEADER TEM SEMPRE 6 FIELDS ??
+
+        type= partitioned_header[0];
+        version=partitioned_header[1];
+        sender_id=partitioned_header[2];
+        file_id=partitioned_header[3];
+        chunk_no=partitioned_header[4];
+        replic_deg=partitioned_header[5];
+
+        System.out.println("Header parsed -> result:");
+        this.toString();
+    }
+
     Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
         type = MessageType;
         version = Version;

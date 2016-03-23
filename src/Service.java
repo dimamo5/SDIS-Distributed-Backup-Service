@@ -19,6 +19,8 @@ public class Service {
 
         Service s = new Service(args);
 
+        //TODO looperino
+
     }
 
     private static boolean checkParams(String args[]){

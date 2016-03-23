@@ -10,6 +10,14 @@ public class Message {
     Header header = null;
     byte[] body;
 
+    public Header getHeader() {
+        return header;
+    }
+
+    public byte[] getBody() {
+        return body;
+    }
+
     //receives the byte[] from the packet.getData()
     Message(DatagramPacket  message){
         processMessage(message);

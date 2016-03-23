@@ -9,7 +9,7 @@ public class MessageSender implements Protocol{
 
 
     @Override
-    public void PutChunkMessage(String sender_id,Chunk c) {
+    public void putChunkMessage(String sender_id, Chunk c) {
 
         Header h = new Header(put_chunk, Version, sender_id,c.getFileId(),c.getChunkNo(),c.getReplication_degree());
         Message m = new Message(h,c.getData());
@@ -19,7 +19,7 @@ public class MessageSender implements Protocol{
     }
 
     @Override
-    public void StoredMessage(String sender_id, String file_id, String chunk_no) {
+    public void storedMessage(String sender_id, String file_id, String chunk_no) {
 
         Header h = new Header(stored, Version, sender_id, file_id, chunk_no);
         Message m = new Message(h);
@@ -29,7 +29,7 @@ public class MessageSender implements Protocol{
     }
 
     @Override
-    public void GetChunkMessage(String sender_id, String file_id, String chunk_no) {
+    public void getChunkMessage(String sender_id, String file_id, String chunk_no) {
 
         Header h = new Header(get_chunk, Version, sender_id, file_id, chunk_no);
         Message m = new Message(h);
@@ -39,7 +39,7 @@ public class MessageSender implements Protocol{
     }
 
     @Override
-    public void ChunkMessage(String sender_id, Chunk c) {
+    public void chunkMessage(String sender_id, Chunk c) {
 
         Header h = new Header(chunk,Version,sender_id,c.getFileId(),c.getChunkNo());
         Message m = new Message(h,c.getData());
@@ -49,7 +49,7 @@ public class MessageSender implements Protocol{
     }
 
     @Override
-    public void DeleteMessage(String sender_id, String file_id) {
+    public void deleteMessage(String sender_id, String file_id) {
 
         Header h = new Header(delete, Version, sender_id,file_id);
         Message m = new Message(h);
@@ -59,7 +59,7 @@ public class MessageSender implements Protocol{
     }
 
     @Override
-    public void RemovedMessage(String sender_id, String file_id, String chunk_no) {
+    public void removedMessage(String sender_id, String file_id, String chunk_no) {
         Header h = new Header(removed, Version, sender_id, file_id, chunk_no);
         Message m = new Message(h);
 

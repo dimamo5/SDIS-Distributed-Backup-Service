@@ -1,10 +1,13 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Sonhs on 13/03/2016.
  */
 
 public class Header {
 
-    public static final String CRLF = "\r\n"; //TODO corrigir isto
+    public static final String CRLF = "\r\n";
 
     private static final String versionPattern = "\\d.\\d";
     private static final int file_id_length = 32, //Bytes -> 256 bits (SHA256)
@@ -140,7 +143,7 @@ public class Header {
         for(String s : partitioned_header)
             System.out.println(s);
 
-        setType(partitioned_header[0]);
+        type = partitioned_header[0];
         version = partitioned_header[1];
         sender_id = partitioned_header[2];
         file_id = partitioned_header[3];
@@ -159,7 +162,6 @@ public class Header {
     }
 
     private int buildHeader(){
-
         if(!checkParams())
             return -1;
 

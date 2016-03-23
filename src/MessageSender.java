@@ -5,7 +5,7 @@ public class MessageSender implements Protocol{
 
     private static final String put_chunk = "PUTCHUNK",
             stored = "STORED", get_chunk = "GETCHUNK",
-            chunk = "CHUNK", delete= "DELETE", removed= "REMOVED";
+            chunk = "CHUNK", delete = "DELETE", removed = "REMOVED";
 
 
     @Override

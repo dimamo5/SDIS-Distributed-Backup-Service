@@ -83,7 +83,7 @@ public class Message {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(header.getHeaderMsg().length + body.length);
         try {
             outputStream.write(header.getHeaderMsg());
-            outputStream.write(body );
+            outputStream.write(body);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("error concatenating message's header+body byte[]");

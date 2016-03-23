@@ -3,6 +3,4 @@
  */
 public class TestApp {
 
-
-    //TODO : RESPONSAVEL POR DIVIDIR FICHEIRO EM CHUNKS ?
 }

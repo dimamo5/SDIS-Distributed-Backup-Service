@@ -14,8 +14,8 @@ public class MCChannel implements Runnable{
 
     private boolean running=true;
 
-    public InetAddress address;
-    public int port;
+    private InetAddress address;
+    private int port;
 
     MCChannel(InetAddress address, int port){
         this.address = address;
@@ -49,5 +49,13 @@ public class MCChannel implements Runnable{
             }
         }
         socket.close();
+    }
+
+    public InetAddress getAddress() {
+        return address;
+    }
+
+    public int getPort() {
+        return port;
     }
 }

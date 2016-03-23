@@ -1,6 +1,13 @@
+import javax.xml.crypto.Data;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+
 /**
  * Created by Sonhs on 22/03/2016.
  */
+
 public class MessageSender implements Protocol{
 
     private static final String put_chunk = "PUTCHUNK",
@@ -14,8 +21,7 @@ public class MessageSender implements Protocol{
         Header h = new Header(put_chunk, Version, sender_id,c.getFileId(),c.getChunkNo(),c.getReplication_degree());
         Message m = new Message(h,c.getData());
 
-        //m.getMessageBytes();
-        //envia byte[] obtido em cima para MDBChannel
+        sendMessage(m,Peer.Channels.MDB);
     }
 
     @Override
@@ -24,8 +30,7 @@ public class MessageSender implements Protocol{
         Header h = new Header(stored, Version, sender_id, file_id, chunk_no);
         Message m = new Message(h);
 
-        //m.getMessageBytes();
-        //envia byte[] obtido em cima para MCChannel
+        sendMessage(m,Peer.Channels.MC);
     }
 
     @Override
@@ -34,8 +39,7 @@ public class MessageSender implements Protocol{
         Header h = new Header(get_chunk, Version, sender_id, file_id, chunk_no);
         Message m = new Message(h);
 
-        //m.getMessageBytes();
-        //envia byte[] obtido em cima para MCChannel
+        sendMessage(m,Peer.Channels.MC);
     }
 
     @Override
@@ -44,8 +48,7 @@ public class MessageSender implements Protocol{
         Header h = new Header(chunk,Version,sender_id,c.getFileId(),c.getChunkNo());
         Message m = new Message(h,c.getData());
 
-        //m.getMessageBytes();
-        //envia byte[] obtido em cima para MDRhannel
+        sendMessage(m,Peer.Channels.MDR);
     }
 
     @Override
@@ -54,8 +57,7 @@ public class MessageSender implements Protocol{
         Header h = new Header(delete, Version, sender_id,file_id);
         Message m = new Message(h);
 
-        //m.getMessageBytes();
-        //envia byte[] obtido em cima para MCChannel
+        sendMessage(m,Peer.Channels.MC);
     }
 
     @Override
@@ -63,7 +65,45 @@ public class MessageSender implements Protocol{
         Header h = new Header(removed, Version, sender_id, file_id, chunk_no);
         Message m = new Message(h);
 
-        //m.getMessageBytes();
-        //envia byte[] obtido em cima para MCChannel
+        sendMessage(m,Peer.Channels.MC);
+    }
+
+    private void sendMessage(Message m, Peer.Channels channel){
+
+        DatagramPacket packet;
+        InetAddress address = null;
+        int port = -1;
+
+        switch(channel){
+            case MC:
+                address = Peer.getMC_channel().getAddress();
+                port = Peer.getMC_channel().getPort();
+                break;
+
+            case MDB:
+                address = Peer.getMDB_channel().getAddress();
+                port = Peer.getMDB_channel().getPort();
+                break;
+
+            case MDR:
+                address = Peer.getMDR_channel().getAddress();
+                port = Peer.getMDR_channel().getPort();
+                break;
+
+            default:
+                System.out.println("Wrong channel");
+                System.exit(1);
+        }
+
+        packet = new DatagramPacket(m.getMessageBytes(),m.getMessageBytes().length,
+                address, port);
+
+        try {
+            Peer.getComunication_socket().send(packet);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("#MessageSender# Error sending packet");
+            System.exit(1);
+        }
     }
 }

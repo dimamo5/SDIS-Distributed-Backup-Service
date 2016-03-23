@@ -13,8 +13,9 @@ public class MDBChannel implements Runnable {
 
     private boolean running=true;
 
-    public InetAddress address;
-    public int port;
+    private InetAddress address;
+    private int port;
+
 
     MDBChannel(InetAddress address, int port){
         this.address = address;
@@ -48,6 +49,15 @@ public class MDBChannel implements Runnable {
             }
         }
         socket.close();
+    }
+
+
+    public InetAddress getAddress() {
+        return address;
+    }
+
+    public int getPort() {
+        return port;
     }
 
 }

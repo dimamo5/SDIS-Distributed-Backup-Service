@@ -15,21 +15,23 @@ public class Header {
 
     Header(byte[] header_info){
         parseHeader(header_info);
-    }
 
-    private void initAttr(String... args){
-
-        String[] list = { type,version,sender_id,file_id,chunk_no,replic_deg };
-
-        for(int i = 0; i < args.length; i++){
-            list[i] = args[i];
+        if (buildHeader() != 0){
+            System.out.println("Incorrect header parameters \n");
+            System.exit(1);
         }
-    }
 
+        System.out.println("Header msg:"+this.toString());
+    }
 
     Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
 
-        initAttr( MessageType,Version,SenderId,FileId,ChunkNo,ReplicationDeg);
+        type = MessageType;
+        version = Version;
+        sender_id = SenderId;
+        file_id = FileId;
+        chunk_no = ChunkNo;
+        replic_deg = ReplicationDeg;
 
         System.out.println("Header msg:"+this.toString());
 
@@ -41,7 +43,11 @@ public class Header {
 
     Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo){
 
-        initAttr( MessageType,Version,SenderId,FileId,ChunkNo);
+        type = MessageType;
+        version = Version;
+        sender_id = SenderId;
+        file_id = FileId;
+        chunk_no = ChunkNo;
 
         System.out.println("Header msg:"+this.toString());
 
@@ -53,7 +59,10 @@ public class Header {
 
     Header(String MessageType, String Version, String SenderId, String FileId){
 
-        initAttr( MessageType,Version,SenderId,FileId);
+        type = MessageType;
+        version = Version;
+        sender_id = SenderId;
+        file_id = FileId;
 
         System.out.println("Header msg:"+this.toString());
 
@@ -63,6 +72,53 @@ public class Header {
         }
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getSender_id() {
+        return sender_id;
+    }
+
+    public void setSender_id(String sender_id) {
+        this.sender_id = sender_id;
+    }
+
+    public String getFile_id() {
+        return file_id;
+    }
+
+    public void setFile_id(String file_id) {
+        this.file_id = file_id;
+    }
+
+    public String getChunk_no() {
+        return chunk_no;
+    }
+
+    public void setChunk_no(String chunk_no) {
+        this.chunk_no = chunk_no;
+    }
+
+    public String getReplic_deg() {
+        return replic_deg;
+    }
+
+    public void setReplic_deg(String replic_deg) {
+        this.replic_deg = replic_deg;
+    }
 
     @Override
     public String toString() {
@@ -78,18 +134,24 @@ public class Header {
     }
 
     private void parseHeader(byte[] header_info) {
+        //"\\p{Space}+" -> regex separa tokens intervalados por 1+ espaços
+        String partitioned_header[] = new String(header_info).split("\\p{Space}+");
 
-        String partitioned_header[] = new String(header_info).split("\\p{Space}+"); //"\\p{Space}+" -> regex separa tokens intervalados por 1+ espaços
+        for(String s : partitioned_header)
+            System.out.println(s);
 
-        String s = "";
+        setType(partitioned_header[0]);
+        version = partitioned_header[1];
+        sender_id = partitioned_header[2];
+        file_id = partitioned_header[3];
 
-        String[] list = { type,version,sender_id,file_id,chunk_no,replic_deg };
+        if(partitioned_header.length == 5)
+            chunk_no = partitioned_header[4];
+        else if(partitioned_header.length == 6)
+            chunk_no = partitioned_header[4];
+            replic_deg = partitioned_header[5];
 
-        for (int i = 0; i < partitioned_header.length; i++) {
-            list[i] = partitioned_header[i];
-        }
-        System.out.println("Header parsed -> result:");
-        this.toString();
+        System.out.println("Header parsed");
     }
 
     byte[] getHeaderMsg(){
@@ -98,19 +160,19 @@ public class Header {
 
     private int buildHeader(){
 
-        if(checkParams() == false)
+        if(!checkParams())
             return -1;
 
         String file_id_to_64B_ascii = convertToHexString(file_id);
         //System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
 
-        header_data = header_data.concat(type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF);
+        header_data = type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF;
         return 0;
     }
 
     private boolean checkParams(){
         return version.matches(versionPattern) && (file_id.length() == file_id_length) &&
-                (chunk_no.length() <= chunk_no_max_length) && (replic_deg != "" ? Integer.parseInt(replic_deg) <= 9 : true);
+                (chunk_no.length() <= chunk_no_max_length) && (replic_deg.equals("")  || Integer.parseInt(replic_deg) <= 9);
     }
 
     private String convertToHexString(String string){
@@ -124,8 +186,8 @@ public class Header {
             converted[j+1] = (byte) (partitioned[i] & right_most);
         }
 
-        for(int i = 0; i < converted.length ; i++){
-            result += Integer.toString((int)converted[i],16);
+        for(byte element : converted){
+            result += Integer.toString((int)element,16);
         }
         return result;
     }
@@ -133,7 +195,8 @@ public class Header {
 
     public static void main(String[] args) {
 
-        Header h = new Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
-        System.out.println(h.getHeaderMsg());
+        //Header h = new Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
+       Header h = new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes());
+        System.out.println(new String(h.getHeaderMsg()));
     }
 }

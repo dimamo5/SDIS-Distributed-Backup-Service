@@ -56,9 +56,12 @@ public class Peer {
 
         try {
             comunication_socket = new MulticastSocket();
+            comunication_socket.setTimeToLive(1);
+            comunication_socket.joinGroup(InetAddress.getByName(this.MC_ip));
+
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error initializing Peer.MulticastSocket");
+            System.out.println("Error initializing Peer.MulticastSocket / joining group");
         }
 
     }
@@ -78,6 +81,5 @@ public class Peer {
     public static MulticastSocket getComunication_socket() {
         return comunication_socket;
     }
-
 
 }

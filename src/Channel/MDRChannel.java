@@ -1,4 +1,4 @@
-package Channel;
+package channel;
 
 import service.MessageHandler;
 import service.Peer;

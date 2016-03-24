@@ -1,5 +1,6 @@
 package service;
 
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -11,7 +12,7 @@ public class TestApp {
     public TestApp() {
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) throws RemoteException {
         String ap=null,subProtocol=null, opnd1=null,opnd2=null;
         RMIInterface stub=null;
 

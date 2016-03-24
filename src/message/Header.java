@@ -15,7 +15,7 @@ public class Header {
     private String type="", version="", sender_id="", file_id="", chunk_no="", replic_deg="";
     private String header_data ="";
 
-    Header(byte[] header_info){
+    public Header(byte[] header_info){
         parseHeader(header_info);
 
         if (buildHeader() != 0){
@@ -26,7 +26,7 @@ public class Header {
         System.out.println("message.Header msg:"+this.toString());
     }
 
-    Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
+    public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
 
         type = MessageType;
         version = Version;
@@ -43,7 +43,7 @@ public class Header {
         }
     }
 
-    Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo){
+    public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo){
 
         type = MessageType;
         version = Version;
@@ -59,7 +59,7 @@ public class Header {
         }
     }
 
-    Header(String MessageType, String Version, String SenderId, String FileId){
+    public Header(String MessageType, String Version, String SenderId, String FileId){
 
         type = MessageType;
         version = Version;

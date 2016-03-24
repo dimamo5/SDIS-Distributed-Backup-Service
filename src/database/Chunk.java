@@ -27,7 +27,7 @@ public class Chunk {
         return data;
     }
 
-    Chunk(String fileId, String chunkNo, String replication_degree, byte[] data_block){
+    public Chunk(String fileId, String chunkNo, String replication_degree, byte[] data_block){
         this.chunkNo = chunkNo;
         this.fileId=fileId;
         this.replication_degree = replication_degree;

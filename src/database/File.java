@@ -20,17 +20,12 @@ import java.util.ArrayList;
 public class File {
     private String filename;
     private String filehash;
-    private ArrayList<Chunk> chunks = new ArrayList<Chunk>();
+    private int numChuncks;
     private static final int MAX_NO_CHUNKS = 999999;  // PODE TER ATÉ 1.000.000 CHUNKS
 
-    public File(String filename) {
+    public File(String filename, int numchuncks) {
         this.filename = filename;
-        getHashFile();
-        splitFile();
-    }
-
-    public static void main(String args[]) {
-        new File("texto1.txt");
+        this.numChuncks=numchuncks;
     }
 
     //=============METHODS===========
@@ -43,8 +38,9 @@ public class File {
         return filehash;
     }
 
-    public ArrayList<Chunk> getChunks() {
-        return chunks;
+
+    public int getNumChuncks() {
+        return numChuncks;
     }
 
     void getHashFile() {

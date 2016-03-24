@@ -1,18 +1,22 @@
 package database;
 
+import java.util.ArrayList;
+
 /**
  * Created by diogo on 08/03/2016.
  */
 public class Chunk {
 
-    private String fileId, replication_degree;
+    private String fileId;
+    private int replicationDegree;
     private String chunkNo;
     private byte[] data;
+    private ArrayList<String > peers=new ArrayList<>(); //Peers that contains the chunck
 
     public static final int MAX_CHUNK_SIZE =64000;
 
-    public String getReplication_degree() {
-        return replication_degree;
+    public int getReplication_degree() {
+        return replicationDegree;
     }
 
     public String getFileId() {
@@ -27,10 +31,10 @@ public class Chunk {
         return data;
     }
 
-    public Chunk(String fileId, String chunkNo, String replication_degree, byte[] data_block){
+    public Chunk(String fileId, String chunkNo, int replicationDegree, byte[] data_block){
         this.chunkNo = chunkNo;
         this.fileId=fileId;
-        this.replication_degree = replication_degree;
+        this.replicationDegree = replicationDegree;
         this.data = data_block;
     }
 

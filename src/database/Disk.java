@@ -9,9 +9,15 @@ import java.util.HashMap;
  */
 public class Disk implements Serializable{
 
-    public HashMap<String,ArrayList<Integer>> database = new HashMap<>();
+    private static final int CAPACITY = 2000000;
+
+    private int capacityBytes=CAPACITY;
+
+    public ArrayList<Chunk> chuncks =new ArrayList<>();
+
+    public HashMap<String,File> files =new HashMap<>(); //File name to hash
 
     public Disk(){
-
     }
+
 }

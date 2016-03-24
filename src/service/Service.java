@@ -1,5 +1,9 @@
 package service;
 
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+
 /**
  * Created by Sonhs on 22/03/2016.
  */
@@ -39,4 +43,5 @@ public class Service {
         System.out.println("Invalid arguments!!!\n Usage(1): service.Peer <server_id> <MC Address> <MC Port> <MDB Address> <MDB Port> <MDR Address> <MDR Port>");
         System.out.println("Usage(2): service.Peer <server_id>");
     }
+
 }

@@ -1,16 +1,19 @@
 package service;
 
-import Channel.*;
+import channel.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Created by Sonhs on 12/03/2016.
  */
-public class Peer {
+public class Peer implements RMIInterface{
 
     public enum Channels{
         MC, MDB, MDR;
@@ -23,9 +26,9 @@ public class Peer {
     private int MC_port = 10001, MDB_port = 10002, MDR_port = 10003;
 
     //multicast channels
-    private static Channel.MCChannel MC_channel;
-    private static Channel.MDBChannel MDB_channel;
-    private static Channel.MDRChannel MDR_channel;
+    private static MCChannel MC_channel;
+    private static MDBChannel MDB_channel;
+    private static MDRChannel MDR_channel;
 
     private static InetAddress ip;
 
@@ -35,6 +38,37 @@ public class Peer {
 
     public Peer(String params[]){
         initAttr(params);
+    }
+
+    public static void main(String[] args){
+        Peer p=new Peer(args);
+
+        try {
+
+            RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
+
+            // Bind the remote object's stub in the registry
+            LocateRegistry.createRegistry(1099);
+            Registry registry = LocateRegistry.getRegistry();
+            registry.rebind(p.id, stub);
+
+            System.err.println("Peer ready");
+        }catch(Exception e){
+            System.err.println("Peer exception: " + e.toString());
+            e.printStackTrace();
+        }
+
+        try {
+            comunication_socket = new MulticastSocket();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(MC_channel).start();
+        new Thread(MDB_channel).start();
+        new Thread(MDR_channel).start();
+
+
     }
 
     /* METHODS */
@@ -100,6 +134,30 @@ public class Peer {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public void backupFile(String filename, int replicationDegree) {
+        //TODO Call Initiator
+        System.out.println("BACKUP");
+    }
+
+    @Override
+    public void restoreFile(String filename) {
+        //TODO Call Initiator
+        System.out.println("BACKUP");
+    }
+
+    @Override
+    public void deleteFile(String filename) {
+        //TODO Call Initiator
+        System.out.println("BACKUP");
+    }
+
+    @Override
+    public void spaceReclaim(int amount) {
+        //TODO Call Initiator
+        System.out.println("BACKUP");
     }
 
 }

@@ -23,7 +23,7 @@ public class MessageSender implements Protocol{
     @Override
     public void putChunkMessage(String sender_id, Chunk c) {
 
-        Header h = new Header(put_chunk, Version, sender_id,c.getFileId(),c.getChunkNo(),c.getReplication_degree());
+        Header h = new Header(put_chunk, Version, sender_id,c.getFileId(),c.getChunkNo(),Integer.toString(c.getReplication_degree()));
         Message m = new Message(h,c.getData());
 
         sendMessage(m,Peer.Channels.MDB);

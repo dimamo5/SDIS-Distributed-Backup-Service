@@ -12,14 +12,6 @@ public class Message {
     Header header = null;
     byte[] body;
 
-    public Header getHeader() {
-        return header;
-    }
-
-    public byte[] getBody() {
-        return body;
-    }
-
     //receives the byte[] from the packet.getData()
     public Message(DatagramPacket message){
         processMessage(message);
@@ -32,6 +24,14 @@ public class Message {
     public Message(Header header, byte[] data){
         this.header = header;
         this.body = data;
+    }
+
+    public Header getHeader() {
+        return header;
+    }
+
+    public byte[] getBody() {
+        return body;
     }
 
     private void processMessage(DatagramPacket message){
@@ -102,5 +102,7 @@ public class Message {
 
        return outputStream.toByteArray();
     }
+
+
 
 }

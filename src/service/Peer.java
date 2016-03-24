@@ -1,8 +1,6 @@
 package service;
 
-import channel.MCChannel;
-import channel.MDBChannel;
-import channel.MDRChannel;
+import Channel.*;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -25,9 +23,9 @@ public class Peer {
     private int MC_port = 10001, MDB_port = 10002, MDR_port = 10003;
 
     //multicast channels
-    private static MCChannel MC_channel;
-    private static MDBChannel MDB_channel;
-    private static MDRChannel MDR_channel;
+    private static Channel.MCChannel MC_channel;
+    private static Channel.MDBChannel MDB_channel;
+    private static Channel.MDRChannel MDR_channel;
 
     private static InetAddress ip;
 
@@ -100,5 +98,8 @@ public class Peer {
         return ip;
     }
 
+    public String getId() {
+        return id;
+    }
 
 }

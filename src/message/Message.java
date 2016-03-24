@@ -25,11 +25,11 @@ public class Message {
         processMessage(message);
     }
 
-    Message(Header header){
+    public Message(Header header){
         this.header = header;
     }
 
-    Message(Header header, byte[] data){
+    public Message(Header header, byte[] data){
         this.header = header;
         this.body = data;
     }

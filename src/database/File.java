@@ -23,7 +23,7 @@ public class File {
     private ArrayList<Chunk> chunks = new ArrayList<Chunk>();
     private static final int MAX_NO_CHUNKS = 999999;  // PODE TER ATÉ 1.000.000 CHUNKS
 
-    File(String filename) {
+    public File(String filename) {
         this.filename = filename;
         getHashFile();
         splitFile();

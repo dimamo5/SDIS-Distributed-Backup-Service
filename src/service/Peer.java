@@ -35,7 +35,7 @@ public class Peer {
 
     private static MulticastSocket comunication_socket;
 
-    Peer(String params[]){
+    public Peer(String params[]){
         initAttr(params);
     }
 

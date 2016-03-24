@@ -8,7 +8,7 @@ public class Service {
 
     private Peer peer;
 
-    Service(String args[]){
+    public Service(String args[]){
         peer = new Peer(args);
     }
 

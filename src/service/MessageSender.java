@@ -18,6 +18,7 @@ public class MessageSender implements Protocol{
             stored = "STORED", get_chunk = "GETCHUNK",
             chunk = "CHUNK", delete = "DELETE", removed = "REMOVED";
 
+    public MessageSender(){}
 
     @Override
     public void putChunkMessage(String sender_id, Chunk c) {

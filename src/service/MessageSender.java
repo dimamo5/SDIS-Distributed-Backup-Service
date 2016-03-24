@@ -1,7 +1,11 @@
-import javax.xml.crypto.Data;
+package service;
+
+import database.Chunk;
+import message.Header;
+import message.Message;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 
 /**
@@ -102,7 +106,7 @@ public class MessageSender implements Protocol{
             Peer.getComunication_socket().send(packet);
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("#MessageSender# Error sending packet");
+            System.out.println("#service.MessageSender# Error sending packet");
             System.exit(1);
         }
     }

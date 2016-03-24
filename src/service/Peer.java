@@ -1,3 +1,9 @@
+package service;
+
+import channel.MCChannel;
+import channel.MDBChannel;
+import channel.MDRChannel;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -23,6 +29,9 @@ public class Peer {
     private static MDBChannel MDB_channel;
     private static MDRChannel MDR_channel;
 
+    private static InetAddress ip;
+
+    private static int port;
 
     private static MulticastSocket comunication_socket;
 
@@ -61,7 +70,7 @@ public class Peer {
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error initializing Peer.MulticastSocket / joining group");
+            System.out.println("Error initializing service.Peer.MulticastSocket / joining group");
         }
 
     }
@@ -81,5 +90,15 @@ public class Peer {
     public static MulticastSocket getComunication_socket() {
         return comunication_socket;
     }
+
+
+    public static int getPort() {
+        return port;
+    }
+
+    public static InetAddress getIp() {
+        return ip;
+    }
+
 
 }

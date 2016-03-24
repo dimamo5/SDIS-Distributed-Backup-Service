@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+package message;
 
 /**
  * Created by Sonhs on 13/03/2016.
@@ -24,7 +23,7 @@ public class Header {
             System.exit(1);
         }
 
-        System.out.println("Header msg:"+this.toString());
+        System.out.println("message.Header msg:"+this.toString());
     }
 
     Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
@@ -36,7 +35,7 @@ public class Header {
         chunk_no = ChunkNo;
         replic_deg = ReplicationDeg;
 
-        System.out.println("Header msg:"+this.toString());
+        System.out.println("message.Header msg:"+this.toString());
 
         if (buildHeader() != 0){
             System.out.println("Incorrect header parameters \n");
@@ -52,7 +51,7 @@ public class Header {
         file_id = FileId;
         chunk_no = ChunkNo;
 
-        System.out.println("Header msg:"+this.toString());
+        System.out.println("message.Header msg:"+this.toString());
 
         if (buildHeader() != 0){
             System.out.println("Incorrect header parameters \n");
@@ -67,7 +66,7 @@ public class Header {
         sender_id = SenderId;
         file_id = FileId;
 
-        System.out.println("Header msg:"+this.toString());
+        System.out.println("message.Header msg:"+this.toString());
 
         if (buildHeader() != 0){
             System.out.println("Incorrect header parameters \n");
@@ -125,7 +124,7 @@ public class Header {
 
     @Override
     public String toString() {
-        return "Header{" +
+        return "message.Header{" +
                 "type='" + type + '\'' +
                 ", version='" + version + '\'' +
                 ", sender_id='" + sender_id + '\'' +
@@ -154,7 +153,7 @@ public class Header {
             chunk_no = partitioned_header[4];
             replic_deg = partitioned_header[5];
 
-        System.out.println("Header parsed");
+        System.out.println("message.Header parsed");
     }
 
     byte[] getHeaderMsg(){
@@ -197,7 +196,7 @@ public class Header {
 
     public static void main(String[] args) {
 
-        //Header h = new Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
+        //message.Header h = new message.Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
        Header h = new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes());
         System.out.println(new String(h.getHeaderMsg()));
     }

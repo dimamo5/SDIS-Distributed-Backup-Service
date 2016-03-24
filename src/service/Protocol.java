@@ -1,3 +1,7 @@
+package service;
+
+import database.Chunk;
+
 /**
  * Created by Sonhs on 21/03/2016.
  */

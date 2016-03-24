@@ -1,10 +1,14 @@
+package service;
+
+import message.Message;
+
 /**
  * Created by Sonhs on 23/03/2016.
  */
 public interface Handler {
 
     /*dispatchs messages type X to the correspondent function: "processX"*/
-    void dispatcher(String type,Message message);
+    void dispatcher(String type, Message message);
 
     void processPutChunk(Message message);
 

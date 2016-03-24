@@ -1,3 +1,7 @@
+package service;
+
+import message.*;
+
 import java.net.DatagramPacket;
 
 /**
@@ -11,7 +15,7 @@ public class MessageHandler implements Handler, Runnable  {
 
     DatagramPacket raw_message;
 
-    MessageHandler(DatagramPacket raw_message){
+    public MessageHandler(DatagramPacket raw_message){
         this.raw_message = raw_message;
     }
 
@@ -28,7 +32,7 @@ public class MessageHandler implements Handler, Runnable  {
     public void dispatcher(String type, Message message) {
 
         Types t = Types.valueOf(type);
-        System.out.println("Message type :"+t);
+        System.out.println("message type :"+t);
 
         switch(t){
 
@@ -57,7 +61,7 @@ public class MessageHandler implements Handler, Runnable  {
                 break;
 
             default:
-                System.out.println("UNKNONW TYPE OF MESSAGE RECEIVED");
+                System.out.println("UNKNOWN TYPE OF MESSAGE RECEIVED");
                 System.exit(1);
         }
     }

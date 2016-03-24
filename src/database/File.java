@@ -1,3 +1,5 @@
+package database;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -107,7 +109,7 @@ public class File {
 
                 //todo generate threads
 
-                System.out.println("Created Chunk " + count);
+                System.out.println("Created database.Chunk " + count);
                 ++count;
             }
 

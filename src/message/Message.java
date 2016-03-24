@@ -1,3 +1,5 @@
+package message;
+
 import java.io.*;
 import java.net.DatagramPacket;
 import java.util.Arrays;
@@ -19,7 +21,7 @@ public class Message {
     }
 
     //receives the byte[] from the packet.getData()
-    Message(DatagramPacket  message){
+    public Message(DatagramPacket message){
         processMessage(message);
     }
 
@@ -35,7 +37,7 @@ public class Message {
     private void processMessage(DatagramPacket message){
 
         if(processHeader(message) && processBody(message)){
-            System.out.println("Message processed");
+            System.out.println("message processed");
         } else {
             System.out.println("Error processing message");
             System.exit(1);

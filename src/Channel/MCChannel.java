@@ -1,4 +1,4 @@
-package channel;
+package Channel;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -21,7 +21,7 @@ public class MCChannel implements Runnable{
     private InetAddress address;
     private int port;
 
-    MCChannel(InetAddress address, int port){
+    public MCChannel(InetAddress address, int port){
         this.address = address;
         this.port = port;
 

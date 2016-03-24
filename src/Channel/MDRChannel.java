@@ -1,4 +1,4 @@
-package channel;
+package Channel;
 
 import service.MessageHandler;
 import service.Peer;
@@ -22,7 +22,7 @@ public class MDRChannel implements Runnable{
     private int port;
 
 
-    MDRChannel(InetAddress address, int port){
+    public MDRChannel(InetAddress address, int port){
         this.address = address;
         this.port = port;
 

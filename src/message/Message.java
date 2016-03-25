@@ -34,6 +34,10 @@ public class Message {
         return body;
     }
 
+    public int getBodyLength(){
+        return body.length;
+    }
+
     private void processMessage(DatagramPacket message){
 
         if(processHeader(message) && processBody(message)){

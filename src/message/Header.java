@@ -1,5 +1,9 @@
 package message;
 
+import com.sun.xml.internal.org.jvnet.fastinfoset.sax.FastInfosetReader;
+
+import java.util.Arrays;
+
 /**
  * Created by Sonhs on 13/03/2016.
  */
@@ -193,11 +197,27 @@ public class Header {
         return result;
     }
 
+    public String parseHexString(String string){
+
+        String [] partitionedString = new String[string.length()/2];
+
+        for(int i = 0; i < string.length()/2; i++){
+            partitionedString[i] = new StringBuilder().append(string.charAt(i)).append(string.charAt(i+1)).toString();
+        }
+
+        String compact = Arrays.toString(partitionedString);
+
+        //continuar
+
+        return null;
+    }
+
 
     public static void main(String[] args) {
 
         //message.Header h = new message.Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
        Header h = new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes());
-        System.out.println(new String(h.getHeaderMsg()));
+      // System.out.println(new StringBuilder().append(h.getFile_id().charAt(0)).append(h.getFile_id().charAt(1)).toString());
+
     }
 }

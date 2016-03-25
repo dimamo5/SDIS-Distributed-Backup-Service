@@ -1,6 +1,7 @@
 package service;
 
-import Channel.*;
+import channel.*;
+import database.Disk;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -19,7 +20,11 @@ public class Peer implements RMIInterface{
         MC, MDB, MDR;
     }
 
-    private String id;
+    private static Disk disk;
+
+    private static String id;
+    private static InetAddress ip;
+    private static int port;
 
     //valores por defeito
     private String MC_ip ="224.0.0.1", MDB_ip="224.0.1.0", MDR_ip="224.1.0.0";
@@ -30,9 +35,6 @@ public class Peer implements RMIInterface{
     private static MDBChannel MDB_channel;
     private static MDRChannel MDR_channel;
 
-    private static InetAddress ip;
-
-    private static int port;
 
     private static MulticastSocket comunication_socket;
 
@@ -99,11 +101,15 @@ public class Peer implements RMIInterface{
             comunication_socket = new MulticastSocket();
             comunication_socket.setTimeToLive(1);
             comunication_socket.joinGroup(InetAddress.getByName(this.MC_ip));
+            //TODO JUNTAR-SE AOS OUTROS GRUPOS ?
 
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error initializing service.Peer.MulticastSocket / joining group");
         }
+
+
+        disk = new Disk();
 
     }
 
@@ -132,8 +138,12 @@ public class Peer implements RMIInterface{
         return ip;
     }
 
-    public String getId() {
+    public static String getId() {
         return id;
+    }
+
+    public static Disk getDisk() {
+        return disk;
     }
 
     @Override

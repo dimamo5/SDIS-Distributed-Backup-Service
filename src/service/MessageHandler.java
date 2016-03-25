@@ -69,6 +69,28 @@ public class MessageHandler implements Handler, Runnable  {
     @Override
     public void processPutChunk(Message message) {
 
+        if(message.getHeader().getSender_id().equals(Peer.getId())){
+            //A Peer never stores the chunks of i's own files
+            //TODO Verificar o sender_id já cobre todas as ocorrências deste problema?
+            return;
+        }
+
+        //peer has space to store chunk
+        if(Peer.getDisk().getFreeSpace() < message.getBodyLength()){
+            System.out.println("Not enough space on disk to store chunk");
+            return;
+        }
+
+
+        //if(Peer.getDisk().hasChunk())
+
+        //se peer já tiver chunk responde com STORED ?
+
+        //armazena chunk data + registo hashmap
+
+        //
+
+
     }
 
     @Override

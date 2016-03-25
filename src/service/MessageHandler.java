@@ -100,13 +100,16 @@ public class MessageHandler implements Handler, Runnable  {
             System.out.println("Error in Thread.sleep");
         }
 
-        //TODO VERIFICA SE NO GRUPO DE MULTICAST NAO RECEBEU UM NUMERO DE STORED CONFIRMATIONS SUPERIOR OU IGUAL AO REPLIC DEGREE PARA ESTE CHUNK;
-        //TODO SE NAO RECEBEU ENVIA STORED MESSAGE;
+        //================================================
+         /*TODO ENHANCEMENT !!!!!!!!!!!!!!!!
+        TODO VERIFICA SE NO GRUPO DE MULTICAST NAO RECEBEU UM NUMERO DE STORED CONFIRMATIONS SUPERIOR OU IGUAL AO REPLIC DEGREE PARA ESTE CHUNK;
+        TODO SE NAO RECEBEU ENVIA STORED MESSAGE;
 
-        /*if(some_stored_message_counter_variable >= replic_degree){
+        if(some_stored_message_counter_variable >= replic_degree){
             return;
         }*/
-
+        //================================================
+        
         //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
 
         Chunk chunk = new Chunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no(),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());

@@ -98,7 +98,7 @@ public class Disk implements Serializable{
         //actualiza espaço no disco
         useSpace(c.getDataLength());
 
-        //regista chunk no hashmap
+        //TODO regista chunk no hashmap
         //files ou chunks ??
 
     }

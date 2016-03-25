@@ -214,7 +214,8 @@ public class Header {
 
         //message.Header h = new message.Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
        Header h = new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes());
-      // System.out.println(new StringBuilder().append(h.getFile_id().charAt(0)).append(h.getFile_id().charAt(1)).toString());
+        System.out.println(h.convertToHexString(h.getFile_id()));
+       System.out.println(h.parseHexString(h.convertToHexString(h.getFile_id())));
 
     }
 }

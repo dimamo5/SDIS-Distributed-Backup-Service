@@ -77,6 +77,10 @@ public class Peer implements RMIInterface{
 
     private void initAttr(String args[]){
 
+        if(args.length == 0){
+            System.out.println("Incorrect number of args");
+        }
+
         this.id = args[0];
 
         if(args.length > 1) { //reconfigure MCchannel's ip/port

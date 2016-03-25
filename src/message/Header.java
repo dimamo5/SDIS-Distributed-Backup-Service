@@ -199,17 +199,14 @@ public class Header {
 
     public String parseHexString(String string){
 
-        String [] partitionedString = new String[string.length()/2];
+        StringBuilder output = new StringBuilder();
 
-        for(int i = 0; i < string.length()/2; i++){
-            partitionedString[i] = new StringBuilder().append(string.charAt(i)).append(string.charAt(i+1)).toString();
+        for (int i = 0; i < string.length(); i+=2) {
+            String str = string.substring(i, i+2);
+            output.append((char)Integer.parseInt(str, 16));
         }
 
-        String compact = Arrays.toString(partitionedString);
-
-        //continuar
-
-        return null;
+        return output.toString();
     }
 
 

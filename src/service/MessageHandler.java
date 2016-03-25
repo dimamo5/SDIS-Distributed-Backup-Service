@@ -1,8 +1,10 @@
 package service;
 
+import database.Chunk;
 import message.*;
 
 import java.net.DatagramPacket;
+import java.util.Random;
 
 /**
  * Created by Sonhs on 21/03/2016.
@@ -14,9 +16,11 @@ public class MessageHandler implements Handler, Runnable  {
     }
 
     DatagramPacket raw_message;
+    MessageSender message_sender;
 
     public MessageHandler(DatagramPacket raw_message){
         this.raw_message = raw_message;
+        message_sender = new MessageSender();
     }
 
     @Override
@@ -67,7 +71,7 @@ public class MessageHandler implements Handler, Runnable  {
     }
 
     @Override
-    public void processPutChunk(Message message) {
+    public void processPutChunk(Message message) { //TODO VERIFICAR PASSOS DO MÉTODO !!!!!!!!!
 
         if(message.getHeader().getSender_id().equals(Peer.getId())){
             //A Peer never stores the chunks of i's own files
@@ -81,20 +85,46 @@ public class MessageHandler implements Handler, Runnable  {
             return;
         }
 
+        if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no())){
+            //send "STORED" message
+            message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+            return;
+        }
 
-        //if(Peer.getDisk().hasChunk())
+        //verifica se tem espaço suficiente
+        if(!Peer.getDisk().canSaveChunk(message.getBodyLength())){
+            System.out.println("Not enough space to save chunk");
+            return;
+        }
 
-        //se peer já tiver chunk responde com STORED ?
+        //random delay [0,400]
+        try {
+            Thread.sleep(new Random().nextInt(400));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            System.out.println("Error in Thread.sleep");
+        }
+
+        //TODO VERIFICA SE NO GRUPO DE MULTICAST NAO RECEBEU UM NUMERO DE STORED CONFIRMATIONS SUPERIOR OU IGUAL AO REPLIC DEGREE PARA ESTE CHUNK;
+        //TODO SE NAO RECEBEU ENVIA STORED MESSAGE;
+
+        /*if(some_stored_message_counter_variable >= replic_degree){
+            return;
+        }*/
+
+        //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+
+        Chunk chunk = new Chunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no(),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
 
         //armazena chunk data + registo hashmap
-
-        //
-
-
+        Peer.getDisk().storeChunk(chunk);
     }
 
     @Override
     public void processStored(Message message) {
+
+        //actualiza store count para determinado chunk
+        //PROBLEMATICA ^
 
     }
 

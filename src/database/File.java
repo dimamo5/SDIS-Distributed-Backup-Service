@@ -82,6 +82,9 @@ public class File {
         System.out.println("filehash: " + this.filehash);
     }
 
+
+    //TODO generate threads!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //TODO NEM TODOS OS CHUNKS PRECISAM DE TER 64 KB
     ArrayList<Chunk> splitFile() {
 
         try {
@@ -102,8 +105,6 @@ public class File {
                 fos.write(buffer, 0, i);
                 fos.flush();
                 fos.close();
-
-                //todo generate threads
 
                 System.out.println("Created database.Chunk " + count);
                 ++count;

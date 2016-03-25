@@ -9,6 +9,8 @@ public interface Protocol {
 
     String Version = "1.0";
 
+    //TODO OS MÉTODOS NAO NECESSITAM DE RECEBER O SENDER_ID ....PROLLY
+
     //BackUp sub-protocol
     void putChunkMessage(String sender_id, Chunk c);
     void storedMessage(String sender_id, String file_id, String chunk_no);

@@ -31,6 +31,11 @@ public class Chunk {
         return data;
     }
 
+    public int getDataLength(){
+        return data.length;
+    }
+
+
     public Chunk(String fileId, String chunkNo, int replicationDegree, byte[] data_block){
         this.chunkNo = chunkNo;
         this.fileId=fileId;

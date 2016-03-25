@@ -3,7 +3,7 @@ package database;
 /**
  * Created by diogo on 25/03/2016.
  */
-public class StoredChunck {
+public class StoredChunk {
     public static final int MAX_SIZE = 64000;
 
     private int chunkNo;
@@ -12,9 +12,9 @@ public class StoredChunck {
 
     private int replicationDegree;
 
-    private byte[] data_block;
+    private byte[] dataBlock;
 
-    public StoredChunck(String fileId, int chunkNo, int replicationDegree, byte[] data_block) {
+    public StoredChunk(String fileId, int chunkNo, int replicationDegree, byte[] dataBlock) {
 
         this.chunkNo=chunkNo;
 
@@ -22,7 +22,7 @@ public class StoredChunck {
 
         this.replicationDegree = replicationDegree;
 
-        this.data_block = data_block;
+        this.dataBlock = dataBlock;
     }
 
     public int getChunkNo() {
@@ -37,11 +37,11 @@ public class StoredChunck {
         return replicationDegree;
     }
 
-    public byte[] getData_block() {
-        return data_block;
+    public byte[] getDataBlock() {
+        return dataBlock;
     }
     public int getDataLength(){
-        return data_block.length;
+        return dataBlock.length;
     }
 
 

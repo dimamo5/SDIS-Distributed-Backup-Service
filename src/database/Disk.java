@@ -16,8 +16,6 @@ public class Disk implements Serializable{
 
     private int spaceUsage;
 
-    //TODO GUARDA OS CHUNKS TODOS EM RAM ??
-    //TODO ONDE É GUARDADA A REPLIC DEGREE SE NAO TIVERMOS OS CHUNKS EM MEMORIA VOLATIL?
     public ArrayList<Chunk> chunks =new ArrayList<>();
 
     public HashMap<String,File> files = new HashMap<>(); //File name to hash
@@ -75,18 +73,24 @@ public class Disk implements Serializable{
 
     public boolean hasChunk(String file_id, String chunk_no) {
 
-        return chunks.contains(file_id+"/"+chunk_no);
+        for(int i =0;i<chunks.size();i++){
+            Chunk c= chunks.get(i);
+            if(c.getChunkNo().equals(chunk_no) && c.getFileId().equals(file_id)){
+                return true;
+            }
+        }
+        return false;
     }
 
     //TODO VERIFICAR ISTO
-    public void storeChunk(Chunk c){
+    public void storeChunk(StoredChunk c){
 
         /* Creates chunk file */
         String chunkFileNameOut = "files/" + c.getFileId()+"/" + c.getChunkNo();
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(chunkFileNameOut);
-            fos.write(c.getData());
+            fos.write(c.getDataBlock());
             fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {

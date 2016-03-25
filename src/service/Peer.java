@@ -1,6 +1,6 @@
 package service;
 
-import channel.*;
+import Channel.*;
 
 import java.io.IOException;
 import java.net.InetAddress;

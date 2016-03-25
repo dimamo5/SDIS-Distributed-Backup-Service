@@ -1,4 +1,4 @@
-package channel;
+package Channel;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

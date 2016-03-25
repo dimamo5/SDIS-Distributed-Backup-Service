@@ -79,12 +79,7 @@ public class MessageHandler implements Handler, Runnable  {
             return;
         }
 
-        //peer has space to store chunk
-        if(Peer.getDisk().getFreeSpace() < message.getBodyLength()){
-            System.out.println("Not enough space on disk to store chunk");
-            return;
-        }
-
+        //verifica se chunk
         if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no())){
             //send "STORED" message
             message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());

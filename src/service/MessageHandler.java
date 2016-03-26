@@ -1,6 +1,7 @@
 package service;
 
 import database.Chunk;
+import database.StoredChunk;
 import message.*;
 
 import java.net.DatagramPacket;
@@ -112,7 +113,7 @@ public class MessageHandler implements Handler, Runnable  {
         
         //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
 
-        Chunk chunk = new Chunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no(),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
+        StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
 
         //armazena chunk data + registo hashmap
         Peer.getDisk().storeChunk(chunk);

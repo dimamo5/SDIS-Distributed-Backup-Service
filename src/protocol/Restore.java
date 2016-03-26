@@ -16,7 +16,7 @@ import java.util.Observer;
 /**
  * Created by diogo on 25/03/2016.
  */
-public class Restore extends Observer implements Runnable {
+public class Restore implements Runnable,Observer {
     private File file;
     private MessageSender messageSender;
 

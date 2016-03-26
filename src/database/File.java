@@ -92,11 +92,11 @@ public class File {
             java.io.File fileDir =new java.io.File("files/"+filehash);
             fileDir.mkdir();
 
-            byte buffer[] = new byte[Chunk.MAX_CHUNK_SIZE];
+            byte buffer[] = new byte[StoredChunk.MAX_SIZE];
 
             int count = 0;
             while (true) {
-                int i = fs.read(buffer, 0, Chunk.MAX_CHUNK_SIZE);
+                int i = fs.read(buffer, 0, StoredChunk.MAX_SIZE);
                 if (i == -1)
                     break;
 

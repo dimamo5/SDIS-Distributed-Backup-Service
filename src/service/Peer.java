@@ -2,6 +2,7 @@ package service;
 
 import channel.*;
 import database.Disk;
+import protocol.Delete;
 import protocol.Restore;
 
 import java.io.IOException;
@@ -169,8 +170,8 @@ public class Peer implements RMIInterface{
 
     @Override
     public void deleteFile(String filename) {
-        //TODO Call Initiator
-        System.out.println("BACKUP");
+        System.out.println("Starting Deteling file: "+filename);
+        new Thread(new Delete(filename)).start();
     }
 
     @Override

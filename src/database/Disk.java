@@ -111,4 +111,8 @@ public class Disk implements Serializable{
 
         return dataLength <= getFreeSpace();
     }
+
+    public boolean hasFile(String filename){
+        return files.containsKey(filename);
+    }
 }

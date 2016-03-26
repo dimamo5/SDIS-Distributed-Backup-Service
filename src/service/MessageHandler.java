@@ -133,7 +133,10 @@ public class MessageHandler implements Handler, Runnable  {
 
     @Override
     public void processChunk(Message message) {
-
+        String filehash = message.getHeader().getFile_id();
+        if(Peer.getMDR_channel().canStore(filehash)){
+            Peer.getMDR_channel().notifyObservers(message);
+        }
     }
 
     @Override

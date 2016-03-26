@@ -2,6 +2,7 @@ package service;
 
 import channel.*;
 import database.Disk;
+import protocol.Restore;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -158,8 +159,12 @@ public class Peer implements RMIInterface{
 
     @Override
     public void restoreFile(String filename) {
-        //TODO Call Initiator
-        System.out.println("BACKUP");
+        System.out.println("Starting Restoring file: "+filename);
+        Restore r=new Restore(filename);
+        this.MDR_channel.addObserver(r);
+        new Thread(r).start();
+
+
     }
 
     @Override

@@ -2,10 +2,14 @@ package service;
 
 import channel.*;
 import database.Disk;
+import protocol.Backup;
 import protocol.Delete;
 import protocol.Restore;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
@@ -152,9 +156,39 @@ public class Peer implements RMIInterface{
         return disk;
     }
 
+    public static void loadDisk(){
+
+    }
+
+    public static void saveDisk(){
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("db.data");
+
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+                    fileOutputStream);
+
+            objectOutputStream.writeObject(disk);
+
+            objectOutputStream.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Database not found");
+
+            disk=new Disk();
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
     @Override
     public void backupFile(String filename, int replicationDegree) {
-        //TODO Call Initiator
+        new Thread(new Backup(filename,replicationDegree));
+
         System.out.println("BACKUP");
     }
 

@@ -14,14 +14,13 @@ public class Disk implements Serializable{
 
     private static final int MAX_CAPACITY = 2000000;
 
-    private int spaceUsage;
+    private int spaceUsage=0;
 
     public ArrayList<Chunk> chunks =new ArrayList<>();
 
     public HashMap<String,File> files = new HashMap<>(); //File name to hash
 
     public Disk(){
-        spaceUsage = 0;
     }
 
     /* METHODS */

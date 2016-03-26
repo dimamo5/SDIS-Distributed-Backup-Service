@@ -1,16 +1,26 @@
 package protocol;
 
+import channel.MCChannel;
+import channel.MDRChannel;
 import database.StoredChunk;
+import message.Message;
+import service.MessageSender;
+import service.Peer;
+
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by diogo on 26/03/2016.
  */
-public class BackupChunk  implements Runnable{
+public class BackupChunk  implements Runnable,Observer{
 
     public static final long INITIAL_WAITING_TIME = 500;
     public static final int MAX_ATTEMPTS = 5;
 
     private StoredChunk chunk;
+    private ArrayList<Integer> confirmationReceived = new ArrayList<>();
 
     public BackupChunk(StoredChunk chunk) {
         this.chunk = chunk;
@@ -18,16 +28,14 @@ public class BackupChunk  implements Runnable{
 
     @Override
     public void run(){
-        Peer.getMcListener().startSavingStoredConfirmsFor(chunk.getID());
+        MessageSender sender=new MessageSender();
 
         long waitingTime = INITIAL_WAITING_TIME;
         int attempt = 0;
 
         boolean done = false;
         while (!done) {
-            Peer.getMcListener().clearSavedStoredConfirmsFor(chunk.getID());
-
-            Peer.getCommandForwarder().sendPUTCHUNK(chunk);
+            sender.putChunkMessage(Peer.getId(),this.chunk);
 
             try {
                 System.out.println("Waiting for STOREDs for " + waitingTime
@@ -37,29 +45,36 @@ public class BackupChunk  implements Runnable{
                 e.printStackTrace();
             }
 
-            int confirmedRepDeg = Peer.getMcListener().getNumStoredConfirmsFor(
-                    chunk.getID());
+            int confirmedRepDeg =confirmationReceived.size();
 
-            Log.info(confirmedRepDeg + " peers have backed up chunk no. "
-                    + chunk.getID().getChunkNo() + ". (desired: "
+            System.out.println(confirmedRepDeg + " peers have backed up chunk no. "
+                    + chunk.getChunkNo() + ". (desired: "
                     + chunk.getReplicationDegree() + " )");
 
             if (confirmedRepDeg < chunk.getReplicationDegree()) {
                 attempt++;
 
                 if (attempt > MAX_ATTEMPTS) {
-                    Log.info("Reached maximum number of attempts to backup chunk with desired replication degree.");
+                    System.out.println("Reached maximum number of attempts to backup chunk with desired replication degree.");
                     done = true;
                 } else {
-                    Log.info("Desired replication degree was not reached. Trying again...");
+                    System.out.println("Desired replication degree was not reached. Trying again...");
                     waitingTime *= 2;
                 }
             } else {
-                Log.info("Desired replication degree reached.");
+                System.out.println("Desired replication degree reached.");
                 done = true;
             }
         }
+    }
 
-        Peer.getMcListener().stopSavingStoredConfirmsFor(chunk.getID());
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof MCChannel && arg instanceof Message) {
+            Message m = (Message) arg;
+            if(this.chunk.getFileId().equals(m.getHeader().getFile_id())){
+                this.confirmationReceived.add(Integer.parseInt(m.getHeader().getSender_id()));
+            }
+        }
     }
 }

@@ -3,10 +3,7 @@ package protocol;
 import database.Chunk;
 import database.StoredChunk;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,17 +31,21 @@ public class Backup implements Runnable{
     @Override
     public void run() {
         String filehash = getHashFile();
+
+
+
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
 
+            int numChuncks= (int) new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE +1;
+
             byte buffer[] = new byte[StoredChunk.MAX_SIZE];
 
-            int count = 0;
-            while (true) {
-                int i = fs.read(buffer, 0, StoredChunk.MAX_SIZE);
-
-                System.out.println("Created database.Chunk " + count);
-                ++count;
+            for(int i =0;i<numChuncks;i++){
+                fs.read(buffer, 0, StoredChunk.MAX_SIZE);
+                byte[] bufferCloned = buffer.clone();
+                StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,buffer);
+                new Thread(new BackupChunk(chunk)).start();;
             }
 
         } catch (Exception e) {
@@ -52,55 +53,6 @@ public class Backup implements Runnable{
         }
 
     }
-
-    public void backupChunk() {
-        Peer.getMcListener().startSavingStoredConfirmsFor(chunk.getID());
-
-        long waitingTime = INITIAL_WAITING_TIME;
-        int attempt = 0;
-
-        boolean done = false;
-        while (!done) {
-            Peer.getMcListener().clearSavedStoredConfirmsFor(chunk.getID());
-
-            Peer.getCommandForwarder().sendPUTCHUNK(chunk);
-
-            try {
-                System.out.println("Waiting for STOREDs for " + waitingTime
-                        + "ms");
-                Thread.sleep(waitingTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            int confirmedRepDeg = Peer.getMcListener().getNumStoredConfirmsFor(
-                    chunk.getID());
-
-            Log.info(confirmedRepDeg + " peers have backed up chunk no. "
-                    + chunk.getID().getChunkNo() + ". (desired: "
-                    + chunk.getReplicationDegree() + " )");
-
-            if (confirmedRepDeg < chunk.getReplicationDegree()) {
-                attempt++;
-
-                if (attempt > MAX_ATTEMPTS) {
-                    Log.info("Reached maximum number of attempts to backup chunk with desired replication degree.");
-                    done = true;
-                } else {
-                    Log.info("Desired replication degree was not reached. Trying again...");
-                    waitingTime *= 2;
-                }
-            } else {
-                Log.info("Desired replication degree reached.");
-                done = true;
-            }
-        }
-
-        Peer.getMcListener().stopSavingStoredConfirmsFor(chunk.getID());
-    }
-
-
-
 
     private String getHashFile() {
         Path filepath = Paths.get(System.getProperty("user.dir") + "/files/" + this.filename);

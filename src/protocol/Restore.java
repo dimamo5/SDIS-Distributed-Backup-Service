@@ -44,7 +44,7 @@ public class Restore implements Runnable,Observer {
                 Message message=(Message) arg;
                 int chunkNo= Integer.parseInt(message.getHeader().getChunk_no());
                 byte[] data = message.getBody();
-                raf.write(data,(chunkNo-1)*64000,64000);
+                raf.write(data,(chunkNo)*64000,64000);
             }
 
         } catch (FileNotFoundException e) {

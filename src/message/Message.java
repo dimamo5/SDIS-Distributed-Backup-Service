@@ -131,14 +131,14 @@ public class Message {
 
     public static void main(String args[]){
 
-        Message m = new Message(new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes()));
-        InetAddress addres = Peer.getIp();
+        /*Message m = new Message(new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes()));
+        //InetAddress addres = Peer.getIp();
 
         DatagramPacket message = new DatagramPacket(m.getMessageBytes(),m.getMessageBytes().length,addres,10000);
 
         Message mx = new Message(message);
 
-        System.out.println(mx.toString());
+        System.out.println(mx.toString());*/
     }
 
 

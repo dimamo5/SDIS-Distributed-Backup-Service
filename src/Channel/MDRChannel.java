@@ -54,9 +54,9 @@ public class MDRChannel extends Observable implements Runnable {
 
             try {
                 socket.receive(packet);
-                String senderIP = packet.getAddress().getHostName();
+                String senderIP = packet.getAddress().getHostAddress();
 
-                if (!senderIP.equals(Peer.getIp())&& Peer.getPort()!=packet.getPort()) {
+                if (!(senderIP.equals(Peer.getIp())&& Peer.getPort()==packet.getPort())) {
                     new Thread(new MessageHandler(packet)).start();
                 }
 

@@ -91,6 +91,8 @@ public class MessageHandler implements Handler, Runnable  {
                 System.out.println("Error in Thread.sleep");
             }
 
+
+            System.out.println("Send STORED");
             //send "STORED" message
             message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
 

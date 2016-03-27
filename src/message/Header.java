@@ -159,9 +159,10 @@ public class Header {
 
         if (partitioned_header.length == 5)
             chunk_no = partitioned_header[4];
-        else if (partitioned_header.length == 6)
+        else if (partitioned_header.length == 6){
             chunk_no = partitioned_header[4];
-        replic_deg = partitioned_header[5];
+            replic_deg = partitioned_header[5];
+        }
 
         System.out.println("message.Header parsed");
     }

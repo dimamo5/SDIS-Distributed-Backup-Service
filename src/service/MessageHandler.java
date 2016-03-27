@@ -139,8 +139,8 @@ public class MessageHandler implements Handler, Runnable  {
         Chunk c = new Chunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no()),-1);
         Peer.getDisk().addChunkMirror(c, message.getHeader().getReplic_deg());
 
-
         Peer.getMC_channel().notifyObservers(message);
+        System.out.println("Observadores: "+Peer.getMC_channel().countObservers());
 
     }
 
@@ -153,7 +153,7 @@ public class MessageHandler implements Handler, Runnable  {
     public void processChunk(Message message) {
         String filehash = message.getHeader().getFile_id();
         if(Peer.getMDR_channel().canStore(filehash)){
-            Peer.getMDR_channel().notifyObservers(message);
+            Peer.getMC_channel().notifyObservers(message);
         }
     }
 

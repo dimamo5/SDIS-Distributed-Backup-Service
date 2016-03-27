@@ -1,11 +1,13 @@
 package database;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by diogo on 08/03/2016.
  */
-public class Chunk {
+public class Chunk implements Serializable {
 
     private String fileId;
     private int replicationDegree;
@@ -36,4 +38,17 @@ public class Chunk {
         }
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        for(String p : peers)
+            s+= p + " ";
+
+        return "Chunk{" +
+                "fileId='" + fileId + '\'' +
+                ", replicationDegree=" + replicationDegree +
+                ", chunkNo=" + chunkNo +
+                ", peers=" + s +
+                '}';
+    }
 }

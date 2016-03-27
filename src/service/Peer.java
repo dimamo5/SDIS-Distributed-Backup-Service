@@ -1,15 +1,13 @@
 package service;
 
 import channel.*;
+import database.Chunk;
 import database.Disk;
 import protocol.Backup;
 import protocol.Delete;
 import protocol.Restore;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -27,7 +25,7 @@ public class Peer implements RMIInterface{
         MC, MDB, MDR;
     }
 
-    private static Disk disk =new Disk();
+    private static Disk disk = new Disk();
 
     private static String id;
     private static String ip;
@@ -50,6 +48,7 @@ public class Peer implements RMIInterface{
     }
 
     public static void main(String[] args){
+
         Peer p=new Peer(args);
 
         /*try {
@@ -67,12 +66,15 @@ public class Peer implements RMIInterface{
             e.printStackTrace();
         }*/
 
+
         new Thread(MC_channel).start();
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
 
         if(args.length==8)
             p.backupFile("texto1.txt",1);
+
+
     }
 
     /* METHODS */
@@ -148,6 +150,28 @@ public class Peer implements RMIInterface{
 
     public static void loadDisk(){
 
+        try {
+            FileInputStream fileInputStream = new FileInputStream("db.data");
+
+            ObjectInputStream objectInputStream = new ObjectInputStream(
+                    fileInputStream);
+
+            disk = (Disk) objectInputStream.readObject();
+            System.out.println("Disk loaded");
+
+            objectInputStream.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Database not found.");
+
+            disk=new Disk();
+            System.out.println("New disk created.");
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void saveDisk(){
@@ -159,11 +183,10 @@ public class Peer implements RMIInterface{
 
             objectOutputStream.writeObject(disk);
 
+            System.out.println("Disk saved");
             objectOutputStream.close();
         } catch (FileNotFoundException e) {
             System.err.println("Database not found");
-
-            disk=new Disk();
 
             e.printStackTrace();
         } catch (IOException e) {

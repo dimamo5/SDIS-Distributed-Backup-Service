@@ -140,7 +140,7 @@ public class MessageHandler implements Handler, Runnable  {
         Peer.getDisk().addChunkMirror(c, message.getHeader().getReplic_deg());
 
         Peer.getMC_channel().notifyObservers(message);
-        System.out.println("Observadores: "+Peer.getMC_channel().countObservers());
+        System.out.println("Observadores: "+ Peer.getMC_channel().countObservers());
 
     }
 

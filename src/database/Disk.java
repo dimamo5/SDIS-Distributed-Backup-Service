@@ -111,10 +111,6 @@ public class Disk implements Serializable{
 
         //actualiza espaço no disco
         useSpace(c.getDataLength());
-
-        //TODO regista chunk no hashmap
-        //files ou chunks ??
-
     }
 
     public boolean canSaveChunk(int dataLength) {
@@ -140,6 +136,14 @@ public class Disk implements Serializable{
 
     public void addChunk(Chunk c){
         this.chunks.add(c);
+    }
 
+    @Override
+    public String toString() {
+        return "Disk{" +
+                "spaceUsage=" + spaceUsage +
+                ", chunks=" + chunks +
+                ", files=" + files +
+                '}';
     }
 }

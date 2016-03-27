@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.util.Observable;
 
 /**
  * Created by diogo on 17/03/2016.
  */
-public class MDBChannel implements Runnable {
+public class MDBChannel extends Observable implements Runnable {
     public final int MAX_SIZE = 64500;
 
     public MulticastSocket socket;
@@ -63,7 +64,11 @@ public class MDBChannel implements Runnable {
         }
         socket.close();
     }
-
+    @Override
+    public void notifyObservers(Object arg) {
+        this.setChanged();
+        super.notifyObservers(arg);
+    }
 
     public InetAddress getAddress() {
         return address;

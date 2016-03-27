@@ -148,9 +148,7 @@ public class Header {
         //"\\p{Space}+" -> regex separa tokens intervalados por 1+ espaços
         String partitioned_header[] = new String(header_info).split("\\p{Space}+");
 
-        System.out.println("Header Tokens");
-        for (String s : partitioned_header)
-            System.out.println(s);
+        //System.out.println("Header Tokens");
 
         type = partitioned_header[0];
         version = partitioned_header[1];
@@ -164,7 +162,7 @@ public class Header {
             replic_deg = partitioned_header[5];
         }
 
-        System.out.println("message.Header parsed");
+        //System.out.println("message.Header parsed");
     }
 
     byte[] getHeaderMsg() {

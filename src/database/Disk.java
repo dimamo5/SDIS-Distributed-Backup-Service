@@ -1,9 +1,9 @@
 package database;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -145,5 +145,23 @@ public class Disk implements Serializable{
                 ", chunks=" + chunks +
                 ", files=" + files +
                 '}';
+    }
+
+    public StoredChunk loadChunk(String fileId, String chunkNo){
+
+        Path path = Paths.get("files/" + fileId+"/" + chunkNo);
+        StoredChunk sc=null;
+        try {
+            byte[] data = Files.readAllBytes(path);
+            sc=new StoredChunk(fileId,Integer.parseInt(chunkNo),-1,data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sc;
+    }
+
+    public void addFile(String name,String hash,int numChunks){
+        this.files.put(name,new File(name,hash,numChunks));
     }
 }

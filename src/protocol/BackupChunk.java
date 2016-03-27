@@ -73,7 +73,7 @@ public class BackupChunk  implements Runnable,Observer{
         System.out.println("Chamou o update");
         if (o instanceof MCChannel && arg instanceof Message) {
             Message m = (Message) arg;
-            if(this.chunk.getFileId().equals(m.getHeader().getFile_id())){
+            if(this.chunk.getFileId().equals(m.getHeader().getFile_id()) && this.chunk.getChunkNo()==Integer.parseInt(m.getHeader().getChunk_no())){
                 this.confirmationReceived.add(Integer.parseInt(m.getHeader().getSender_id()));
             }
         }

@@ -106,8 +106,6 @@ public class Message {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(header.getHeaderMsg().length + (body != null ? body.length : 0));
 
-        System.out.println("cenas");
-
         try {
             outputStream.write(header.getHeaderMsg());
             if(body!= null)

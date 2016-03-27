@@ -65,6 +65,12 @@ public class MCChannel extends Observable implements Runnable{
         socket.close();
     }
 
+    @Override
+    public void notifyObservers(Object arg) {
+        this.setChanged();
+        super.notifyObservers(arg);
+    }
+
     public InetAddress getAddress() {
         return address;
     }

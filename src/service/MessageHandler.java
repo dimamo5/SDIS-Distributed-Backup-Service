@@ -140,13 +140,24 @@ public class MessageHandler implements Handler, Runnable  {
         Peer.getDisk().addChunkMirror(c, message.getHeader().getReplic_deg());
 
         Peer.getMC_channel().notifyObservers(message);
-        System.out.println("Observadores: "+ Peer.getMC_channel().countObservers());
 
     }
 
     @Override
     public void processGetChunk(Message message) {
+        if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(),new Integer(message.getHeader().getChunk_no()))){
+            try {
+                Thread.sleep(new Random().nextInt(400));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.out.println("Error in Thread.sleep");
+            }
 
+            StoredChunk c= Peer.getDisk().loadChunk(message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+
+            message_sender.chunkMessage(Peer.getId(),c);
+
+        }
     }
 
     @Override

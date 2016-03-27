@@ -23,7 +23,8 @@ public class File {
     private int numChuncks;
     private static final int MAX_NO_CHUNKS = 999999;  // PODE TER ATÉ 1.000.000 CHUNKS
 
-    public File(String filename, int numchuncks) {
+    public File(String filename,String filehash, int numchuncks) {
+        this.filehash=filehash;
         this.filename = filename;
         this.numChuncks=numchuncks;
     }

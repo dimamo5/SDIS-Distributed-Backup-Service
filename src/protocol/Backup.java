@@ -1,6 +1,5 @@
 package protocol;
 
-import database.Chunk;
 import database.StoredChunk;
 import service.Peer;
 
@@ -13,7 +12,6 @@ import java.nio.file.attribute.FileOwnerAttributeView;
 import java.nio.file.attribute.UserPrincipal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 /**
  * Created by diogo on 26/03/2016.
@@ -33,17 +31,15 @@ public class Backup implements Runnable{
     public void run() {
         String filehash = getHashFile();
 
+        int numChuncks= (int) new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE +1;
+
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
 
-            int numChuncks= (int) new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE +1;
-
-            byte buffer[] = new byte[StoredChunk.MAX_SIZE];
-
             for(int i =0;i<numChuncks;i++){
                 System.out.println("Launching Thread "+i);
-                fs.read(buffer, 0, StoredChunk.MAX_SIZE);
-                byte[] bufferCloned = buffer.clone();
+                byte buffer[] = new byte[StoredChunk.MAX_SIZE];
+                fs.read(buffer);
                 StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,buffer);
                 BackupChunk bc=new BackupChunk(chunk);
                 Peer.getMC_channel().addObserver(bc);
@@ -53,6 +49,8 @@ public class Backup implements Runnable{
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
+
+        Peer.getDisk().addFile(this.filename,filehash,numChuncks);
 
     }
 

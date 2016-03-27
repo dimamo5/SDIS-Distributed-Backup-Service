@@ -1,7 +1,13 @@
 package message;
 
+import service.MessageHandler;
+import service.MessageSender;
+import service.Peer;
+
 import java.io.*;
 import java.net.DatagramPacket;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.util.Arrays;
 
 /**
@@ -10,7 +16,7 @@ import java.util.Arrays;
 public class Message {
 
     Header header = null;
-    byte[] body;
+    byte[] body = null;
 
     //receives the byte[] from the packet.getData()
     public Message(DatagramPacket message){
@@ -38,7 +44,7 @@ public class Message {
         return body.length;
     }
 
-    private void processMessage(DatagramPacket message){
+    public void processMessage(DatagramPacket message){
 
         if(processHeader(message) && processBody(message)){
             System.out.println("Message processed");
@@ -62,6 +68,8 @@ public class Message {
             e.printStackTrace();
             return false;
         }
+
+        System.out.println("header bytes: "+ new String(header_fields.getBytes()));
 
         this.header=new Header(header_fields.getBytes());
         return true;
@@ -96,10 +104,14 @@ public class Message {
 
     public byte[] getMessageBytes(){
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(header.getHeaderMsg().length + body.length);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(header.getHeaderMsg().length + (body != null ? body.length : 0));
+
+        System.out.println("cenas");
+
         try {
             outputStream.write(header.getHeaderMsg());
-            outputStream.write(body);
+            if(body!= null)
+                outputStream.write(body);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("error concatenating message's header+body byte[]");
@@ -107,6 +119,26 @@ public class Message {
         }
 
        return outputStream.toByteArray();
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "header=" + header.toString() +
+                ", body=" + Arrays.toString(body) +
+                '}';
+    }
+
+    public static void main(String args[]){
+
+        Message m = new Message(new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes()));
+        InetAddress addres = Peer.getIp();
+
+        DatagramPacket message = new DatagramPacket(m.getMessageBytes(),m.getMessageBytes().length,addres,10000);
+
+        Message mx = new Message(message);
+
+        System.out.println(mx.toString());
     }
 
 

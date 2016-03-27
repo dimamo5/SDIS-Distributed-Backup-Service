@@ -13,7 +13,8 @@ public class Header {
     public static final String CRLF = "\r\n";
 
     private static final String versionPattern = "\\d.\\d";
-    private static final int file_id_length = 64, //Bytes -> 256 bits (SHA256)
+    private static final int file_id_raw_length = 32, //Bytes -> 256 bits (SHA256)
+                             file_id_hex_length = 64,
                              chunk_no_max_length = 6; //Bytes
 
     private String type="", version="", sender_id="", file_id="", chunk_no="", replic_deg="";
@@ -143,13 +144,15 @@ public class Header {
         //"\\p{Space}+" -> regex separa tokens intervalados por 1+ espaços
         String partitioned_header[] = new String(header_info).split("\\p{Space}+");
 
+        System.out.println("Header Tokens");
         for(String s : partitioned_header)
             System.out.println(s);
 
         type = partitioned_header[0];
         version = partitioned_header[1];
         sender_id = partitioned_header[2];
-        file_id = partitioned_header[3];
+        /* Se file_id estiver em formato 64B converte para 32 */
+        file_id = partitioned_header[3].length() == 64 ? parseHexString(partitioned_header[3]): partitioned_header[3];
 
         if(partitioned_header.length == 5)
             chunk_no = partitioned_header[4];
@@ -168,15 +171,23 @@ public class Header {
         if(!checkParams())
             return -1;
 
-        String file_id_to_64B_ascii = convertToHexString(file_id);
-        //System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
+        String file_id_to_64B_ascii = null;
+        String header_file_id = null ;
 
-        header_data = type+ ' ' + version + ' ' + sender_id + ' ' + file_id_to_64B_ascii + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF;
+        if(file_id != null  && file_id.length() != 64 ) {
+            file_id_to_64B_ascii = convertToHexString(file_id);
+            System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
+        }
+
+        header_file_id = (file_id_to_64B_ascii != null ? file_id_to_64B_ascii : file_id);
+
+        header_data = type+ ' ' + version + ' ' + sender_id + ' ' + header_file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF;
         return 0;
     }
 
     private boolean checkParams(){
-        return version.matches(versionPattern) && (file_id.length() == file_id_length) &&
+
+        return version.matches(versionPattern) && (file_id.length() == file_id_raw_length || file_id.length() == file_id_hex_length  ) &&
                 (chunk_no.length() <= chunk_no_max_length) && (replic_deg.equals("")  || Integer.parseInt(replic_deg) <= 9);
     }
 
@@ -210,7 +221,7 @@ public class Header {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String args[]) {
 
         //message.Header h = new message.Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
        Header h = new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes());

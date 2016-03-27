@@ -33,7 +33,7 @@ public class Peer implements RMIInterface{
     private static int port;
 
     //valores por defeito
-    private String MC_ip ="224.0.0.1", MDB_ip="224.0.1.0", MDR_ip="224.1.0.0";
+    public String MC_ip ="224.0.0.1", MDB_ip="224.0.1.0", MDR_ip="224.1.0.0";
     private int MC_port = 10001, MDB_port = 10002, MDR_port = 10003;
 
     //multicast channels

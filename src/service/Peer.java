@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
@@ -29,7 +30,7 @@ public class Peer implements RMIInterface{
     private static Disk disk =new Disk();
 
     private static String id;
-    private static InetAddress ip;
+    private static String ip;
     private static int port;
 
     //valores por defeito
@@ -66,12 +67,6 @@ public class Peer implements RMIInterface{
             e.printStackTrace();
         }*/
 
-        try {
-            comunication_socket = new MulticastSocket();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         new Thread(MC_channel).start();
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
@@ -101,7 +96,6 @@ public class Peer implements RMIInterface{
 
         try {
             MC_channel = new MCChannel(InetAddress.getByName(MC_ip),MC_port);
-
             MDB_channel = new MDBChannel(InetAddress.getByName(MDB_ip),MDB_port);
             MDR_channel = new MDRChannel(InetAddress.getByName(MDR_ip),MDR_port);
         } catch (UnknownHostException e) {
@@ -111,14 +105,10 @@ public class Peer implements RMIInterface{
 
         try {
             comunication_socket = new MulticastSocket();
-
-            this.ip=comunication_socket.getInetAddress();
-            this.port=comunication_socket.getPort();
-            //TODO JUNTAR-SE AOS OUTROS GRUPOS ?
-
+            this.ip=getIPv4().getHostAddress();
+            this.port=comunication_socket.getLocalPort();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error initializing service.Peer.MulticastSocket / joining group");
         }
 
     }
@@ -144,7 +134,7 @@ public class Peer implements RMIInterface{
         return port;
     }
 
-    public static InetAddress getIp() {
+    public static String getIp() {
         return ip;
     }
 
@@ -205,6 +195,26 @@ public class Peer implements RMIInterface{
     public void spaceReclaim(int amount) {
         //TODO Call Initiator
         System.out.println("BACKUP");
+    }
+
+    //Funcao retirada de Henrique Ferrolho
+    public static InetAddress getIPv4() throws IOException {
+        MulticastSocket socket = new MulticastSocket();
+        socket.setTimeToLive(0);
+
+        InetAddress addr = InetAddress.getByName("225.0.0.0");
+        socket.joinGroup(addr);
+
+        byte[] bytes = new byte[0];
+        DatagramPacket packet = new DatagramPacket(bytes, bytes.length, addr,
+                socket.getLocalPort());
+
+        socket.send(packet);
+        socket.receive(packet);
+
+        socket.close();
+
+        return packet.getAddress();
     }
 
 }

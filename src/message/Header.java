@@ -14,24 +14,25 @@ public class Header {
 
     private static final String versionPattern = "\\d.\\d";
     private static final int file_id_raw_length = 32, //Bytes -> 256 bits (SHA256)
-                             file_id_hex_length = 64,
-                             chunk_no_max_length = 6; //Bytes
+            file_id_hex_length = 64,
+            chunk_no_max_length = 6; //Bytes
 
-    private String type="", version="", sender_id="", file_id="", chunk_no="", replic_deg="";
-    private String header_data ="";
+    private String type = "", version = "", sender_id = "", file_id = "", chunk_no = "", replic_deg = "";
+    private String header_data = "";
 
-    public Header(byte[] header_info){
+    public Header(byte[] header_info) {
         parseHeader(header_info);
 
-        if (buildHeader() != 0){
+        if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");
             System.exit(1);
         }
+        header_data = type + ' ' + version + ' ' + sender_id + ' ' + file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF + CRLF;
 
-        System.out.println("message.Header msg:"+this.toString());
+        System.out.println("message.Header msg:" + this.toString());
     }
 
-    public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg){
+    public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg) {
 
         type = MessageType;
         version = Version;
@@ -40,15 +41,16 @@ public class Header {
         chunk_no = ChunkNo;
         replic_deg = ReplicationDeg;
 
-        System.out.println("message.Header msg:"+this.toString());
+        System.out.println("message.Header msg:" + this.toString());
 
-        if (buildHeader() != 0){
+        if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");
             System.exit(1);
         }
+        header_data = type + ' ' + version + ' ' + sender_id + ' ' + file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF + CRLF;
     }
 
-    public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo){
+    public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo) {
 
         type = MessageType;
         version = Version;
@@ -56,27 +58,29 @@ public class Header {
         file_id = FileId;
         chunk_no = ChunkNo;
 
-        System.out.println("message.Header msg:"+this.toString());
+        System.out.println("message.Header msg:" + this.toString());
 
-        if (buildHeader() != 0){
+        if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");
             System.exit(1);
         }
+        header_data = type + ' ' + version + ' ' + sender_id + ' ' + file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF + CRLF;
     }
 
-    public Header(String MessageType, String Version, String SenderId, String FileId){
+    public Header(String MessageType, String Version, String SenderId, String FileId) {
 
         type = MessageType;
         version = Version;
         sender_id = SenderId;
         file_id = FileId;
 
-        System.out.println("message.Header msg:"+this.toString());
+        System.out.println("message.Header msg:" + this.toString());
 
-        if (buildHeader() != 0){
+        if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");
             System.exit(1);
         }
+        header_data = type + ' ' + version + ' ' + sender_id + ' ' + file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF + CRLF;
     }
 
     public String getType() {
@@ -145,88 +149,31 @@ public class Header {
         String partitioned_header[] = new String(header_info).split("\\p{Space}+");
 
         System.out.println("Header Tokens");
-        for(String s : partitioned_header)
+        for (String s : partitioned_header)
             System.out.println(s);
 
         type = partitioned_header[0];
         version = partitioned_header[1];
         sender_id = partitioned_header[2];
-        /* Se file_id estiver em formato 64B converte para 32 */
-        file_id = partitioned_header[3].length() == 64 ? parseHexString(partitioned_header[3]): partitioned_header[3];
+        file_id = partitioned_header[3];
 
-        if(partitioned_header.length == 5)
+        if (partitioned_header.length == 5)
             chunk_no = partitioned_header[4];
-        else if(partitioned_header.length == 6)
+        else if (partitioned_header.length == 6)
             chunk_no = partitioned_header[4];
-            replic_deg = partitioned_header[5];
+        replic_deg = partitioned_header[5];
 
         System.out.println("message.Header parsed");
     }
 
-    byte[] getHeaderMsg(){
+    byte[] getHeaderMsg() {
         return header_data.getBytes();
     }
 
-    private int buildHeader(){
-        if(!checkParams())
-            return -1;
 
-        String file_id_to_64B_ascii = null;
-        String header_file_id = null ;
+    private boolean checkParams() {
 
-        if(file_id != null  && file_id.length() != 64 ) {
-            file_id_to_64B_ascii = convertToHexString(file_id);
-            System.out.println("converted to 64B ascii: " + file_id_to_64B_ascii);
-        }
-
-        header_file_id = (file_id_to_64B_ascii != null ? file_id_to_64B_ascii : file_id);
-
-        header_data = type+ ' ' + version + ' ' + sender_id + ' ' + header_file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF+CRLF;
-        return 0;
-    }
-
-    private boolean checkParams(){
-
-        return version.matches(versionPattern) && (file_id.length() == file_id_raw_length || file_id.length() == file_id_hex_length  ) &&
-                (chunk_no.length() <= chunk_no_max_length) && (replic_deg.equals("")  || Integer.parseInt(replic_deg) <= 9);
-    }
-
-    private String convertToHexString(String string){
-        String result = "" ;
-        byte[] partitioned = string.getBytes();
-        byte converted[] = new byte[string.length()*2];
-        int right_most = 0x0F, left_most = 0xF0;
-
-        for(int i = 0,j=0; i < partitioned.length ; i++, j+=2){
-            converted[j] = (byte) (((partitioned[i] & left_most))>>> 4);
-            converted[j+1] = (byte) (partitioned[i] & right_most);
-        }
-
-        for(byte element : converted){
-            result += Integer.toString((int)element,16);
-        }
-        return result;
-    }
-
-    public String parseHexString(String string){
-
-        StringBuilder output = new StringBuilder();
-
-        for (int i = 0; i < string.length(); i+=2) {
-            String str = string.substring(i, i+2);
-            output.append((char)Integer.parseInt(str, 16));
-        }
-
-        return output.toString();
-    }
-
-
-    public static void main(String args[]) {
-
-        //message.Header h = new message.Header("tipox","1.0","omeuid","sha256sha256sha256sha256sha256sh","2","2");
-       Header h = new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes());
-        System.out.println(h.convertToHexString(h.getFile_id()));
-       System.out.println(h.parseHexString(h.convertToHexString(h.getFile_id())));
-
+        return version.matches(versionPattern) && (file_id.length() == file_id_raw_length || file_id.length() == file_id_hex_length) &&
+                (chunk_no.length() <= chunk_no_max_length) && (replic_deg.equals("") || Integer.parseInt(replic_deg) <= 9);
     }
 }

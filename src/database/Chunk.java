@@ -9,7 +9,7 @@ public class Chunk {
 
     private String fileId;
     private int replicationDegree;
-    private String chunkNo;
+    private int chunkNo;
     private ArrayList<String > peers=new ArrayList<>(); //Peers that contains the chunck
 
     public int getReplication_degree() {
@@ -20,11 +20,11 @@ public class Chunk {
         return fileId;
     }
 
-    public String getChunkNo() {
+    public int getChunkNo() {
         return chunkNo;
     }
 
-    public Chunk(String fileId, String chunkNo, int replicationDegree){
+    public Chunk(String fileId, int chunkNo, int replicationDegree){
         this.chunkNo = chunkNo;
         this.fileId=fileId;
         this.replicationDegree = replicationDegree;

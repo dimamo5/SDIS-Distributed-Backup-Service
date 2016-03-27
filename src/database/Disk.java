@@ -70,11 +70,11 @@ public class Disk implements Serializable{
         return files;
     }
 
-    public boolean hasChunk(String file_id, String chunk_no) {
+    public boolean hasChunk(String file_id, int chunk_no) {
 
         for(int i =0;i<chunks.size();i++){
             Chunk c= chunks.get(i);
-            if(c.getChunkNo().equals(chunk_no) && c.getFileId().equals(file_id)){
+            if(c.getChunkNo()==chunk_no && c.getFileId().equals(file_id)){
                 return true;
             }
         }
@@ -90,6 +90,10 @@ public class Disk implements Serializable{
     }
     //TODO VERIFICAR ISTO
     public void storeChunk(StoredChunk c){
+
+        if(!folderExists("files/" + c.getFileId())){
+            createFolder("files/"+c.getFileId());
+        }
 
         /* Creates chunk file */
         String chunkFileNameOut = "files/" + c.getFileId()+"/" + c.getChunkNo();
@@ -120,5 +124,22 @@ public class Disk implements Serializable{
 
     public boolean hasFile(String filename){
         return files.containsKey(filename);
+    }
+
+    private  boolean folderExists(String name) {
+        java.io.File file = new java.io.File(name);
+
+        return file.exists() && file.isDirectory();
+    }
+
+    private  void createFolder(String name) {
+        java.io.File file = new java.io.File(name);
+
+        file.mkdir();
+    }
+
+    public void addChunk(Chunk c){
+        this.chunks.add(c);
+
     }
 }

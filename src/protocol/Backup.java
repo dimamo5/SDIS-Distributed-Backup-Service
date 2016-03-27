@@ -2,6 +2,7 @@ package protocol;
 
 import database.Chunk;
 import database.StoredChunk;
+import service.Peer;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -44,7 +45,9 @@ public class Backup implements Runnable{
                 fs.read(buffer, 0, StoredChunk.MAX_SIZE);
                 byte[] bufferCloned = buffer.clone();
                 StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,buffer);
-                new Thread(new BackupChunk(chunk)).start();
+                BackupChunk bc=new BackupChunk(chunk);
+                Peer.getMC_channel().addObserver(bc);
+                new Thread(bc).start();
             }
 
         } catch (Exception e) {
@@ -86,7 +89,18 @@ public class Backup implements Runnable{
         }
         byte[] digest = md.digest();
 
-        return String.format("%064x", new java.math.BigInteger(1, digest));
+        StringBuffer hexStringBuffer = new StringBuffer();
+
+        for (int i = 0; i < digest.length; i++) {
+            String hex = Integer.toHexString(0xff & digest[i]);
+
+            if (hex.length() == 1)
+                hexStringBuffer.append('0');
+
+            hexStringBuffer.append(hex);
+        }
+
+        return hexStringBuffer.toString();
 
     }
 }

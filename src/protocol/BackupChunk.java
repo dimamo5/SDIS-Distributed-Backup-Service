@@ -70,6 +70,7 @@ public class BackupChunk  implements Runnable,Observer{
 
     @Override
     public void update(Observable o, Object arg) {
+        System.out.println("Chamou o update");
         if (o instanceof MCChannel && arg instanceof Message) {
             Message m = (Message) arg;
             if(this.chunk.getFileId().equals(m.getHeader().getFile_id())){

@@ -82,29 +82,36 @@ public class MessageHandler implements Handler, Runnable  {
         }
 
         //verifica se chunk
-        if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no())){
-            //random delay [0,400]
-            try {
-                Thread.sleep(new Random().nextInt(400));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                System.out.println("Error in Thread.sleep");
-            }
-
-
-            System.out.println("Send STORED");
+        if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()))) {
+            System.out.println("Send STORED Already in database");
             //send "STORED" message
-            message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+            message_sender.storedMessage(Peer.getId(), message.getHeader().getFile_id(), message.getHeader().getChunk_no());
+        }else{
 
-            //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+                //random delay [0,400]
+                try {
+                    Thread.sleep(new Random().nextInt(400));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    System.out.println("Error in Thread.sleep");
+                }
 
-            StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
 
-            //armazena chunk data + registo hashmap
-            Peer.getDisk().storeChunk(chunk);
+                System.out.println("Send STORED");
+                //send "STORED" message
+                message_sender.storedMessage(Peer.getId(), message.getHeader().getFile_id(), message.getHeader().getChunk_no());
 
+
+
+                Peer.getDisk().addChunk(new Chunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg())));
+
+                StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()), Integer.parseInt(message.getHeader().getReplic_deg()), message.getBody());
+
+                //armazena chunk data + registo hashmap
+                Peer.getDisk().storeChunk(chunk);
+            }
             return;
-        }
+
 
         //================================================
          /*TODO ENHANCEMENT !!!!!!!!!!!!!!!!
@@ -121,8 +128,6 @@ public class MessageHandler implements Handler, Runnable  {
 
         //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
 
-        StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
-
 
     }
 
@@ -131,8 +136,11 @@ public class MessageHandler implements Handler, Runnable  {
 
         System.out.println("Received STORED!");
 
-        Chunk c = new Chunk(message.getHeader().getFile_id(),message.getHeader().getChunk_no(),-1);
+        Chunk c = new Chunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no()),-1);
         Peer.getDisk().addChunkMirror(c, message.getHeader().getReplic_deg());
+
+
+        Peer.getMC_channel().notifyObservers(message);
 
     }
 

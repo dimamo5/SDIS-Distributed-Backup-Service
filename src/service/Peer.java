@@ -101,6 +101,7 @@ public class Peer implements RMIInterface{
 
         try {
             MC_channel = new MCChannel(InetAddress.getByName(MC_ip),MC_port);
+
             MDB_channel = new MDBChannel(InetAddress.getByName(MDB_ip),MDB_port);
             MDR_channel = new MDRChannel(InetAddress.getByName(MDR_ip),MDR_port);
         } catch (UnknownHostException e) {

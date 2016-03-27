@@ -35,7 +35,6 @@ public class MessageHandler implements Handler, Runnable  {
 
     @Override
     public void dispatcher(String type, Message message) {
-
         Types t = Types.valueOf(type);
         System.out.println("message type :"+t);
 

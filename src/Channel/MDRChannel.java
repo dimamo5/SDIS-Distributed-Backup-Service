@@ -40,6 +40,8 @@ public class MDRChannel extends Observable implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("MDR Channel open!");
     }
 
 
@@ -54,8 +56,8 @@ public class MDRChannel extends Observable implements Runnable {
                 socket.receive(packet);
                 String senderIP = packet.getAddress().getHostName();
 
-                if (!senderIP.equals(Peer.getIp())) {
-                    new Thread(new MessageHandler(packet));
+                if (!senderIP.equals(Peer.getIp())&& Peer.getPort()!=packet.getPort()) {
+                    new Thread(new MessageHandler(packet)).start();
                 }
 
             } catch (IOException e) {

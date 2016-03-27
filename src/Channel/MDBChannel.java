@@ -22,6 +22,7 @@ public class MDBChannel implements Runnable {
     private int port;
 
 
+
     public MDBChannel(InetAddress address, int port){
         this.address = address;
         this.port = port;
@@ -36,6 +37,9 @@ public class MDBChannel implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        System.out.println("MDB Channel open!");
     }
 
 
@@ -50,8 +54,8 @@ public class MDBChannel implements Runnable {
                 socket.receive(packet);
                 String senderIP = packet.getAddress().getHostName();
 
-                if (!senderIP.equals(Peer.getIp())) {
-                    new Thread(new MessageHandler(packet));
+                if (!senderIP.equals(Peer.getIp())&& Peer.getPort()!=packet.getPort()) {
+                    new Thread(new MessageHandler(packet)).start();
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -109,10 +109,18 @@ public class MessageHandler implements Handler, Runnable  {
         TODO VERIFICA SE NO GRUPO DE MULTICAST NAO RECEBEU UM NUMERO DE STORED CONFIRMATIONS SUPERIOR OU IGUAL AO REPLIC DEGREE PARA ESTE CHUNK;
         TODO SE NAO RECEBEU ENVIA STORED MESSAGE;
 
+        MAYBE USE SOME IFDEF (ENHANCEMENT CONFIGS == ON) ...
+
         if(some_stored_message_counter_variable >= replic_degree){
             return;
         }*/
         //================================================
+
+
+        //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+
+        StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
+
 
     }
 

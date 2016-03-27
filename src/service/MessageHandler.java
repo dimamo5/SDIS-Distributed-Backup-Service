@@ -1,6 +1,7 @@
 package service;
 
 import database.Chunk;
+import database.StoredChunk;
 import message.*;
 
 import java.net.DatagramPacket;
@@ -105,14 +106,16 @@ public class MessageHandler implements Handler, Runnable  {
         TODO VERIFICA SE NO GRUPO DE MULTICAST NAO RECEBEU UM NUMERO DE STORED CONFIRMATIONS SUPERIOR OU IGUAL AO REPLIC DEGREE PARA ESTE CHUNK;
         TODO SE NAO RECEBEU ENVIA STORED MESSAGE;
 
+        MAYBE USE SOME IFDEF (ENHANCEMENT CONFIGS == ON) ...
+
         if(some_stored_message_counter_variable >= replic_degree){
             return;
         }*/
         //================================================
-        
+
         //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
 
-        Chunk chunk = new Chunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no(),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
+        StoredChunk chunk = new Chunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no(),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
 
         //armazena chunk data + registo hashmap
         Peer.getDisk().storeChunk(chunk);

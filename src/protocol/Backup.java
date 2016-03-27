@@ -32,8 +32,6 @@ public class Backup implements Runnable{
     public void run() {
         String filehash = getHashFile();
 
-
-
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
 
@@ -42,10 +40,11 @@ public class Backup implements Runnable{
             byte buffer[] = new byte[StoredChunk.MAX_SIZE];
 
             for(int i =0;i<numChuncks;i++){
+                System.out.println("Launching Thread "+i);
                 fs.read(buffer, 0, StoredChunk.MAX_SIZE);
                 byte[] bufferCloned = buffer.clone();
                 StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,buffer);
-                new Thread(new BackupChunk(chunk)).start();;
+                new Thread(new BackupChunk(chunk)).start();
             }
 
         } catch (Exception e) {
@@ -68,9 +67,9 @@ public class Backup implements Runnable{
             e.printStackTrace();
         }
 
-        System.out.println("owner: " + owner.getName());
+        /*System.out.println("owner: " + owner.getName());
         System.out.println("size: " + attr.size());
-        System.out.println("lastModifiedTime: " + attr.lastModifiedTime());
+        System.out.println("lastModifiedTime: " + attr.lastModifiedTime());*/
 
         MessageDigest md = null;
         try {

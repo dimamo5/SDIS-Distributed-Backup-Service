@@ -80,7 +80,14 @@ public class Disk implements Serializable{
         }
         return false;
     }
+    public void addChunkMirror(Chunk c,String peerId){
+        for(int i =0;i<chunks.size();i++){
+            if(c.getChunkNo()==chunks.get(i).getChunkNo() && c.getFileId().equals(chunks.get(i).getFileId())){
+                chunks.get(i).addPeer(peerId);
+            }
+        }
 
+    }
     //TODO VERIFICAR ISTO
     public void storeChunk(StoredChunk c){
 

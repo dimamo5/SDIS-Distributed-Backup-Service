@@ -26,7 +26,7 @@ public class Peer implements RMIInterface{
         MC, MDB, MDR;
     }
 
-    private static Disk disk;
+    private static Disk disk =new Disk();
 
     private static String id;
     private static InetAddress ip;
@@ -51,7 +51,7 @@ public class Peer implements RMIInterface{
     public static void main(String[] args){
         Peer p=new Peer(args);
 
-        try {
+        /*try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
 
@@ -64,7 +64,7 @@ public class Peer implements RMIInterface{
         }catch(Exception e){
             System.err.println("Peer exception: " + e.toString());
             e.printStackTrace();
-        }
+        }*/
 
         try {
             comunication_socket = new MulticastSocket();
@@ -76,7 +76,8 @@ public class Peer implements RMIInterface{
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
 
-
+        if(args.length==8)
+            p.backupFile("texto.txt",1);
     }
 
     /* METHODS */
@@ -109,17 +110,15 @@ public class Peer implements RMIInterface{
 
         try {
             comunication_socket = new MulticastSocket();
-            comunication_socket.setTimeToLive(1);
-            comunication_socket.joinGroup(InetAddress.getByName(this.MC_ip));
+
+            this.ip=comunication_socket.getInetAddress();
+            this.port=comunication_socket.getPort();
             //TODO JUNTAR-SE AOS OUTROS GRUPOS ?
 
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error initializing service.Peer.MulticastSocket / joining group");
         }
-
-
-        disk = new Disk();
 
     }
 
@@ -181,15 +180,10 @@ public class Peer implements RMIInterface{
         }
     }
 
-
-
-
-
     @Override
     public void backupFile(String filename, int replicationDegree) {
-        new Thread(new Backup(filename,replicationDegree));
-
-        System.out.println("BACKUP");
+        System.out.println("Starting Backing file: "+filename);
+        new Thread(new Backup(filename,replicationDegree)).start();
     }
 
     @Override
@@ -198,8 +192,6 @@ public class Peer implements RMIInterface{
         Restore r=new Restore(filename);
         this.MDR_channel.addObserver(r);
         new Thread(r).start();
-
-
     }
 
     @Override

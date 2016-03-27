@@ -74,18 +74,7 @@ public class MessageHandler implements Handler, Runnable  {
     @Override
     public void processPutChunk(Message message) { //TODO VERIFICAR PASSOS DO MÉTODO !!!!!!!!!
 
-        if(message.getHeader().getSender_id().equals(Peer.getId())){
-            //A Peer never stores the chunks of i's own files
-            //TODO Verificar o sender_id já cobre todas as ocorrências deste problema?
-            return;
-        }
-
-        //verifica se chunk
-        if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no())){
-            //send "STORED" message
-            message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
-            return;
-        }
+        System.out.println("Received PUTCHUNCK!");
 
         //verifica se tem espaço suficiente
         if(!Peer.getDisk().canSaveChunk(message.getBodyLength())){
@@ -93,12 +82,27 @@ public class MessageHandler implements Handler, Runnable  {
             return;
         }
 
-        //random delay [0,400]
-        try {
-            Thread.sleep(new Random().nextInt(400));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            System.out.println("Error in Thread.sleep");
+        //verifica se chunk
+        if(Peer.getDisk().hasChunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no())){
+            //random delay [0,400]
+            try {
+                Thread.sleep(new Random().nextInt(400));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                System.out.println("Error in Thread.sleep");
+            }
+
+            //send "STORED" message
+            message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+
+            //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
+
+            StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
+
+            //armazena chunk data + registo hashmap
+            Peer.getDisk().storeChunk(chunk);
+
+            return;
         }
 
         //================================================
@@ -110,20 +114,16 @@ public class MessageHandler implements Handler, Runnable  {
             return;
         }*/
         //================================================
-        
-        //message_sender.storedMessage(Peer.getId(),message.getHeader().getFile_id(),message.getHeader().getChunk_no());
 
-        StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()),Integer.parseInt(message.getHeader().getReplic_deg()),message.getBody());
-
-        //armazena chunk data + registo hashmap
-        Peer.getDisk().storeChunk(chunk);
     }
 
     @Override
     public void processStored(Message message) {
 
-        //actualiza store count para determinado chunk
-        //PROBLEMATICA ^
+        System.out.println("Received STORED!");
+
+        Chunk c = new Chunk(message.getHeader().getFile_id(),message.getHeader().getChunk_no(),-1);
+        Peer.getDisk().addChunkMirror(c, message.getHeader().getReplic_deg());
 
     }
 

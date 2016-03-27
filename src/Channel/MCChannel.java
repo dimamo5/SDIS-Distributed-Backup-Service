@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.util.Observable;
+import java.util.Observer;
 
 import service.*;
 
 /**
  * Created by diogo on 17/03/2016.
  */
-public class MCChannel implements Runnable{
+public class MCChannel extends Observable implements Runnable{
 
     public final int MAX_SIZE = 64500;
 
@@ -35,6 +37,8 @@ public class MCChannel implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("MC Channel open!");
     }
 
 
@@ -50,8 +54,8 @@ public class MCChannel implements Runnable{
 
                 String senderIP = packet.getAddress().getHostName();
 
-                if (!senderIP.equals(Peer.getIp())) {
-                    new Thread(new MessageHandler(packet));
+                if (!senderIP.equals(Peer.getIp())&& Peer.getPort()!=packet.getPort()) {
+                    new Thread(new MessageHandler(packet)).start();
                 }
 
             } catch (IOException e) {

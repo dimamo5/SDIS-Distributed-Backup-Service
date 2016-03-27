@@ -41,7 +41,7 @@ public class Message {
     private void processMessage(DatagramPacket message){
 
         if(processHeader(message) && processBody(message)){
-            System.out.println("message processed");
+            System.out.println("Message processed");
         } else {
             System.out.println("Error processing message");
             System.exit(1);
@@ -50,6 +50,7 @@ public class Message {
 
     private boolean processHeader(DatagramPacket message){
         InputStream is = new ByteArrayInputStream(message.getData());
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
         String header_fields;
@@ -62,6 +63,7 @@ public class Message {
             return false;
         }
 
+        this.header=new Header(header_fields.getBytes());
         return true;
     }
 

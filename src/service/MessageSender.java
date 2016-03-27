@@ -1,6 +1,7 @@
 package service;
 
 import database.Chunk;
+import database.StoredChunk;
 import message.Header;
 import message.Message;
 
@@ -21,10 +22,10 @@ public class MessageSender implements Protocol{
     public MessageSender(){}
 
     @Override
-    public void putChunkMessage(String sender_id, Chunk c) {
+    public void putChunkMessage(String sender_id, StoredChunk c) {
 
-        Header h = new Header(put_chunk, Version, sender_id,c.getFileId(),c.getChunkNo(),Integer.toString(c.getReplication_degree()));
-        Message m = new Message(h,c.getData());
+        Header h = new Header(put_chunk, Version, sender_id,c.getFileId(),Integer.toString(c.getChunkNo()),Integer.toString(c.getReplicationDegree()));
+        Message m = new Message(h,c.getDataBlock());
 
         sendMessage(m,Peer.Channels.MDB);
     }
@@ -48,10 +49,10 @@ public class MessageSender implements Protocol{
     }
 
     @Override
-    public void chunkMessage(String sender_id, Chunk c) {
+    public void chunkMessage(String sender_id, StoredChunk c) {
 
-        Header h = new Header(chunk,Version,sender_id,c.getFileId(),c.getChunkNo());
-        Message m = new Message(h,c.getData());
+        Header h = new Header(chunk,Version,sender_id,c.getFileId(),Integer.toString(c.getChunkNo()));
+        Message m = new Message(h,c.getDataBlock());
 
         sendMessage(m,Peer.Channels.MDR);
     }

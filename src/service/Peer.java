@@ -2,8 +2,14 @@ package service;
 
 import channel.*;
 import database.Disk;
+import protocol.Backup;
+import protocol.Delete;
+import protocol.Restore;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
@@ -20,7 +26,7 @@ public class Peer implements RMIInterface{
         MC, MDB, MDR;
     }
 
-    private static Disk disk;
+    private static Disk disk =new Disk();
 
     private static String id;
     private static InetAddress ip;
@@ -45,7 +51,7 @@ public class Peer implements RMIInterface{
     public static void main(String[] args){
         Peer p=new Peer(args);
 
-        try {
+        /*try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
 
@@ -58,7 +64,7 @@ public class Peer implements RMIInterface{
         }catch(Exception e){
             System.err.println("Peer exception: " + e.toString());
             e.printStackTrace();
-        }
+        }*/
 
         try {
             comunication_socket = new MulticastSocket();
@@ -70,7 +76,8 @@ public class Peer implements RMIInterface{
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
 
-
+        if(args.length==8)
+            p.backupFile("texto.txt",1);
     }
 
     /* METHODS */
@@ -94,6 +101,7 @@ public class Peer implements RMIInterface{
 
         try {
             MC_channel = new MCChannel(InetAddress.getByName(MC_ip),MC_port);
+
             MDB_channel = new MDBChannel(InetAddress.getByName(MDB_ip),MDB_port);
             MDR_channel = new MDRChannel(InetAddress.getByName(MDR_ip),MDR_port);
         } catch (UnknownHostException e) {
@@ -103,17 +111,15 @@ public class Peer implements RMIInterface{
 
         try {
             comunication_socket = new MulticastSocket();
-            comunication_socket.setTimeToLive(1);
-            comunication_socket.joinGroup(InetAddress.getByName(this.MC_ip));
+
+            this.ip=comunication_socket.getInetAddress();
+            this.port=comunication_socket.getPort();
             //TODO JUNTAR-SE AOS OUTROS GRUPOS ?
 
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Error initializing service.Peer.MulticastSocket / joining group");
         }
-
-
-        disk = new Disk();
 
     }
 
@@ -150,22 +156,49 @@ public class Peer implements RMIInterface{
         return disk;
     }
 
+    public static void loadDisk(){
+
+    }
+
+    public static void saveDisk(){
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("db.data");
+
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+                    fileOutputStream);
+
+            objectOutputStream.writeObject(disk);
+
+            objectOutputStream.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Database not found");
+
+            disk=new Disk();
+
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void backupFile(String filename, int replicationDegree) {
-        //TODO Call Initiator
-        System.out.println("BACKUP");
+        System.out.println("Starting Backing file: "+filename);
+        new Thread(new Backup(filename,replicationDegree)).start();
     }
 
     @Override
     public void restoreFile(String filename) {
-        //TODO Call Initiator
-        System.out.println("BACKUP");
+        System.out.println("Starting Restoring file: "+filename);
+        Restore r=new Restore(filename);
+        this.MDR_channel.addObserver(r);
+        new Thread(r).start();
     }
 
     @Override
     public void deleteFile(String filename) {
-        //TODO Call Initiator
-        System.out.println("BACKUP");
+        System.out.println("Starting Deteling file: "+filename);
+        new Thread(new Delete(filename)).start();
     }
 
     @Override

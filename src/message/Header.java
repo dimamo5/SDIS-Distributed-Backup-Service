@@ -13,7 +13,7 @@ public class Header {
     public static final String CRLF = "\r\n";
 
     private static final String versionPattern = "\\d.\\d";
-    private static final int file_id_length = 32, //Bytes -> 256 bits (SHA256)
+    private static final int file_id_length = 64, //Bytes -> 256 bits (SHA256)
                              chunk_no_max_length = 6; //Bytes
 
     private String type="", version="", sender_id="", file_id="", chunk_no="", replic_deg="";

@@ -30,4 +30,10 @@ public class Chunk {
         this.replicationDegree = replicationDegree;
     }
 
+    public void addPeer(String peer){
+        if(!peers.contains(peer)){
+            peers.add(peer);
+        }
+    }
+
 }

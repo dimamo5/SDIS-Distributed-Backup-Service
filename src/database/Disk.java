@@ -14,14 +14,13 @@ public class Disk implements Serializable{
 
     private static final int MAX_CAPACITY = 2000000;
 
-    private int spaceUsage;
+    private int spaceUsage=0;
 
     public ArrayList<Chunk> chunks =new ArrayList<>();
 
     public HashMap<String,File> files = new HashMap<>(); //File name to hash
 
     public Disk(){
-        spaceUsage = 0;
     }
 
     /* METHODS */
@@ -81,7 +80,14 @@ public class Disk implements Serializable{
         }
         return false;
     }
+    public void addChunkMirror(Chunk c,String peerId){
+        for(int i =0;i<chunks.size();i++){
+            if(c.getChunkNo()==chunks.get(i).getChunkNo() && c.getFileId().equals(chunks.get(i).getFileId())){
+                chunks.get(i).addPeer(peerId);
+            }
+        }
 
+    }
     //TODO VERIFICAR ISTO
     public void storeChunk(StoredChunk c){
 
@@ -110,5 +116,9 @@ public class Disk implements Serializable{
     public boolean canSaveChunk(int dataLength) {
 
         return dataLength <= getFreeSpace();
+    }
+
+    public boolean hasFile(String filename){
+        return files.containsKey(filename);
     }
 }

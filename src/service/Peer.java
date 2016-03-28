@@ -13,9 +13,6 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Created by Sonhs on 12/03/2016.
@@ -25,6 +22,8 @@ public class Peer implements RMIInterface{
     public enum Channels{
         MC, MDB, MDR;
     }
+
+    private static boolean enhancements = false;
 
     private static Disk disk = new Disk();
 
@@ -40,7 +39,6 @@ public class Peer implements RMIInterface{
     private static MCChannel MC_channel;
     private static MDBChannel MDB_channel;
     private static MDRChannel MDR_channel;
-
 
     private static MulticastSocket comunication_socket;
 

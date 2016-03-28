@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by diogo on 08/03/2016.
  */
-public class Chunk implements Serializable,Comparable<Chunk> {
+public class Chunk implements Serializable, Comparable<Chunk> {
 
     private String fileId;
     private int replicationDegree;

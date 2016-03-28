@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -184,7 +186,11 @@ public class Disk implements Serializable{
 
         chunks.remove(c);
         System.out.println("Database size: "+chunks.size());
+    }
 
-
+    public ArrayList<Chunk> sortLessImportantChunk(){
+        ArrayList<Chunk> returnArray =new ArrayList<>(this.chunks);
+        Collections.sort(returnArray);
+        return returnArray;
     }
 }

@@ -53,8 +53,5 @@ public class TestApp {
             case "RECLAIM":
                 stub.spaceReclaim(Integer.parseInt(opnd1));
         }
-
-
-
     }
 }

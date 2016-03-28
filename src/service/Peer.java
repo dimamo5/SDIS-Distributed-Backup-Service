@@ -5,6 +5,7 @@ import database.Chunk;
 import database.Disk;
 import protocol.Backup;
 import protocol.Delete;
+import protocol.Reclaim;
 import protocol.Restore;
 
 import java.io.*;
@@ -218,8 +219,10 @@ public class Peer implements RMIInterface{
 
     @Override
     public void spaceReclaim(int amount) {
-        //TODO Call Initiator
-        System.out.println("BACKUP");
+        System.out.println("Starting Reclaiming: "+amount);
+        Reclaim r= new Reclaim(amount);
+        this.MDR_channel.addObserver(r);
+        new Thread(r).start();
     }
 
     //Funcao retirada de Henrique Ferrolho
@@ -241,5 +244,7 @@ public class Peer implements RMIInterface{
 
         return packet.getAddress();
     }
+
+
 
 }

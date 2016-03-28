@@ -7,14 +7,19 @@ import java.util.Arrays;
 /**
  * Created by diogo on 08/03/2016.
  */
-public class Chunk implements Serializable {
+public class Chunk implements Serializable,Comparable<Chunk> {
 
     private String fileId;
     private int replicationDegree;
     private int chunkNo;
+
+    public ArrayList<String> getPeers() {
+        return peers;
+    }
+
     private ArrayList<String > peers=new ArrayList<>(); //Peers that contains the chunck
 
-    public int getReplication_degree() {
+    public int getReplicationDegree() {
         return replicationDegree;
     }
 
@@ -69,5 +74,16 @@ public class Chunk implements Serializable {
         int result = fileId.hashCode();
         result = 31 * result + chunkNo;
         return result;
+    }
+
+    @Override
+    public int compareTo(Chunk c) {
+            int thisExtraBackup=this.peers.size()-this.replicationDegree;
+            int oExtraBackup=c.getPeers().size()-c.getReplicationDegree();
+
+            if(thisExtraBackup>oExtraBackup){
+                return 1;
+            }else
+                return 0;
     }
 }

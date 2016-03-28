@@ -101,7 +101,6 @@ public class MessageHandler implements Handler, Runnable {
             //send "STORED" message
             message_sender.storedMessage(Peer.getId(), message.getHeader().getFile_id(), message.getHeader().getChunk_no());
 
-
             Peer.getDisk().addChunk(new Chunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()), Integer.parseInt(message.getHeader().getReplic_deg())));
 
             StoredChunk chunk = new StoredChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()), Integer.parseInt(message.getHeader().getReplic_deg()), message.getBody());

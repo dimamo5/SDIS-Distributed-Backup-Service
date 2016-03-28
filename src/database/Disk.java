@@ -18,7 +18,7 @@ public class Disk implements Serializable{
 
     private long spaceUsage=0;
 
-    public ArrayList<Chunk> chunks =new ArrayList<>();
+    public ArrayList<Chunk> chunks = new ArrayList<>();
 
     public HashMap<String,File> files = new HashMap<>(); //File name to hash
 

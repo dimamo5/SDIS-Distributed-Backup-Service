@@ -9,7 +9,7 @@ import java.util.Observer;
 /**
  * Created by diogo on 26/03/2016.
  */
-public class Reclaim implements Runnable,Observer {
+public class Reclaim implements Runnable, Observer {
 
     int amount;
     MessageSender sender=new MessageSender();
@@ -18,9 +18,9 @@ public class Reclaim implements Runnable,Observer {
         this.amount = amount;
     }
 
-
     @Override
     public void run() {
+
         Peer.getDisk().setCapacity(amount);
 
         while (Peer.getDisk().getFreeBytes() < 0) {

@@ -12,12 +12,12 @@ public class Chunk implements Serializable, Comparable<Chunk> {
     private String fileId;
     private int replicationDegree;
     private int chunkNo;
+    private ArrayList<String> peers=new ArrayList<>(); //Peers that contains the chunck
 
     public ArrayList<String> getPeers() {
         return peers;
     }
 
-    private ArrayList<String > peers=new ArrayList<>(); //Peers that contains the chunck
 
     public int getReplicationDegree() {
         return replicationDegree;
@@ -41,6 +41,9 @@ public class Chunk implements Serializable, Comparable<Chunk> {
         if(!peers.contains(peer)){
             peers.add(peer);
         }
+    }
+    public void removePeer(String peerId){
+        this.peers.remove(peerId);
     }
 
     @Override

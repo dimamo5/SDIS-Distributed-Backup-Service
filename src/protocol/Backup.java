@@ -38,7 +38,7 @@ public class Backup implements Runnable{
 
             for(int i =0;i<numChuncks;i++){
                 System.out.println("Launching Thread "+i);
-                byte buffer[] = new byte[StoredChunk.MAX_SIZE];
+                byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
                 fs.read(buffer);
                 StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,buffer);
                 BackupChunk bc=new BackupChunk(chunk);

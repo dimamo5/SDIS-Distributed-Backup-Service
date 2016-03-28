@@ -193,4 +193,13 @@ public class Disk implements Serializable{
         Collections.sort(returnArray);
         return returnArray;
     }
+
+    public Chunk getChunk(String filehash,int chunkNo){
+        for(Chunk c:chunks){
+            if(c.getChunkNo()==chunkNo && c.getFileId().equals(filehash)){
+                return c;
+            }
+        }
+        return null;
+    }
 }

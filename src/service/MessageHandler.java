@@ -1,5 +1,6 @@
 package service;
 
+import channel.MDBChannel;
 import database.Chunk;
 import database.StoredChunk;
 import message.*;
@@ -181,6 +182,9 @@ public class MessageHandler implements Handler, Runnable {
 
     @Override
     public void processRemoved(Message message) {
-
+        RemovedHandler rh=new RemovedHandler(message);
+        Peer.getMDB_channel().addObserver(rh);
+        rh.process(message);
     }
+
 }

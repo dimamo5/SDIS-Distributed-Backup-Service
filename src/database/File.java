@@ -1,9 +1,6 @@
 package database;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by diogo on 12/03/2016.
  */
-public class File {
+public class File implements Serializable{
     private String filename;
     private String filehash;
     private int numChuncks;

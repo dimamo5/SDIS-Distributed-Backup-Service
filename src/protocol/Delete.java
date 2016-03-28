@@ -17,7 +17,7 @@ public class Delete implements Runnable {
 
     @Override
     public void run() {
-        File f = new File(this.filename);
+        File f = new File("files/"+this.filename);
         if(f.exists() && !f.isDirectory()) {
             f.delete();
             System.out.println("Deleted " + this.filename);
@@ -31,6 +31,10 @@ public class Delete implements Runnable {
             Peer.getDisk().files.remove(filename);
 
             System.out.println("File deleted from the network!");
+
+            Peer.saveDisk();
+
+            System.out.println("Size of files: "+Peer.getDisk().files.size());
         } else {
             System.out.println("No such file in the network");
         }

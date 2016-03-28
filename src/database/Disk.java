@@ -12,9 +12,9 @@ import java.util.HashMap;
  */
 public class Disk implements Serializable{
 
-    private static final int MAX_CAPACITY = 2000000;
+    private static final long MAX_CAPACITY = 2000000;
 
-    private int spaceUsage=0;
+    private long spaceUsage=0;
 
     public ArrayList<Chunk> chunks =new ArrayList<>();
 
@@ -25,11 +25,11 @@ public class Disk implements Serializable{
 
     /* METHODS */
 
-    public int getFreeSpace(){
+    public long getFreeSpace(){
         return MAX_CAPACITY - spaceUsage;
     }
 
-    public int releaseMemory(int space){
+    public long releaseMemory(long space){
         if(space > MAX_CAPACITY)
             return -1;
         else {
@@ -41,7 +41,7 @@ public class Disk implements Serializable{
         }
     }
 
-    private int useSpace(int space){
+    private long useSpace(long space){
 
         if(space > getAvailableMemory()){
             System.out.println("Not enough memory in disk");
@@ -54,11 +54,11 @@ public class Disk implements Serializable{
     }
 
 
-    private int getAvailableMemory() {
+    private long getAvailableMemory() {
         return MAX_CAPACITY - spaceUsage;
     }
 
-    public int getSpaceUsage() {
+    public long getSpaceUsage() {
         return spaceUsage;
     }
 
@@ -163,5 +163,28 @@ public class Disk implements Serializable{
 
     public void addFile(String name,String hash,int numChunks){
         this.files.put(name,new File(name,hash,numChunks));
+    }
+
+    public ArrayList<Chunk> getChunkFromFileId(String filehash){
+        ArrayList<Chunk> chunksFromFile=new ArrayList<>();
+        for(int i =0;i<chunks.size();i++){
+            if(chunks.get(i).getFileId().equals(filehash)){
+                chunksFromFile.add(chunks.get(i));
+            }
+        }
+        return chunksFromFile;
+    }
+
+    public void removeChunk(Chunk c){
+        java.io.File file = new java.io.File("files/" + c.getFileId()+"/"+c.getChunkNo());
+        long filesize = file.length();
+
+        this.releaseMemory(filesize);
+        file.delete();
+
+        chunks.remove(c);
+        System.out.println("Database size: "+chunks.size());
+
+
     }
 }

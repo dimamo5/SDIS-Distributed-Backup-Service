@@ -45,6 +45,7 @@ public class Peer implements RMIInterface{
 
     public Peer(String params[]){
         initAttr(params);
+        loadDisk();
     }
 
     public static void main(String[] args){
@@ -72,8 +73,9 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            p.backupFile("texto2.txt",1);
-
+            //p.backupFile("texto.txt",1);
+        //p.restoreFile("texto.txt");
+        p.deleteFile("texto.txt");
 
     }
 
@@ -151,7 +153,7 @@ public class Peer implements RMIInterface{
     public static void loadDisk(){
 
         try {
-            FileInputStream fileInputStream = new FileInputStream("db.data");
+            FileInputStream fileInputStream = new FileInputStream("db"+id+".data");
 
             ObjectInputStream objectInputStream = new ObjectInputStream(
                     fileInputStream);
@@ -164,6 +166,7 @@ public class Peer implements RMIInterface{
             System.err.println("Database not found.");
 
             disk=new Disk();
+            saveDisk();
             System.out.println("New disk created.");
 
             e.printStackTrace();
@@ -176,7 +179,7 @@ public class Peer implements RMIInterface{
 
     public static void saveDisk(){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("db.data");
+            FileOutputStream fileOutputStream = new FileOutputStream("db"+id+".data");
 
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(
                     fileOutputStream);
@@ -202,7 +205,6 @@ public class Peer implements RMIInterface{
 
     @Override
     public void restoreFile(String filename) {
-        System.out.println("Starting Restoring file: "+filename);
         Restore r=new Restore(filename);
         this.MDR_channel.addObserver(r);
         new Thread(r).start();

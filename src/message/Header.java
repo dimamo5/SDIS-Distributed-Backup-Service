@@ -17,6 +17,7 @@ public class Header {
             file_id_hex_length = 64,
             chunk_no_max_length = 6; //Bytes
 
+
     private String type = "", version = "", sender_id = "", file_id = "", chunk_no = "", replic_deg = "";
     private String header_data = "";
 

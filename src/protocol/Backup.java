@@ -51,6 +51,7 @@ public class Backup implements Runnable{
         }
 
         Peer.getDisk().addFile(this.filename,filehash,numChuncks);
+        Peer.saveDisk();
 
     }
 

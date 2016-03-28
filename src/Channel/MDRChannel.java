@@ -80,8 +80,4 @@ public class MDRChannel extends Observable implements Runnable {
     public int getPort() {
         return port;
     }
-
-    public boolean canStore(String filehash){
-       return  this.askedFiles.contains(filehash);
-    }
 }

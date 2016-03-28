@@ -51,4 +51,23 @@ public class Chunk implements Serializable {
                 ", peers=" + s +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Chunk)) return false;
+
+        Chunk chunk = (Chunk) o;
+
+        if (chunkNo != chunk.chunkNo) return false;
+        return fileId.equals(chunk.fileId);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fileId.hashCode();
+        result = 31 * result + chunkNo;
+        return result;
+    }
 }

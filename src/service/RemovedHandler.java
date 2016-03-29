@@ -28,11 +28,15 @@ public class RemovedHandler implements Observer {
     }
 
     public void process(Message message) {
+
         String filehash = message.getHeader().getFile_id();
         int chunkno = Integer.parseInt(message.getHeader().getChunk_no());
+
         if (Peer.getDisk().hasChunk(filehash, chunkno)) {
+
             Chunk c = Peer.getDisk().getChunk(filehash, chunkno);
             c.removePeer(Peer.getId());
+
             int currentRep = c.getPeers().size();
             int desiredRep = c.getReplicationDegree();
 
@@ -47,9 +51,12 @@ public class RemovedHandler implements Observer {
                     try {
                         FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + c.getFileId() + "/" + c.getChunkNo());
                         byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
+
                         fs.read(buffer);
+
                         StoredChunk chunk = new StoredChunk(c.getFileId(), c.getChunkNo(), c.getReplicationDegree(), buffer);
                         BackupChunk bc = new BackupChunk(chunk);
+
                         Peer.getMC_channel().addObserver(bc);
                         new Thread(bc).start();
                     } catch (FileNotFoundException e) {
@@ -58,10 +65,7 @@ public class RemovedHandler implements Observer {
                         e.printStackTrace();
                     }
                 }
-
-
             }
-
         }
     }
 
@@ -70,6 +74,7 @@ public class RemovedHandler implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof MCChannel && arg instanceof Message) {
             Message m = (Message) arg;
+
             if (m.getHeader().getType().equals(MessageHandler.Types.PUTCHUNK) &&
                     m.getHeader().getFile_id().equals(this.message.getHeader().getFile_id()) &&
                     m.getHeader().getChunk_no().equals(this.message.getHeader().getChunk_no())) {

@@ -29,7 +29,6 @@ public class MessageHandler implements Handler, Runnable {
 
     @Override
     public void run() {
-
         //delegate message to the corresponding processor method
         dispatcher(this.message.getHeader().getType(), this.message);
     }
@@ -74,6 +73,15 @@ public class MessageHandler implements Handler, Runnable {
     @Override
     public void processPutChunk(Message message) { //TODO VERIFICAR PASSOS DO MÉTODO !!!!!!!!!
 
+        int chunk_peer_count = 0;
+
+        //============ ENHANCEMENT ============
+        if(Peer.isEnhancements_ON()) {
+            chunk_peer_count = Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size();
+        }
+        //======================================
+
+
         System.out.println("Received PUTCHUNCK!");
 
         //verifica se tem espaço suficiente
@@ -97,6 +105,17 @@ public class MessageHandler implements Handler, Runnable {
                 System.out.println("Error in Thread.sleep");
             }
 
+            //=============== ENHANCEMENT ================
+            if(Peer.isEnhancements_ON()){
+                int stores_received=
+                        Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size() -
+                                chunk_peer_count;
+
+                //Replication degree reached, ignore backup
+                if(stores_received >= Integer.parseInt(message.getHeader().getReplic_deg()))
+                    return;
+            }
+            //============================================
 
             System.out.println("Send STORED");
             //send "STORED" message
@@ -114,6 +133,9 @@ public class MessageHandler implements Handler, Runnable {
 
 
         //================================================
+
+
+
          /*TODO ENHANCEMENT !!!!!!!!!!!!!!!!
         TODO VERIFICA SE NO GRUPO DE MULTICAST NAO RECEBEU UM NUMERO DE STORED CONFIRMATIONS SUPERIOR OU IGUAL AO REPLIC DEGREE PARA ESTE CHUNK;
         TODO SE NAO RECEBEU ENVIA STORED MESSAGE;

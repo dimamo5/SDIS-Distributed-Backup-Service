@@ -23,7 +23,7 @@ public class Peer implements RMIInterface{
         MC, MDB, MDR;
     }
 
-    private static boolean enhancements = false;
+    private static boolean enhancements_ON = false;
 
     private static Disk disk = new Disk();
 
@@ -72,9 +72,9 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            //p.backupFile("texto.txt",1);
+            p.backupFile("texto1.txt",1);
         //p.restoreFile("texto.txt");
-        p.deleteFile("texto.txt");
+       // p.deleteFile("texto.txt");
 
     }
 
@@ -86,7 +86,7 @@ public class Peer implements RMIInterface{
             System.out.println("Incorrect number of args");
         }
 
-        this.id = args[0];
+        id = args[0];
 
         if(args.length > 1) { //reconfigure MCchannel's ip/port
             MC_ip = args[1];
@@ -96,6 +96,11 @@ public class Peer implements RMIInterface{
             MDR_ip = args[5];
             MDR_port = Integer.parseInt(args[6]);
         }
+
+        if(args.length == 8){ //enhancement
+            enhancements_ON = true;
+        }
+
 
         try {
             MC_channel = new MCChannel(InetAddress.getByName(MC_ip),MC_port);
@@ -108,8 +113,8 @@ public class Peer implements RMIInterface{
 
         try {
             comunication_socket = new MulticastSocket();
-            this.ip=getIPv4().getHostAddress();
-            this.port=comunication_socket.getLocalPort();
+            ip=getIPv4().getHostAddress();
+            port=comunication_socket.getLocalPort();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -243,6 +248,11 @@ public class Peer implements RMIInterface{
         return packet.getAddress();
     }
 
+    public static boolean isEnhancements_ON() {
+        return enhancements_ON;
+    }
 
-
+    public static void setEnhancements_ON(boolean enhancements_ON) {
+        Peer.enhancements_ON = enhancements_ON;
+    }
 }

@@ -12,7 +12,8 @@ public class Chunk implements Serializable, Comparable<Chunk> {
     private String fileId;
     private int replicationDegree;
     private int chunkNo;
-    private ArrayList<String> peers=new ArrayList<>(); //Peers that contains the chunck
+
+    private ArrayList<String> peers=new ArrayList<>(); //Peers that contains the chunk
 
     public ArrayList<String> getPeers() {
         return peers;

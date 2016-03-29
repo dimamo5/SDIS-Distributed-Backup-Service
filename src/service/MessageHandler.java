@@ -36,7 +36,7 @@ public class MessageHandler implements Handler, Runnable {
     @Override
     public void dispatcher(String type, Message message) {
         Types t = Types.valueOf(type);
-        System.out.println("message type :" + t);
+        //System.out.println("message type :" + t);
 
         switch (t) {
 
@@ -73,6 +73,7 @@ public class MessageHandler implements Handler, Runnable {
     @Override
     public void processPutChunk(Message message) { //TODO VERIFICAR PASSOS DO MÉTODO !!!!!!!!!
 
+<<<<<<< HEAD
         int chunk_peer_count = 0;
 
         //============ ENHANCEMENT 3.2 ============
@@ -83,6 +84,9 @@ public class MessageHandler implements Handler, Runnable {
 
 
         System.out.println("Received PUTCHUNCK!");
+=======
+        //System.out.println("Received PUTCHUNCK!");
+>>>>>>> 2ab271b3fb58ee6b74f5e90ea93f48f5abccb842
 
         //verifica se tem espaço suficiente
         if (!Peer.getDisk().canSaveChunk(message.getBodyLength())) {
@@ -165,7 +169,7 @@ public class MessageHandler implements Handler, Runnable {
     @Override
     public void processGetChunk(Message message) {
 
-        System.out.println("Received GETCHUNK!"+ message.toString());
+        //System.out.println("Received GETCHUNK!"+ message.toString());
 
         if (Peer.getDisk().hasChunk(message.getHeader().getFile_id(), new Integer(message.getHeader().getChunk_no()))) {
             try {
@@ -185,7 +189,7 @@ public class MessageHandler implements Handler, Runnable {
     @Override
     public void processChunk(Message message) {
 
-        System.out.println("Received CHUNK!");
+        //System.out.println("Received CHUNK!");
 
         Peer.getMDR_channel().notifyObservers(message);
     }
@@ -198,6 +202,8 @@ public class MessageHandler implements Handler, Runnable {
         for(int i=0;i<chunksDeleted.size();i++){
             Peer.getDisk().removeChunk(chunksDeleted.get(i));
         }
+
+        Peer.getDisk().removeFolder(message.getHeader().getFile_id());
         Peer.saveDisk();
     }
 

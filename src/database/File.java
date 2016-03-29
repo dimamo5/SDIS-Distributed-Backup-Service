@@ -36,7 +36,6 @@ public class File implements Serializable{
         return filehash;
     }
 
-
     public int getNumChuncks() {
         return numChuncks;
     }

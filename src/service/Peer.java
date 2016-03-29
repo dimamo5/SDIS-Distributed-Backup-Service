@@ -44,6 +44,7 @@ public class Peer implements RMIInterface{
     public Peer(String params[]){
         initAttr(params);
         loadDisk();
+
     }
 
     public static void main(String[] args){
@@ -70,12 +71,11 @@ public class Peer implements RMIInterface{
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
 
-        if(args.length==8) {
-            p.backupFile("texto1.txt", 1);
-            //p.setEnhancements_ON(true);
-            //p.restoreFile("texto.txt");
-            // p.deleteFile("texto.txt");
-        }
+
+        if(args.length==8)
+            //p.backupFile("texto1.txt",1);
+        p.restoreFile("texto1.txt");
+        //p.deleteFile("texto1.txt");
 
         //================= 3.4 ENHANCEMENT =================== */
         if(enhancements_ON){

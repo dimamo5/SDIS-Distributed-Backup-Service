@@ -10,6 +10,7 @@ import java.io.File;
  */
 public class Delete implements Runnable {
     private String filename;
+    private final int MAX_DELETE_MESSAGE=3;
 
     public Delete(String filename) {
         this.filename = filename;
@@ -17,16 +18,12 @@ public class Delete implements Runnable {
 
     @Override
     public void run() {
-        File f = new File("files/"+this.filename);
-        if(f.exists() && !f.isDirectory()) {
-            f.delete();
-            System.out.println("Deleted " + this.filename);
-        }
 
         if (Peer.getDisk().hasFile(this.filename)) {
             String filehash = Peer.getDisk().files.get(filename).getFilehash();
 
-            new MessageSender().deleteMessage(Peer.getId(),filehash);
+            for(int i=0;i<MAX_DELETE_MESSAGE;i++)
+                new MessageSender().deleteMessage(Peer.getId(),filehash);
 
             Peer.getDisk().files.remove(filename);
 

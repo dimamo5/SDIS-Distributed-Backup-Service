@@ -75,7 +75,7 @@ public class MessageHandler implements Handler, Runnable {
 
         int chunk_peer_count = 0;
 
-        //============ ENHANCEMENT ============
+        //============ ENHANCEMENT 3.2 ============
         if(Peer.isEnhancements_ON()) {
             chunk_peer_count = Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size();
         }
@@ -105,7 +105,7 @@ public class MessageHandler implements Handler, Runnable {
                 System.out.println("Error in Thread.sleep");
             }
 
-            //=============== ENHANCEMENT ================
+            //=============== ENHANCEMENT 3.2 ================
             if(Peer.isEnhancements_ON()){
                 int stores_received=
                         Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size() -

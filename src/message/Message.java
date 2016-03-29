@@ -96,7 +96,7 @@ public class Message {
 
         /*extract body data
          *copyofrange reveals best performance in relation to new String(byte[]) + String.getChars() */
-        if(ignored_length != message.getLength()) //TODO VERIFICAR SE ISTO NAO DÁ PEIDO PARA PACKETS COM HEADER ONLY
+        if(ignored_length != message.getLength())
             body = Arrays.copyOfRange(message.getData(), ignored_length, message.getLength());
 
         return true;

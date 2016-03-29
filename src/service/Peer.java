@@ -77,14 +77,11 @@ public class Peer implements RMIInterface{
             // p.deleteFile("texto.txt");
         }
 
-
         //================= 3.4 ENHANCEMENT =================== */
         if(enhancements_ON){
             p.spaceReclaim(disk.getSpaceUsage());
         }
         //========================================================
-
-
     }
 
     /* METHODS */

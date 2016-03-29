@@ -23,6 +23,15 @@ public class Disk implements Serializable{
     public HashMap<String,File> files = new HashMap<>(); //File name to hash
 
     public Disk(){
+        if(!folderExists("files")){
+            createFolder("files");
+        }
+        if(!folderExists("restore")){
+            createFolder("restore");
+        }
+        if(!folderExists("chunks")){
+            createFolder("chunks");
+        }
     }
 
     /* METHODS */
@@ -201,5 +210,14 @@ public class Disk implements Serializable{
             }
         }
         return null;
+    }
+
+    public void removeFolder(String folder){
+        if(folderExists("files/"+folder)){
+            java.io.File f = new java.io.File("files/" + folder);
+            f.delete();
+        }
+
+
     }
 }

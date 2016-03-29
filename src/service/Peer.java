@@ -1,7 +1,6 @@
 package service;
 
 import channel.*;
-import database.Chunk;
 import database.Disk;
 import protocol.Backup;
 import protocol.Delete;
@@ -45,6 +44,7 @@ public class Peer implements RMIInterface{
     public Peer(String params[]){
         initAttr(params);
         loadDisk();
+
     }
 
     public static void main(String[] args){
@@ -72,9 +72,9 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            p.backupFile("texto1.txt",1);
-        //p.restoreFile("texto1.txt");
-        //p.deleteFile("texto.txt");
+            //p.backupFile("texto1.txt",1);
+        p.restoreFile("texto1.txt");
+        //p.deleteFile("texto1.txt");
 
     }
 

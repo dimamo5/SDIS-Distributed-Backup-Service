@@ -73,7 +73,6 @@ public class MessageHandler implements Handler, Runnable {
     @Override
     public void processPutChunk(Message message) { //TODO VERIFICAR PASSOS DO MÉTODO !!!!!!!!!
 
-<<<<<<< HEAD
         int chunk_peer_count = 0;
 
         //============ ENHANCEMENT 3.2 ============
@@ -84,9 +83,6 @@ public class MessageHandler implements Handler, Runnable {
 
 
         System.out.println("Received PUTCHUNCK!");
-=======
-        //System.out.println("Received PUTCHUNCK!");
->>>>>>> 2ab271b3fb58ee6b74f5e90ea93f48f5abccb842
 
         //verifica se tem espaço suficiente
         if (!Peer.getDisk().canSaveChunk(message.getBodyLength())) {

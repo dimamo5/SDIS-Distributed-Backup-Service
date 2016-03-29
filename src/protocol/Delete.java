@@ -17,11 +17,6 @@ public class Delete implements Runnable {
 
     @Override
     public void run() {
-        File f = new File("files/"+this.filename);
-        if(f.exists() && !f.isDirectory()) {
-            f.delete();
-            System.out.println("Deleted " + this.filename);
-        }
 
         if (Peer.getDisk().hasFile(this.filename)) {
             String filehash = Peer.getDisk().files.get(filename).getFilehash();

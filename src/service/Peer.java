@@ -1,7 +1,6 @@
 package service;
 
 import channel.*;
-import database.Chunk;
 import database.Disk;
 import protocol.Backup;
 import protocol.Delete;
@@ -71,10 +70,20 @@ public class Peer implements RMIInterface{
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
 
-        if(args.length==8)
-            p.backupFile("texto1.txt",1);
-        //p.restoreFile("texto.txt");
-       // p.deleteFile("texto.txt");
+        if(args.length==8) {
+            p.backupFile("texto1.txt", 1);
+            //p.setEnhancements_ON(true);
+            //p.restoreFile("texto.txt");
+            // p.deleteFile("texto.txt");
+        }
+
+
+        //================= 3.4 ENHANCEMENT =================== */
+        if(enhancements_ON){
+            p.spaceReclaim(disk.getSpaceUsage());
+        }
+        //========================================================
+
 
     }
 
@@ -97,9 +106,6 @@ public class Peer implements RMIInterface{
             MDR_port = Integer.parseInt(args[6]);
         }
 
-        if(args.length == 8){ //enhancement
-            enhancements_ON = true;
-        }
 
 
         try {
@@ -210,7 +216,7 @@ public class Peer implements RMIInterface{
     @Override
     public void restoreFile(String filename) {
         Restore r=new Restore(filename);
-        this.MDR_channel.addObserver(r);
+        MDR_channel.addObserver(r);
         new Thread(r).start();
     }
 
@@ -221,10 +227,10 @@ public class Peer implements RMIInterface{
     }
 
     @Override
-    public void spaceReclaim(int amount) {
+    public void spaceReclaim(long amount) {
         System.out.println("Starting Reclaiming: "+amount);
         Reclaim r= new Reclaim(amount);
-        this.MDR_channel.addObserver(r);
+        MDR_channel.addObserver(r);
         new Thread(r).start();
     }
 
@@ -254,5 +260,9 @@ public class Peer implements RMIInterface{
 
     public static void setEnhancements_ON(boolean enhancements_ON) {
         Peer.enhancements_ON = enhancements_ON;
+    }
+
+    public static void setDisk(Disk disk) {
+        Peer.disk = disk;
     }
 }

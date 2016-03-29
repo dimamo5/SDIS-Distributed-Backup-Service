@@ -14,11 +14,11 @@ import java.util.Observer;
  */
 public class Reclaim implements Runnable, Observer {
 
-    int amount;
+    long amount;
     MessageSender sender = new MessageSender();
     ArrayList<Chunk> chunks;
 
-    public Reclaim(int amount) {
+    public Reclaim(long amount) {
         this.amount = amount;
         this.chunks = Peer.getDisk().sortLessImportantChunk();
 

@@ -14,7 +14,7 @@ public interface RMIInterface extends Remote {
 
     public void deleteFile(String filename) throws RemoteException;
 
-    public void spaceReclaim(int amount) throws RemoteException;
+    public void spaceReclaim(long amount) throws RemoteException;
 
 
 

@@ -1,7 +1,6 @@
 package protocol;
 
 import channel.MCChannel;
-import channel.MDRChannel;
 import database.StoredChunk;
 import message.Message;
 import service.MessageSender;
@@ -20,7 +19,7 @@ public class BackupChunk  implements Runnable,Observer{
     public static final int MAX_ATTEMPTS = 5;
 
     private StoredChunk chunk;
-    private ArrayList<Integer> confirmationReceived = new ArrayList<>();
+    private ArrayList<String> confirmationReceived = new ArrayList<>();
 
     public BackupChunk(StoredChunk chunk) {
         this.chunk = chunk;
@@ -70,11 +69,10 @@ public class BackupChunk  implements Runnable,Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Chamou o update");
         if (o instanceof MCChannel && arg instanceof Message) {
             Message m = (Message) arg;
             if(this.chunk.getFileId().equals(m.getHeader().getFile_id()) && this.chunk.getChunkNo()==Integer.parseInt(m.getHeader().getChunk_no())){
-                this.confirmationReceived.add(Integer.parseInt(m.getHeader().getSender_id()));
+                this.confirmationReceived.add(m.getHeader().getSender_id());
             }
         }
     }

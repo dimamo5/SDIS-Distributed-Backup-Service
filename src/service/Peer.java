@@ -12,6 +12,7 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
+import java.rmi.RemoteException;
 
 /**
  * Created by Sonhs on 12/03/2016.
@@ -71,18 +72,11 @@ public class Peer implements RMIInterface{
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
 
-
         if(args.length==8)
             //p.backupFile("texto1.txt",1);
-        //p.restoreFile("texto1.txt");
+        p.restoreFile("texto1.txt");
         //p.deleteFile("texto1.txt");
-        p.spaceReclaim(64000);
 
-        //================= 3.4 ENHANCEMENT =================== */
-        if(enhancements_ON){
-            p.spaceReclaim(disk.getSpaceUsage());
-        }
-        //========================================================
     }
 
     /* METHODS */
@@ -93,7 +87,7 @@ public class Peer implements RMIInterface{
             System.out.println("Incorrect number of args");
         }
 
-        id = args[0];
+        this.id = args[0];
 
         if(args.length > 1) { //reconfigure MCchannel's ip/port
             MC_ip = args[1];
@@ -103,8 +97,6 @@ public class Peer implements RMIInterface{
             MDR_ip = args[5];
             MDR_port = Integer.parseInt(args[6]);
         }
-
-
 
         try {
             MC_channel = new MCChannel(InetAddress.getByName(MC_ip),MC_port);
@@ -117,8 +109,8 @@ public class Peer implements RMIInterface{
 
         try {
             comunication_socket = new MulticastSocket();
-            ip=getIPv4().getHostAddress();
-            port=comunication_socket.getLocalPort();
+            this.ip=getIPv4().getHostAddress();
+            this.port=comunication_socket.getLocalPort();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -214,7 +206,7 @@ public class Peer implements RMIInterface{
     @Override
     public void restoreFile(String filename) {
         Restore r=new Restore(filename);
-        MDR_channel.addObserver(r);
+        this.MDR_channel.addObserver(r);
         new Thread(r).start();
     }
 
@@ -228,7 +220,7 @@ public class Peer implements RMIInterface{
     public void spaceReclaim(long amount) {
         System.out.println("Starting Reclaiming: "+amount);
         Reclaim r= new Reclaim(amount);
-        MDR_channel.addObserver(r);
+        this.MDR_channel.addObserver(r);
         new Thread(r).start();
     }
 
@@ -252,15 +244,11 @@ public class Peer implements RMIInterface{
         return packet.getAddress();
     }
 
+
     public static boolean isEnhancements_ON() {
         return enhancements_ON;
     }
 
-    public static void setEnhancements_ON(boolean enhancements_ON) {
-        Peer.enhancements_ON = enhancements_ON;
-    }
 
-    public static void setDisk(Disk disk) {
-        Peer.disk = disk;
-    }
+
 }

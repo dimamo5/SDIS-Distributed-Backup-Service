@@ -93,9 +93,13 @@ public class MessageHandler implements Handler, Runnable {
         //verifica se chunk
         if (Peer.getDisk().hasChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()))) {
             System.out.println("Send STORED Already in database");
+            System.out.println("SIZE: "+Peer.getDisk().chunks.size());
             //send "STORED" message
             message_sender.storedMessage(Peer.getId(), message.getHeader().getFile_id(), message.getHeader().getChunk_no());
-        } else {
+        }else if(Peer.getDisk().hasFileByHash(message.getHeader().getFile_id())){
+            System.out.println("Initial Peer");
+        }
+            else {
 
             //random delay [0,400]
             try {
@@ -205,6 +209,7 @@ public class MessageHandler implements Handler, Runnable {
 
     @Override
     public void processRemoved(Message message) {
+        System.out.println("Received REMOVED");
         RemovedHandler rh=new RemovedHandler(message);
         Peer.getMDB_channel().addObserver(rh);
         rh.process(message);

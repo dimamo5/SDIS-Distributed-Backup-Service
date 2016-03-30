@@ -61,6 +61,9 @@ public class Restore implements Runnable, Observer {
                 System.out.println("File Restored");
             }
         }
+        if(this.receivedChunks!=this.numChunks){
+            System.out.println("File Not Restored");
+        }
     }
 
     @Override

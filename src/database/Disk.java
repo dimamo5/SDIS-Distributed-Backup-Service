@@ -4,10 +4,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by diogo on 16/03/2016.
@@ -131,6 +128,19 @@ public class Disk implements Serializable{
 
     public boolean hasFile(String filename){
         return files.containsKey(filename);
+    }
+
+
+    public boolean hasFileByHash(String filehash){
+        Iterator it = this.files.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            File f= (File)pair.getValue();
+            if(f.getFilehash().equals(filehash))
+                return true;
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        return false;
     }
 
     private  boolean folderExists(String name) {

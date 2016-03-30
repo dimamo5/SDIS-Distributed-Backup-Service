@@ -6,9 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-/**
- * Created by diogo on 16/03/2016.
- */
 public class Disk implements Serializable{
 
     private static final long MAX_CAPACITY = 2000000;
@@ -33,7 +30,7 @@ public class Disk implements Serializable{
 
     /* METHODS */
 
-    public long getFreeSpace(){
+    private long getFreeSpace(){
         return MAX_CAPACITY - spaceUsage;
     }
 
@@ -99,20 +96,18 @@ public class Disk implements Serializable{
     //TODO VERIFICAR ISTO
     public void storeChunk(StoredChunk c){
 
-        if(!folderExists("files/" + c.getFileId())){
-            createFolder("files/"+c.getFileId());
+        if(!folderExists("chunks/" + c.getFileId())){
+            createFolder("chunks/"+c.getFileId());
         }
 
         /* Creates chunk file */
-        String chunkFileNameOut = "files/" + c.getFileId()+"/" + c.getChunkNo();
+        String chunkFileNameOut = "chunks/" + c.getFileId()+"/" + c.getChunkNo();
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(chunkFileNameOut);
             fos.write(c.getDataBlock());
             fos.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,7 +165,7 @@ public class Disk implements Serializable{
 
     public StoredChunk loadChunk(String fileId, String chunkNo){
 
-        Path path = Paths.get("files/" + fileId+"/" + chunkNo);
+        Path path = Paths.get("chunks/" + fileId+"/" + chunkNo);
         StoredChunk sc=null;
         try {
             byte[] data = Files.readAllBytes(path);

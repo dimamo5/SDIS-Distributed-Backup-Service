@@ -25,7 +25,6 @@ public class Restore implements Runnable, Observer {
     private ArrayList<Integer> chunksReceived=new ArrayList<>();
     private int receivedChunks=0;
     private int numChunks;
-    private final int MAX_TRIES=3;
 
     public Restore(String filename) {
         this.file = new File(filename);
@@ -39,7 +38,8 @@ public class Restore implements Runnable, Observer {
         System.out.println("Starting Restoring file: " + this.file.getName());
 
         int counter=0;
-        while(counter!=MAX_TRIES) {
+        int MAX_TRIES = 3;
+        while(counter!= MAX_TRIES) {
             if (Peer.getDisk().hasFile(this.file.getName())) {
                 database.File file = Peer.getDisk().files.get(this.file.getName());
                 for (int i = 0; i < file.getNumChuncks(); i++) {

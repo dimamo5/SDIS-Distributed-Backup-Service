@@ -15,19 +15,20 @@ import java.util.Arrays;
  */
 public class Message {
 
-    Header header = null;
-    byte[] body = null;
+    private Header header = null;
+    private byte[] body = null;
+    private boolean valid = false;
 
     //receives the byte[] from the packet.getData()
-    public Message(DatagramPacket message){
+    public Message(DatagramPacket message) {
         processMessage(message);
     }
 
-    public Message(Header header){
+    public Message(Header header) {
         this.header = header;
     }
 
-    public Message(Header header, byte[] data){
+    public Message(Header header, byte[] data) {
         this.header = header;
         this.body = data;
     }
@@ -40,21 +41,24 @@ public class Message {
         return body;
     }
 
-    public int getBodyLength(){
+    public int getBodyLength() {
         return body.length;
     }
 
-    public void processMessage(DatagramPacket message){
+    public boolean isValid() {
+        return valid;
+    }
 
-        if(processHeader(message) && processBody(message)){
-            System.out.println("Message processed");
+    private void processMessage(DatagramPacket message) {
+
+        if (processHeader(message) && processBody(message)) {
+            this.valid = true;
         } else {
             System.out.println("Error processing message");
-            System.exit(1);
         }
     }
 
-    private boolean processHeader(DatagramPacket message){
+    private boolean processHeader(DatagramPacket message) {
         InputStream is = new ByteArrayInputStream(message.getData());
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -69,9 +73,9 @@ public class Message {
             return false;
         }
 
-        System.out.println("header bytes: "+ new String(header_fields.getBytes()));
+        System.out.println("MESSAGE: " + new String(header_fields.getBytes()));
 
-        this.header=new Header(header_fields.getBytes());
+        this.header = new Header(header_fields.getBytes());
         return true;
     }
 
@@ -80,7 +84,7 @@ public class Message {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
         String ignore;
-        int ignore_count = 0, ignored_length = 0; //ignored length matches the body beginning
+        int ignored_length = 0; //ignored length matches the body beginning
 
         do {
             try {
@@ -90,25 +94,24 @@ public class Message {
                 e.printStackTrace();
                 return false;
             }
-            ignore_count++;
         }
-        while(ignore.length() != 0 );
+        while (ignore.length() != 0);
 
         /*extract body data
          *copyofrange reveals best performance in relation to new String(byte[]) + String.getChars() */
-        if(ignored_length != message.getLength())
+        if (ignored_length != message.getLength())
             body = Arrays.copyOfRange(message.getData(), ignored_length, message.getLength());
 
         return true;
     }
 
-    public byte[] getMessageBytes(){
+    public byte[] getMessageBytes() {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(header.getHeaderMsg().length + (body != null ? body.length : 0));
 
         try {
             outputStream.write(header.getHeaderMsg());
-            if(body!= null)
+            if (body != null)
                 outputStream.write(body);
         } catch (IOException e) {
             e.printStackTrace();
@@ -116,7 +119,7 @@ public class Message {
             System.exit(1);
         }
 
-       return outputStream.toByteArray();
+        return outputStream.toByteArray();
     }
 
     @Override
@@ -127,7 +130,7 @@ public class Message {
                 '}';
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
 
         /*Message m = new Message(new Header("tipox 1.0 omeuid sha256sha256sha256sha256sha256sh 2 2\r\n\r\n".getBytes()));
         //InetAddress addres = Peer.getIp();
@@ -138,7 +141,6 @@ public class Message {
 
         System.out.println(mx.toString());*/
     }
-
 
 
 }

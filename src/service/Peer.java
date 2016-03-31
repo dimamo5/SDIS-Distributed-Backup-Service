@@ -13,6 +13,9 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 public class Peer implements RMIInterface{
 
@@ -20,7 +23,7 @@ public class Peer implements RMIInterface{
         MC, MDB, MDR
     }
 
-    private static boolean enhancements_ON = false;
+    private static boolean backup_enhancement_ON = false, delete_enhancement_ON = false;
 
     private static Disk disk = new Disk();
 
@@ -49,7 +52,7 @@ public class Peer implements RMIInterface{
 
         Peer p=new Peer(args);
 
-        /*try {
+        try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
 
@@ -62,7 +65,7 @@ public class Peer implements RMIInterface{
         }catch(Exception e){
             System.err.println("Peer exception: " + e.toString());
             e.printStackTrace();
-        }*/
+        }
 
 
         new Thread(MC_channel).start();
@@ -70,12 +73,12 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            //p.backupFile("texto1.txt",1);
-        p.restoreFile("texto1.txt");
+            p.backupFile("texto1.txt",1,false);
+        //p.restoreFile("texto1.txt");
         //p.deleteFile("texto1.txt");
 
         //================= 3.4 ENHANCEMENT =================== */
-        if(enhancements_ON){
+        if(delete_enhancement_ON){
             p.spaceReclaim(disk.getSpaceUsage());
         }
         //========================================================
@@ -206,7 +209,11 @@ public class Peer implements RMIInterface{
     }
 
     @Override
-    public void backupFile(String filename, int replicationDegree) {
+    public void backupFile(String filename, int replicationDegree, boolean enhancement_ON) {
+
+        if(enhancement_ON)
+            backup_enhancement_ON = true;
+
         System.out.println("Starting Backing file: "+filename);
         new Thread(new Backup(filename,replicationDegree)).start();
     }
@@ -219,7 +226,11 @@ public class Peer implements RMIInterface{
     }
 
     @Override
-    public void deleteFile(String filename) {
+    public void deleteFile(String filename,boolean enhancement_ON) {
+
+        if(enhancement_ON)
+            delete_enhancement_ON = true;
+
         System.out.println("Starting Deteling file: "+filename);
         new Thread(new Delete(filename)).start();
     }
@@ -233,7 +244,7 @@ public class Peer implements RMIInterface{
     }
 
     //Funcao retirada de Henrique Ferrolho
-    public static InetAddress getIPv4() throws IOException {
+    private static InetAddress getIPv4() throws IOException {
         MulticastSocket socket = new MulticastSocket();
         socket.setTimeToLive(0);
 
@@ -252,11 +263,7 @@ public class Peer implements RMIInterface{
         return packet.getAddress();
     }
 
-
-    public static boolean isEnhancements_ON() {
-        return enhancements_ON;
+    public static boolean isBackup_enhancement_ON() {
+        return backup_enhancement_ON;
     }
-
-
-
 }

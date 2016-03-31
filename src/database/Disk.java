@@ -192,7 +192,7 @@ public class Disk implements Serializable{
     }
 
     public void removeChunk(Chunk c){
-        java.io.File file = new java.io.File("files/" + c.getFileId()+"/"+c.getChunkNo());
+        java.io.File file = new java.io.File("chunks/" + c.getFileId()+"/"+c.getChunkNo());
         long filesize = file.length();
 
         this.releaseMemory(filesize);

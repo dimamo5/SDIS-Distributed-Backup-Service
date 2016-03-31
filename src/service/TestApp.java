@@ -15,13 +15,23 @@ public class TestApp {
     public static void main(String args[]) throws RemoteException {
         String ap=null,subProtocol=null, opnd1=null,opnd2=null;
         RMIInterface stub=null;
+        boolean enhancement_ON = false;
 
         if(args.length ==4) {
             ap=args[0];
 
             if(args[1].matches("(BACKUP|RESTORE|RECLAIM|DELETE)")){
                 subProtocol=args[1];
-            }else{
+            }else if(args[1].matches("(BACKUPENH|DELETEENH)")){  //enhancement
+                if(args[1].equals("BACKUPENH")){
+                    subProtocol = "BACKUP";
+                }
+                else{
+                    subProtocol = "DELETE";
+                }
+                enhancement_ON = true;
+            }
+            else{
                 System.err.println("Error in Sub Protocol");
                 System.exit(-1);
             }
@@ -42,13 +52,13 @@ public class TestApp {
 
         switch(subProtocol){
             case "BACKUP":
-                stub.backupFile(opnd1,Integer.parseInt(opnd2));
+                stub.backupFile(opnd1,Integer.parseInt(opnd2),enhancement_ON);
                 break;
             case "RESTORE":
                 stub.restoreFile(opnd1);
                 break;
             case "DELETE":
-                stub.deleteFile(opnd1);
+                stub.deleteFile(opnd1,enhancement_ON);
                 break;
             case "RECLAIM":
                 stub.spaceReclaim(Integer.parseInt(opnd1));

@@ -78,7 +78,7 @@ public class MessageHandler implements Handler, Runnable {
         int chunk_peer_count = 0;
 
         //============ ENHANCEMENT 3.2 ============
-        if(Peer.isEnhancements_ON()) {
+        if(Peer.isBackup_enhancement_ON()) {
             chunk_peer_count = Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size();
         }
         //======================================
@@ -112,7 +112,7 @@ public class MessageHandler implements Handler, Runnable {
             }
 
             //=============== ENHANCEMENT 3.2 ================
-            if(Peer.isEnhancements_ON()){
+            if(Peer.isBackup_enhancement_ON()){
                 int stores_received=
                         Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size() -
                                 chunk_peer_count;
@@ -154,20 +154,12 @@ public class MessageHandler implements Handler, Runnable {
     public void processGetChunk(Message message) {
 
         //System.out.println("Received GETCHUNK!"+ message.toString());
+        GetChunkHandler getChunk = new GetChunkHandler(message);
+        Peer.getMC_channel().addObserver(getChunk);
+        StoredChunk c = (StoredChunk) getChunk.processMessage();
 
-        if (Peer.getDisk().hasChunk(message.getHeader().getFile_id(), new Integer(message.getHeader().getChunk_no()))) {
-            try {
-                Thread.sleep(new Random().nextInt(400));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                System.out.println("Error in Thread.sleep");
-            }
-
-            StoredChunk c = Peer.getDisk().loadChunk(message.getHeader().getFile_id(), message.getHeader().getChunk_no());
-
+        if(c != null)
             message_sender.chunkMessage(Peer.getId(), c);
-
-        }
     }
 
     @Override

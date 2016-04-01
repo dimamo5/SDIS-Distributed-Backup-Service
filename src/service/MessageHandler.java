@@ -14,6 +14,8 @@ import java.util.Random;
  */
 public class MessageHandler implements Handler, Runnable {
 
+    public static final int BOUND = 400;
+
     public enum Types {
         PUTCHUNK, STORED, GETCHUNK, CHUNK, DELETE, REMOVED
     }
@@ -43,7 +45,12 @@ public class MessageHandler implements Handler, Runnable {
         switch (t) {
 
             case PUTCHUNK:
-                processPutChunk(message);
+                if(Peer.isBackup_enhancement_ON()){
+                    processPutChunkEnhanced(message);
+                }else{
+
+                    processPutChunk(message);
+                }
                 break;
 
             case STORED:
@@ -72,18 +79,20 @@ public class MessageHandler implements Handler, Runnable {
         }
     }
 
-    @Override
-    public void processPutChunk(Message message) { //TODO VERIFICAR PASSOS DO MÉTODO !!!!!!!!!
+    private void processPutChunkEnhanced(Message message) {
 
-        int chunk_peer_count = 0;
+        PutChunkEnhancedHandler pChunkEnhHandler = new PutChunkEnhancedHandler(message);
+        Peer.getMC_channel().addObserver(pChunkEnhHandler);
+        Chunk c = pChunkEnhHandler.processMessage();
 
-        //============ ENHANCEMENT 3.2 ============
-        if(Peer.isBackup_enhancement_ON()) {
-            chunk_peer_count = Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size();
+        if(c != null){
+            message_sender.storedMessage(Peer.getId(),c.getFileId(),Integer.toString(c.getChunkNo()));
         }
-        //======================================
 
+    }
 
+    @Override
+    public void processPutChunk(Message message) {
         System.out.println("Received PUTCHUNCK!");
 
         //verifica se tem espaço suficiente
@@ -105,23 +114,12 @@ public class MessageHandler implements Handler, Runnable {
 
             //random delay [0,400]
             try {
-                Thread.sleep(new Random().nextInt(400));
+                Thread.sleep(new Random().nextInt(BOUND));
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 System.out.println("Error in Thread.sleep");
             }
 
-            //=============== ENHANCEMENT 3.2 ================
-            if(Peer.isBackup_enhancement_ON()){
-                int stores_received=
-                        Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size() -
-                                chunk_peer_count;
-
-                //Replication degree reached, ignore backup
-                if(stores_received >= Integer.parseInt(message.getHeader().getReplic_deg()))
-                    return;
-            }
-            //============================================
 
             System.out.println("Send STORED");
             //send "STORED" message
@@ -135,7 +133,6 @@ public class MessageHandler implements Handler, Runnable {
             Peer.getDisk().storeChunk(chunk);
             Peer.saveDisk();
         }
-        return;
     }
 
     @Override
@@ -166,7 +163,6 @@ public class MessageHandler implements Handler, Runnable {
     public void processChunk(Message message) {
 
         //System.out.println("Received CHUNK!");
-
         Peer.getMDR_channel().notifyObservers(message);
     }
 

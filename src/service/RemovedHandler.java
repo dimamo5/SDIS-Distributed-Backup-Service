@@ -75,7 +75,7 @@ public class RemovedHandler implements Observer {
         if (o instanceof MCChannel && arg instanceof Message) {
             Message m = (Message) arg;
 
-            if (m.getHeader().getType().equals(MessageHandler.Types.PUTCHUNK) &&
+            if (m.getHeader().getType().equals(MessageHandler.Types.PUTCHUNK.name()) &&
                     m.getHeader().getFile_id().equals(this.message.getHeader().getFile_id()) &&
                     m.getHeader().getChunk_no().equals(this.message.getHeader().getChunk_no())) {
                 this.putChunkCount++;

@@ -53,6 +53,5 @@ public class GetChunkHandler implements Observer{
                 this.received_chunk = true;
             }
         }
-
     }
 }

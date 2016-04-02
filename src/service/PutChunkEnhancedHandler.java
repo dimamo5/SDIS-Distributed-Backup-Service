@@ -58,7 +58,6 @@ public class PutChunkEnhancedHandler implements Observer {
 
                 //armazena chunk data + registo hashmap
                 Peer.getDisk().storeChunk(chunk);
-                Peer.saveDisk();
 
                 return c;
             }

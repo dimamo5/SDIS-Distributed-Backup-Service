@@ -37,7 +37,6 @@ public class Disk implements Serializable{
     }
 
     public long releaseMemory(long space){
-        System.out.println("Tamanho usado: "+this.spaceUsage);
 
         if(space > MAX_CAPACITY)
             return -1;
@@ -216,7 +215,6 @@ public class Disk implements Serializable{
         file.delete();
 
         chunks.remove(c);
-        System.out.println("Database size: "+chunks.size());
     }
 
     public ArrayList<Chunk> sortLessImportantChunk(){

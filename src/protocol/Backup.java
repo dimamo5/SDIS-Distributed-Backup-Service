@@ -63,7 +63,6 @@ public class Backup implements Runnable{
             executer.shutdown();
             while(!executer.isTerminated()){
             }
-            Peer.saveDisk();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }

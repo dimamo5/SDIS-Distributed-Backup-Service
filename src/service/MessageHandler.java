@@ -128,7 +128,6 @@ public class MessageHandler implements Handler, Runnable {
 
             //armazena chunk data + registo hashmap
             Peer.getDisk().storeChunk(chunk);
-            //Peer.saveDisk();
         }
     }
 
@@ -172,7 +171,6 @@ public class MessageHandler implements Handler, Runnable {
         }
 
         Peer.getDisk().removeFolder(message.getHeader().getFile_id());
-        Peer.saveDisk();
     }
 
     @Override

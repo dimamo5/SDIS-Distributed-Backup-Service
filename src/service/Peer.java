@@ -115,7 +115,6 @@ public class Peer implements RMIInterface{
                 delete_enhancement_ON = true;
             else { System.out.println("Wrong argument:" + args[1]); System.exit(1);}
 
-
         if(args.length > 2) { //reconfigure MCchannel's ip/port
             MC_ip = args[2];
             MC_port = Integer.parseInt(args[3]);

@@ -36,8 +36,10 @@ public class Reclaim implements Runnable, Observer {
 
         while(spaceReleased<amount) {
             Chunk c=this.chunks.get(i);
+            this.chunks.remove(i);
+            Peer.getDisk().removeChunk(c);
 
-            spaceReleased+= StoredChunk.MAX_SIZE; //TODO buscar size chunk
+            spaceReleased+= StoredChunk.MAX_SIZE;
 
             sender.removedMessage(Peer.getId(),c.getFileId(),Integer.toString(c.getChunkNo()));
     }

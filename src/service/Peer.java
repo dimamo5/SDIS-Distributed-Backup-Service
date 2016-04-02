@@ -1,6 +1,7 @@
 package service;
 
 import channel.*;
+import database.Chunk;
 import database.Disk;
 import protocol.Backup;
 import protocol.Delete;
@@ -8,6 +9,7 @@ import protocol.Reclaim;
 import protocol.Restore;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -16,6 +18,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class Peer implements RMIInterface{
 
@@ -53,11 +56,10 @@ public class Peer implements RMIInterface{
         Peer p=new Peer(args);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("In shutdown hook");
             p.saveDisk();
         }, "Shutdown-thread"));
 
-        /*try {
+        try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
 
@@ -70,7 +72,7 @@ public class Peer implements RMIInterface{
         }catch(Exception e){
             System.err.println("Peer exception: " + e.toString());
             e.printStackTrace();
-        }*/
+        }
 
 
         new Thread(MC_channel).start();
@@ -180,13 +182,11 @@ public class Peer implements RMIInterface{
 
             objectInputStream.close();
         } catch (FileNotFoundException e) {
-            System.err.println("Database not found.");
+            System.err.println("Database not found => Creating New Disk");
 
             disk=new Disk();
             saveDisk();
-            System.out.println("New disk created.");
 
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -221,7 +221,8 @@ public class Peer implements RMIInterface{
             backup_enhancement_ON = true;
 
         System.out.println("Starting Backing file: "+filename);
-        new Thread(new Backup(filename,replicationDegree)).start();
+        Thread t=new Thread(new Backup(filename,replicationDegree));
+        t.start();
     }
 
     @Override

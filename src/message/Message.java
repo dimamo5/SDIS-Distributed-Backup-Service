@@ -73,7 +73,7 @@ public class Message {
             return false;
         }
 
-        System.out.println("MESSAGE: " + new String(header_fields.getBytes()));
+        System.out.println("MSG RECEIVED: " + new String(header_fields.getBytes()));
 
         this.header = new Header(header_fields.getBytes());
         return true;

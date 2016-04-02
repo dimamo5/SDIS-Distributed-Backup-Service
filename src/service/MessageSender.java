@@ -104,6 +104,9 @@ public class MessageSender implements Protocol{
         packet = new DatagramPacket(m.getMessageBytes(),m.getMessageBytes().length,
                 address, port);
 
+
+        System.out.println("MSG SEND: " + m.getHeader().toString());
+
         try {
             Peer.getComunication_socket().send(packet);
         } catch (IOException e) {

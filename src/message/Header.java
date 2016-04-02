@@ -123,15 +123,7 @@ public class Header {
 
     @Override
     public String toString() {
-        return "message.Header{" +
-                "type='" + type + '\'' +
-                ", version='" + version + '\'' +
-                ", sender_id='" + sender_id + '\'' +
-                ", file_id='" + file_id + '\'' +
-                ", chunk_no='" + chunk_no + '\'' +
-                ", replic_deg='" + replic_deg + '\'' +
-                ", header_data='" + header_data + '\'' +
-                '}';
+        return type +" "+version +" "+sender_id +" "+file_id +" "+chunk_no +" "+replic_deg;
     }
 
     private void parseHeader(byte[] header_info) {

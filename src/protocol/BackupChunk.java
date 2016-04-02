@@ -56,9 +56,8 @@ public class BackupChunk  implements Runnable,Observer{
             if (confirmedRepDeg < chunk.getReplicationDegree()) {
                 attempt++;
 
-                if (attempt > MAX_ATTEMPTS) {
-                    for(String i:this.confirmationReceived)
-                        System.out.println(i);
+                if (attempt >= MAX_ATTEMPTS) {
+                    System.err.println("Failed Backing Chunk "+chunk.getChunkNo());
                     done = true;
                 } else {
                     waitingTime *= 2;

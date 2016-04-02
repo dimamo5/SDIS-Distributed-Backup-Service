@@ -20,7 +20,7 @@ public class PutChunkEnhancedHandler implements Observer {
 
     public PutChunkEnhancedHandler(Message message) {
         this.message = message;
-        this.stored_count = Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no())).getPeers().size();
+        this.stored_count = 0;
     }
 
     public Chunk processMessage(){
@@ -33,7 +33,6 @@ public class PutChunkEnhancedHandler implements Observer {
         //verifica se chunk
         if (Peer.getDisk().hasChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()))) {
             System.out.println("Already in database");
-            System.out.println("SIZE: "+Peer.getDisk().chunks.size());
 
             return Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no()));
 
@@ -63,7 +62,10 @@ public class PutChunkEnhancedHandler implements Observer {
 
                 return c;
             }
-            else return null;
+            else{
+                System.err.println("NAO PRECISA DE GUARDAR!");
+                return null;
+            }
         }
     }
 

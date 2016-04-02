@@ -49,7 +49,7 @@ public class RemovedHandler implements Observer {
                 }
                 if (putChunkCount == 0) {
                     try {
-                        FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + c.getFileId() + "/" + c.getChunkNo());
+                        FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/chunks/" + c.getFileId() + "/" + c.getChunkNo());
                         byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
 
                         fs.read(buffer);

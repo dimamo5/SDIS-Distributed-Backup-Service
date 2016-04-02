@@ -140,6 +140,18 @@ public class Disk implements Serializable{
         return false;
     }
 
+    public File getFileByHash(String filehash){
+        Iterator it = this.files.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            File f= (File)pair.getValue();
+            if(f.getFilehash().equals(filehash))
+                return f;
+            it.remove(); // avoids a ConcurrentModificationException
+        }
+        return null;
+    }
+
     private  boolean folderExists(String name) {
         java.io.File file = new java.io.File(name);
 

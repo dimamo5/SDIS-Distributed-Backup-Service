@@ -39,6 +39,8 @@ public class Backup implements Runnable{
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
 
+            Peer.getDisk().addFile(this.filename,filehash,numChuncks);
+
             ExecutorService executer= Executors.newFixedThreadPool(10);
 
             for(int i =0;i<numChuncks;i++){
@@ -52,14 +54,15 @@ public class Backup implements Runnable{
                 BackupChunk bc=new BackupChunk(chunk);
                 Peer.getMC_channel().addObserver(bc);
                 executer.execute(bc);
+                System.out.println("Backing chunk nr:"+ i);
             }
             executer.shutdown();
-
+            while(!executer.isTerminated()){
+            }
+            Peer.saveDisk();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
-
-        Peer.getDisk().addFile(this.filename,filehash,numChuncks);
         Peer.saveDisk();
 
     }

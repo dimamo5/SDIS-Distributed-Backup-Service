@@ -18,6 +18,7 @@ public class File implements Serializable{
     private String filename;
     private String filehash;
     private int numChuncks;
+    private int peersSaved=0;
     private static final int MAX_NO_CHUNKS = 999999;  // PODE TER ATÉ 1.000.000 CHUNKS
 
     public File(String filename,String filehash, int numchuncks) {

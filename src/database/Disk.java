@@ -37,6 +37,8 @@ public class Disk implements Serializable{
     }
 
     public long releaseMemory(long space){
+        System.out.println("Tamanho usado: "+this.spaceUsage);
+
         if(space > MAX_CAPACITY)
             return -1;
         else {
@@ -46,6 +48,7 @@ public class Disk implements Serializable{
 
             return 0; //retorna espaço disponivel/usado ?
         }
+
     }
 
     private long useSpace(long space){
@@ -115,7 +118,7 @@ public class Disk implements Serializable{
         }
 
         //actualiza espaço no disco
-        useSpace(c.getDataLength());
+        useSpace(StoredChunk.MAX_SIZE);
     }
 
     public boolean canSaveChunk(int dataLength) {

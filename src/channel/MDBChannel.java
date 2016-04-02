@@ -7,13 +7,12 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.util.ArrayList;
 import java.util.Observable;
 
 /**
  * Created by diogo on 17/03/2016.
  */
-public class MDRChannel extends Observable implements Runnable {
+public class MDBChannel extends Observable implements Runnable {
     public final int MAX_SIZE = 64500;
 
     public MulticastSocket socket;
@@ -23,10 +22,9 @@ public class MDRChannel extends Observable implements Runnable {
     private InetAddress address;
     private int port;
 
-    private ArrayList<String> askedFiles=new ArrayList<>();
 
 
-    public MDRChannel(InetAddress address, int port){
+    public MDBChannel(InetAddress address, int port){
         this.address = address;
         this.port = port;
 
@@ -41,7 +39,8 @@ public class MDRChannel extends Observable implements Runnable {
             e.printStackTrace();
         }
 
-        System.out.println("MDR Channel open!");
+
+        System.out.println("MDB channel open!");
     }
 
 
@@ -59,14 +58,12 @@ public class MDRChannel extends Observable implements Runnable {
                 if (!(senderIP.equals(Peer.getIp())&& Peer.getPort()==packet.getPort())) {
                     new Thread(new MessageHandler(packet)).start();
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         socket.close();
     }
-
     @Override
     public void notifyObservers(Object arg) {
         this.setChanged();
@@ -80,4 +77,5 @@ public class MDRChannel extends Observable implements Runnable {
     public int getPort() {
         return port;
     }
+
 }

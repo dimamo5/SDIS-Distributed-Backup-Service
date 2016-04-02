@@ -108,13 +108,20 @@ public class Peer implements RMIInterface{
             System.exit(1);
         }
 
-        if(args.length > 1) { //reconfigure MCchannel's ip/port
-            MC_ip = args[1];
-            MC_port = Integer.parseInt(args[2]);
-            MDB_ip = args[3];
-            MDB_port = Integer.parseInt(args[4]);
-            MDR_ip = args[5];
-            MDR_port = Integer.parseInt(args[6]);
+        if(args.length > 1)
+            if(args[1].equals("BACKUPENH"))
+                backup_enhancement_ON =true;
+            else if(args[1].equals("DELETEENH"))
+                delete_enhancement_ON = true;
+            else { System.out.println("Wrong argument:" + args[1]); System.exit(1);}
+
+        if(args.length > 2) { //reconfigure MCchannel's ip/port
+            MC_ip = args[2];
+            MC_port = Integer.parseInt(args[3]);
+            MDB_ip = args[4];
+            MDB_port = Integer.parseInt(args[5]);
+            MDR_ip = args[6];
+            MDR_port = Integer.parseInt(args[7]);
         }
 
         try {

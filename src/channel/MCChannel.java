@@ -38,7 +38,7 @@ public class MCChannel extends Observable implements Runnable{
             e.printStackTrace();
         }
 
-        System.out.println("MC Channel open!");
+        System.out.println("MC channel open!");
     }
 
 

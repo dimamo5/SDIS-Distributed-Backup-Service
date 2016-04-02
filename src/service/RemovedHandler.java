@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -41,6 +42,7 @@ public class RemovedHandler implements Observer {
             int desiredRep = c.getReplicationDegree();
 
             if (currentRep < desiredRep) {
+                System.out.println("Below the desired degree");
                 try {
                     Thread.sleep(new Random().nextInt(400));
                 } catch (InterruptedException e) {
@@ -52,9 +54,15 @@ public class RemovedHandler implements Observer {
                         FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/chunks/" + c.getFileId() + "/" + c.getChunkNo());
                         byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
 
-                        fs.read(buffer);
+                        int numBytesRead=fs.read(buffer);
+                        if(numBytesRead<0){
+                            numBytesRead=0;
+                        }
+                        byte[] newBuffer= Arrays.copyOfRange(buffer,0,numBytesRead);
 
-                        StoredChunk chunk = new StoredChunk(c.getFileId(), c.getChunkNo(), c.getReplicationDegree(), buffer);
+                        System.out.println("Started backing chunk");
+
+                        StoredChunk chunk = new StoredChunk(c.getFileId(), c.getChunkNo(), c.getReplicationDegree(), newBuffer);
                         BackupChunk bc = new BackupChunk(chunk);
 
                         Peer.getMC_channel().addObserver(bc);

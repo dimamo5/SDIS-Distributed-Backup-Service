@@ -57,7 +57,7 @@ public class Peer implements RMIInterface{
             p.saveDisk();
         }, "Shutdown-thread"));
 
-        try {
+        /*try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
 
@@ -70,7 +70,7 @@ public class Peer implements RMIInterface{
         }catch(Exception e){
             System.err.println("Peer exception: " + e.toString());
             e.printStackTrace();
-        }
+        }*/
 
 
         new Thread(MC_channel).start();
@@ -78,7 +78,7 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            p.backupFile("texto1.txt",2,false);
+            p.backupFile("texto2.txt",1,false);
         //p.restoreFile("texto1.txt");
         //p.deleteFile("texto1.txt");
 

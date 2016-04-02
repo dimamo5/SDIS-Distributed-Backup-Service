@@ -12,6 +12,7 @@ import java.nio.file.attribute.FileOwnerAttributeView;
 import java.nio.file.attribute.UserPrincipal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 /**
  * Created by diogo on 26/03/2016.
@@ -39,8 +40,9 @@ public class Backup implements Runnable{
             for(int i =0;i<numChuncks;i++){
                 System.out.println("Launching Thread "+i);
                 byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
-                fs.read(buffer);
-                StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,buffer);
+                int numBytesRead=fs.read(buffer);
+                byte[] newBuffer=Arrays.copyOfRange(buffer,0,numBytesRead);
+                StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,newBuffer);
                 BackupChunk bc=new BackupChunk(chunk);
                 Peer.getMC_channel().addObserver(bc);
                 new Thread(bc).start();

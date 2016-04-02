@@ -59,7 +59,7 @@ public class Peer implements RMIInterface{
             p.saveDisk();
         }, "Shutdown-thread"));
 
-        try {
+       /* try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
 
@@ -72,7 +72,7 @@ public class Peer implements RMIInterface{
         }catch(Exception e){
             System.err.println("Peer exception: " + e.toString());
             e.printStackTrace();
-        }
+        }*/
 
 
         new Thread(MC_channel).start();
@@ -92,6 +92,11 @@ public class Peer implements RMIInterface{
 
     }
 
+    //args 1 : id
+    //args 2 : id + ENH
+    //args 7 : id + ip/port
+    //args 8 : id + ENH + IP/PORT
+
     /* METHODS */
 
     private void initAttr(String args[]){
@@ -108,20 +113,51 @@ public class Peer implements RMIInterface{
             System.exit(1);
         }
 
-        if(args.length > 1)
-            if(args[1].equals("BACKUPENH"))
-                backup_enhancement_ON =true;
-            else if(args[1].equals("DELETEENH"))
-                delete_enhancement_ON = true;
-            else { System.out.println("Wrong argument:" + args[1]); System.exit(1);}
 
-        if(args.length > 2) { //reconfigure MCchannel's ip/port
-            MC_ip = args[2];
-            MC_port = Integer.parseInt(args[3]);
-            MDB_ip = args[4];
-            MDB_port = Integer.parseInt(args[5]);
-            MDR_ip = args[6];
-            MDR_port = Integer.parseInt(args[7]);
+        switch(args.length){
+            case 2:
+                if (args[1].equals("BACKUPENH")) {
+                    backup_enhancement_ON = true;
+                }
+                else if (args[1].equals("DELETEENH")) {
+                    delete_enhancement_ON = true;
+                }
+                else {
+                    System.out.println("Usage:Peer <id>{1} <ENH>{0..1} <ip><port>{0..3}");
+                    System.exit(1);
+                }
+                break;
+
+            case 7:
+                MC_ip = args[1];
+                MC_port = Integer.parseInt(args[2]);
+                MDB_ip = args[3];
+                MDB_port = Integer.parseInt(args[4]);
+                MDR_ip = args[5];
+                MDR_port = Integer.parseInt(args[6]);
+                break;
+
+            case 8:
+                if (args[1].equals("BACKUPENH"))
+                    backup_enhancement_ON = true;
+                else if (args[1].equals("DELETEENH"))
+                    delete_enhancement_ON = true;
+                else {
+                    System.out.println("Wrong argument (2nd):" + args[1]);
+                    System.exit(1);
+                }
+
+                MC_ip = args[2];
+                MC_port = Integer.parseInt(args[3]);
+                MDB_ip = args[4];
+                MDB_port = Integer.parseInt(args[5]);
+                MDR_ip = args[6];
+                MDR_port = Integer.parseInt(args[7]);
+
+                break;
+            default:
+                System.out.println("Usage:Peer <id>{1} <ENH>{0..1} <ip><port>{0..3}");
+                break;
         }
 
         try {

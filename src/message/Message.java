@@ -101,6 +101,8 @@ public class Message {
          *copyofrange reveals best performance in relation to new String(byte[]) + String.getChars() */
         if (ignored_length != message.getLength())
             body = Arrays.copyOfRange(message.getData(), ignored_length, message.getLength());
+        else
+            body= new byte[0];
 
         return true;
     }

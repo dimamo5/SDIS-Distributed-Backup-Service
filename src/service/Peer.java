@@ -78,8 +78,8 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            p.backupFile("texto2.txt",1,false);
-        //p.restoreFile("texto1.txt");
+            //p.backupFile("texto2.txt",1,false);
+        p.restoreFile("texto2.txt");
         //p.deleteFile("texto1.txt");
 
         //================= 3.4 ENHANCEMENT =================== */

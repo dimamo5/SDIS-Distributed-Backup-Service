@@ -32,7 +32,8 @@ public class Backup implements Runnable{
     public void run() {
         String filehash = getHashFile();
 
-        int numChuncks= (int) new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE +1;
+        int numChuncks= (int) (new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE) +1;
+        System.out.println("taamnho: "+ numChuncks);
 
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
@@ -41,6 +42,9 @@ public class Backup implements Runnable{
                 System.out.println("Launching Thread "+i);
                 byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
                 int numBytesRead=fs.read(buffer);
+                if(numBytesRead<0){
+                    numBytesRead=0;
+                }
                 byte[] newBuffer=Arrays.copyOfRange(buffer,0,numBytesRead);
                 StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,newBuffer);
                 BackupChunk bc=new BackupChunk(chunk);

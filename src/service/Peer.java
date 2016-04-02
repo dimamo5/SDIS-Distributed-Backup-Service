@@ -117,6 +117,13 @@ public class Peer implements RMIInterface{
             MDR_port = Integer.parseInt(args[6]);
         }
 
+        if(args.length == 8)
+            if(args[7].equals("BACKUPENH"))
+                backup_enhancement_ON =true;
+            else if(args[7].equals("DELETEENH"))
+                delete_enhancement_ON = true;
+            else { System.out.println("Wrong argument:" + args[7]); System.exit(1);}
+
         try {
             MC_channel = new MCChannel(InetAddress.getByName(MC_ip),MC_port);
             MDB_channel = new MDBChannel(InetAddress.getByName(MDB_ip),MDB_port);

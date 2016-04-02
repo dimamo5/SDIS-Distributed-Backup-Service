@@ -93,7 +93,7 @@ public class MessageHandler implements Handler, Runnable {
 
     @Override
     public void processPutChunk(Message message) {
-        System.out.println("Received PUTCHUNCK!");
+        //System.out.println("Received PUTCHUNCK!");
 
         //verifica se tem espaço suficiente
         if (!Peer.getDisk().canSaveChunk(message.getBodyLength())) {
@@ -120,8 +120,6 @@ public class MessageHandler implements Handler, Runnable {
                 System.out.println("Error in Thread.sleep");
             }
 
-
-            System.out.println("Send STORED");
             //send "STORED" message
             message_sender.storedMessage(Peer.getId(), message.getHeader().getFile_id(), message.getHeader().getChunk_no());
 
@@ -131,14 +129,13 @@ public class MessageHandler implements Handler, Runnable {
 
             //armazena chunk data + registo hashmap
             Peer.getDisk().storeChunk(chunk);
-            Peer.saveDisk();
+            //Peer.saveDisk();
         }
     }
 
     @Override
     public void processStored(Message message) {
-
-        System.out.println("Received STORED!");
+        //System.out.println("Received STORED!");
 
         Chunk c = new Chunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()), -1);
         Peer.getDisk().addChunkMirror(c, message.getHeader().getReplic_deg());
@@ -181,7 +178,6 @@ public class MessageHandler implements Handler, Runnable {
 
     @Override
     public void processRemoved(Message message) {
-        System.out.println("Received REMOVED");
         RemovedHandler rh=new RemovedHandler(message);
         Peer.getMDB_channel().addObserver(rh);
         rh.process(message);

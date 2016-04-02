@@ -67,7 +67,7 @@ public class Message {
 
         try {
             header_fields = reader.readLine(); //TODO: Considera-se que apenas a primeira linha de campos é a única relevante?
-            System.out.println(header);
+            //System.out.println(header);
         } catch (IOException e) {
             e.printStackTrace();
             return false;

@@ -52,6 +52,11 @@ public class Peer implements RMIInterface{
 
         Peer p=new Peer(args);
 
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("In shutdown hook");
+            p.saveDisk();
+        }, "Shutdown-thread"));
+
         try {
 
             RMIInterface stub = (RMIInterface) UnicastRemoteObject.exportObject(p, 0);
@@ -73,7 +78,7 @@ public class Peer implements RMIInterface{
         new Thread(MDR_channel).start();
 
         if(args.length==8)
-            p.backupFile("texto1.txt",1,false);
+            p.backupFile("texto1.txt",2,false);
         //p.restoreFile("texto1.txt");
         //p.deleteFile("texto1.txt");
 
@@ -82,6 +87,7 @@ public class Peer implements RMIInterface{
             p.spaceReclaim(disk.getSpaceUsage());
         }
         //========================================================
+
     }
 
     /* METHODS */
@@ -161,7 +167,7 @@ public class Peer implements RMIInterface{
         return disk;
     }
 
-    public static void loadDisk(){
+    public synchronized static void loadDisk(){
 
         try {
             FileInputStream fileInputStream = new FileInputStream("db"+id+".data");
@@ -188,7 +194,7 @@ public class Peer implements RMIInterface{
         }
     }
 
-    public static void saveDisk(){
+    public synchronized static void saveDisk(){
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("db"+id+".data");
 

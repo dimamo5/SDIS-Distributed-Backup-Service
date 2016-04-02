@@ -24,8 +24,6 @@ public class PutChunkEnhancedHandler implements Observer {
     }
 
     public Chunk processMessage(){
-        System.out.println("Received PUTCHUNCK!");
-
         //verifica se tem espaço suficiente
         if (!Peer.getDisk().canSaveChunk(message.getBodyLength())) {
             System.out.println("Not enough space to save chunk");
@@ -34,7 +32,7 @@ public class PutChunkEnhancedHandler implements Observer {
 
         //verifica se chunk
         if (Peer.getDisk().hasChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()))) {
-            System.out.println("Send STORED Already in database");
+            System.out.println("Already in database");
             System.out.println("SIZE: "+Peer.getDisk().chunks.size());
 
             return Peer.getDisk().getChunk(message.getHeader().getFile_id(),Integer.parseInt(message.getHeader().getChunk_no()));

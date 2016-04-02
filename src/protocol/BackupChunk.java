@@ -80,8 +80,6 @@ public class BackupChunk  implements Runnable,Observer{
                 }
             } else {
                 System.out.println("Desired replication degree reached.");
-                for(String i:this.confirmationReceived)
-                    System.out.println(i);
                 done = true;
             }
         }

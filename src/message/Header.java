@@ -26,7 +26,6 @@ public class Header {
         }
         header_data = type + ' ' + version + ' ' + sender_id + ' ' + file_id + ' ' + chunk_no + ' ' + replic_deg + ' ' + CRLF + CRLF;
 
-        System.out.println("message.Header msg:" + this.toString());
     }
 
     public Header(String MessageType, String Version, String SenderId, String FileId, String ChunkNo, String ReplicationDeg) {
@@ -37,8 +36,6 @@ public class Header {
         file_id = FileId;
         chunk_no = ChunkNo;
         replic_deg = ReplicationDeg;
-
-        System.out.println("message.Header msg:" + this.toString());
 
         if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");
@@ -55,8 +52,6 @@ public class Header {
         file_id = FileId;
         chunk_no = ChunkNo;
 
-        System.out.println("message.Header msg:" + this.toString());
-
         if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");
             System.exit(1);
@@ -70,8 +65,6 @@ public class Header {
         version = Version;
         sender_id = SenderId;
         file_id = FileId;
-
-        System.out.println("message.Header msg:" + this.toString());
 
         if (!checkParams()) {
             System.out.println("Incorrect header parameters \n");

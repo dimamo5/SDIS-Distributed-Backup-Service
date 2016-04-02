@@ -8,11 +8,11 @@ import java.util.*;
 
 public class Disk implements Serializable{
 
-    private static final long MAX_CAPACITY = 2000000;
+    private static final long MAX_CAPACITY = 2000000000;
 
     private long spaceUsage=0;
 
-    public ArrayList<Chunk> chunks = new ArrayList<>();
+    public ArrayList<Chunk> chunks = new ArrayList<Chunk>();
 
     public HashMap<String,File> files = new HashMap<>(); //File name to hash
 
@@ -26,6 +26,8 @@ public class Disk implements Serializable{
         if(!folderExists("chunks")){
             createFolder("chunks");
         }
+
+        Collections.synchronizedList(this.chunks);
     }
 
     /* METHODS */
@@ -75,7 +77,7 @@ public class Disk implements Serializable{
         return files;
     }
 
-    public boolean hasChunk(String file_id, int chunk_no) {
+    public synchronized boolean hasChunk(String file_id, int chunk_no) {
 
         for(int i =0;i<chunks.size();i++){
             Chunk c= chunks.get(i);
@@ -85,7 +87,7 @@ public class Disk implements Serializable{
         }
         return false;
     }
-    public void addChunkMirror(Chunk c,String peerId){
+    public synchronized void addChunkMirror(Chunk c,String peerId){
         for(int i =0;i<chunks.size();i++){
             if(c.getChunkNo()==chunks.get(i).getChunkNo() && c.getFileId().equals(chunks.get(i).getFileId())){
                 chunks.get(i).addPeer(peerId);
@@ -150,7 +152,7 @@ public class Disk implements Serializable{
         file.mkdir();
     }
 
-    public void addChunk(Chunk c){
+    public synchronized void addChunk(Chunk c){
         this.chunks.add(c);
     }
 
@@ -177,11 +179,11 @@ public class Disk implements Serializable{
         return sc;
     }
 
-    public void addFile(String name,String hash,int numChunks){
+    public synchronized void addFile(String name,String hash,int numChunks){
         this.files.put(name,new File(name,hash,numChunks));
     }
 
-    public ArrayList<Chunk> getChunkFromFileId(String filehash){
+    public synchronized ArrayList<Chunk> getChunkFromFileId(String filehash){
         ArrayList<Chunk> chunksFromFile=new ArrayList<>();
         for(int i =0;i<chunks.size();i++){
             if(chunks.get(i).getFileId().equals(filehash)){
@@ -191,7 +193,7 @@ public class Disk implements Serializable{
         return chunksFromFile;
     }
 
-    public void removeChunk(Chunk c){
+    public synchronized void removeChunk(Chunk c){
         java.io.File file = new java.io.File("chunks/" + c.getFileId()+"/"+c.getChunkNo());
         long filesize = file.length();
 

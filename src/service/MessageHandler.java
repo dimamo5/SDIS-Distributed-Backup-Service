@@ -103,8 +103,7 @@ public class MessageHandler implements Handler, Runnable {
 
         //verifica se chunk
         if (Peer.getDisk().hasChunk(message.getHeader().getFile_id(), Integer.parseInt(message.getHeader().getChunk_no()))) {
-            System.out.println("Send STORED Already in database");
-            System.out.println("SIZE: "+Peer.getDisk().chunks.size());
+            System.out.println("Already in database");
             //send "STORED" message
             message_sender.storedMessage(Peer.getId(), message.getHeader().getFile_id(), message.getHeader().getChunk_no());
         }else if(Peer.getDisk().hasFileByHash(message.getHeader().getFile_id())){

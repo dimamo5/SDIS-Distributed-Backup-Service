@@ -23,7 +23,6 @@ public class BackupChunk  implements Runnable,Observer{
 
     private StoredChunk chunk;
     private ArrayList<String> confirmationReceived;
-    private Semaphore sem=new Semaphore(10);
 
     public BackupChunk(StoredChunk chunk) {
         this.chunk = chunk;
@@ -37,12 +36,6 @@ public class BackupChunk  implements Runnable,Observer{
     @Override
     public void run(){
 
-        try {
-            sem.acquire();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         MessageSender sender=new MessageSender();
 
         long waitingTime = INITIAL_WAITING_TIME;
@@ -53,8 +46,6 @@ public class BackupChunk  implements Runnable,Observer{
             sender.putChunkMessage(Peer.getId(),this.chunk);
 
             try {
-                System.out.println("Waiting for STOREDs for " + waitingTime
-                        + "ms");
                 Thread.sleep(waitingTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -62,30 +53,24 @@ public class BackupChunk  implements Runnable,Observer{
 
             int confirmedRepDeg =confirmationReceived.size();
 
-            System.out.println(confirmedRepDeg + " peers have backed up chunk no. "
-                    + chunk.getChunkNo() + ". (desired: "
-                    + chunk.getReplicationDegree() + " )");
-
             if (confirmedRepDeg < chunk.getReplicationDegree()) {
                 attempt++;
 
                 if (attempt > MAX_ATTEMPTS) {
-                    System.out.println("Reached maximum number of attempts to backup chunk with desired replication degree.");
                     for(String i:this.confirmationReceived)
                         System.out.println(i);
                     done = true;
                 } else {
-                    System.out.println("Desired replication degree was not reached. Trying again...");
                     waitingTime *= 2;
                 }
             } else {
-                System.out.println("Desired replication degree reached.");
+                System.out.println(confirmedRepDeg + " peers have backed up chunk no. "
+                        + chunk.getChunkNo() + ". (desired: "
+                        + chunk.getReplicationDegree() + " )");
+
                 done = true;
             }
         }
-
-        sem.release();
-
     }
 
     @Override

@@ -13,6 +13,8 @@ import java.nio.file.attribute.UserPrincipal;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by diogo on 26/03/2016.
@@ -33,13 +35,13 @@ public class Backup implements Runnable{
         String filehash = getHashFile();
 
         int numChuncks= (int) (new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE) +1;
-        System.out.println("taamnho: "+ numChuncks);
 
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
 
+            ExecutorService executer= Executors.newFixedThreadPool(10);
+
             for(int i =0;i<numChuncks;i++){
-                System.out.println("Launching Thread "+i);
                 byte buffer[] = new byte[StoredChunk.MAX_SIZE]; //TODO save chunk size
                 int numBytesRead=fs.read(buffer);
                 if(numBytesRead<0){
@@ -49,8 +51,9 @@ public class Backup implements Runnable{
                 StoredChunk chunk = new StoredChunk(filehash,i,replicationDegree,newBuffer);
                 BackupChunk bc=new BackupChunk(chunk);
                 Peer.getMC_channel().addObserver(bc);
-                new Thread(bc).start();
+                executer.execute(bc);
             }
+            executer.shutdown();
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);

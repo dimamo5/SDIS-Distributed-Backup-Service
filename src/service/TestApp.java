@@ -17,7 +17,7 @@ public class TestApp {
         RMIInterface stub=null;
         boolean enhancement_ON = false;
 
-        if(args.length ==4) {
+        if(args.length >=3) {
             ap=args[0];
 
             if(args[1].matches("(BACKUP|RESTORE|RECLAIM|DELETE)")){
@@ -36,7 +36,6 @@ public class TestApp {
                 System.exit(-1);
             }
             opnd1=args[2];
-            opnd2=args[3];
 
         }else{
             System.err.println("Error in number of arguments");
@@ -52,6 +51,7 @@ public class TestApp {
 
         switch(subProtocol){
             case "BACKUP":
+                opnd2=args[3];
                 stub.backupFile(opnd1,Integer.parseInt(opnd2),enhancement_ON);
                 break;
             case "RESTORE":

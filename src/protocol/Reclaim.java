@@ -28,13 +28,12 @@ public class Reclaim implements Runnable, Observer {
     @Override
     public void run() {
         if (Peer.getDisk().getSpaceUsage() < amount) {
-            System.err.println("Not enough space to release");
-            return;
+            System.err.println("Release all disk");
         }
-        Peer.getDisk().releaseMemory(amount);
+
         int spaceReleased = 0,i=0;
 
-        while(spaceReleased<amount) {
+        while(spaceReleased<amount && Peer.getDisk().getSpaceUsage()>0) {
             Chunk c=this.chunks.get(i);
             this.chunks.remove(i);
             Peer.getDisk().removeChunk(c);
@@ -42,6 +41,8 @@ public class Reclaim implements Runnable, Observer {
             spaceReleased+= StoredChunk.MAX_SIZE;
 
             sender.removedMessage(Peer.getId(),c.getFileId(),Integer.toString(c.getChunkNo()));
+
+            Peer.getDisk().releaseMemory(StoredChunk.MAX_SIZE);
     }
 }
 

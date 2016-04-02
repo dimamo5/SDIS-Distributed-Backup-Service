@@ -32,6 +32,7 @@ public class Backup implements Runnable{
 
     @Override
     public void run() {
+
         String filehash = getHashFile();
 
         int numChuncks= (int) (new File(System.getProperty("user.dir") + "/files/" + filename).length()/StoredChunk.MAX_SIZE) +1;
@@ -39,7 +40,10 @@ public class Backup implements Runnable{
         try {
             FileInputStream fs = new FileInputStream(System.getProperty("user.dir") + "/files/" + filename);
 
-            Peer.getDisk().addFile(this.filename,filehash,numChuncks);
+            if(!Peer.getDisk().hasFile(this.filename)){
+                Peer.getDisk().addFile(this.filename,filehash,numChuncks);
+            }
+
 
             ExecutorService executer= Executors.newFixedThreadPool(10);
 

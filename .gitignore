@@ -1,2 +1,4 @@
 out/
 .idea/
+src/*/*.class
+src/*.data

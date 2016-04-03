@@ -233,8 +233,8 @@ public class Disk implements Serializable{
     }
 
     public void removeFolder(String folder){
-        if(folderExists("files/"+folder)){
-            java.io.File f = new java.io.File("files/" + folder);
+        if(folderExists("chunks/"+folder)){
+            java.io.File f = new java.io.File("chunks/" + folder);
             f.delete();
         }
 

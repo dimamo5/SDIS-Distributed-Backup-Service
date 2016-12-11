@@ -1,0 +1,1076 @@
+﻿The Project Gutenberg EBook of The National Geographic Magazine, Vol. II.,
+No. 2, May, 1890, by Various
+
+This eBook is for the use of anyone anywhere in the United States and most
+other parts of the world at no cost and with almost no restrictions
+whatsoever.  You may copy it, give it away or re-use it under the terms of
+the Project Gutenberg License included with this eBook or online at
+www.gutenberg.org.  If you are not located in the United States, you'll have
+to check the laws of the country where you are located before using this ebook.
+
+Title: The National Geographic Magazine, Vol. II., No. 2, May, 1890
+
+Author: Various
+
+Release Date: March 6, 2016 [EBook #51382]
+
+Language: English
+
+
+*** START OF THIS PROJECT GUTENBERG EBOOK NATIONAL GEOGRAPHIC MAG., MAY 1890 ***
+
+
+
+
+Produced by Ron Swanson
+
+
+
+
+
+Vol. II. No. 2.
+
+THE NATIONAL GEOGRAPHIC MAGAZINE.
+
+
+
+
+PUBLISHED BY THE
+
+NATIONAL GEOGRAPHIC SOCIETY.
+
+WASHINGTON, D. C.
+
+
+Price 50 Cents.
+
+
+
+
+CONTENTS.
+
+The Rivers of Northern New Jersey, with notes on the classification of
+  rivers in general: William Morris Davis
+    (With seven illustrations.)
+
+A Critical Review of Bering's First Expedition, 1725-30, together with
+  a translation of his original Report upon it: Dr. Wm. H. Dall
+    (Illustrated by one map.)
+
+Supplementary note on the alleged observation of a Lunar Eclipse by
+  Bering in 1728-9: Marcus Baker
+
+  Published May, 1890.
+
+
+
+
+PRESS OF TUTTLE, MOREHOUSE & TAYLOR, NEW HAVEN, CONN.
+
+
+
+
+THE NATIONAL GEOGRAPHIC MAGAZINE.
+
+Vol. II. 1890. No. 2.
+
+
+
+
+THE RIVERS OF NORTHERN NEW JERSEY, WITH NOTES ON THE CLASSIFICATION OF
+RIVERS IN GENERAL.
+
+BY WILLIAM MORRIS DAVIS.
+
+OUTLINE.--Rivers of different kinds: consequent, antecedent,
+superimposed, subsequent, adjusted.--Topography of Northern New
+Jersey.--Revived and superimposed rivers in New Jersey.--Drainage of
+the Watchung crescent.--Re-arrangement of superimposed rivers by the
+growth of subsequent streams.--Application of this principle to the
+Green river in the Uinta mountains: Powell's and Emmons' theories.--The
+Green river probably superimposed and its branches re-arranged by the
+growth of subsequent streams.--Anaclinal and reversed rivers in New
+Jersey.
+
+
+Northern New Jersey is drained by several streams which rise in the
+Archean Highlands, flow southeastward across the central Triassic plain
+and reach the sea near the inland margin of the Cretaceous formation.
+
+What kinds of rivers are these? Such a question can hardly be answered
+until we have examined rivers in many parts of the world, gaining
+material for a general history of rivers by induction from as large as
+possible a variety of examples; and until we have deduced from our
+generalizations a series of critical features sufficient to serve for
+the detection of rivers of different kinds wherever found.
+
+The generalizations here referred to may be presented in the form of a
+classification, following the ideas of Powell, Gilbert, Heim, Löwl and
+others, as follows:
+
+_Consequent rivers_.--Those that have in their birth, at the time of
+their original establishment on the country which they drain, selected
+courses in accordance with the constructional slopes of the surface;
+for example, the Red River of the North and such of its branches as
+flow on the even surface of the lacustrine plain of Lake Agassiz; the
+several streams that drain the broken lava blocks of Southern Oregon;
+certain streams and rivers of the Jura that drain the synclinal troughs
+of those mountains. Consequent streams may be divided into definite and
+indefinite groups. Definite consequent streams are those that follow
+well defined constructional channels, such as the axial line of a
+synclinal trough, or the lowest point of an anticlinal arch between two
+synclinal basins; they are defined in location as well as in direction.
+Indefinite consequent streams are those that flow down constructional
+slopes, such as the flanks of an anticline, but whose precise location
+depends on those minor inequalities of surface that we term accidental;
+they are defined in direction but not in location; and they are as a
+rule branches of definite consequent streams.
+
+_Antecedent rivers_.--Those that during and for a time after a
+disturbance of their drainage area maintain the courses that they had
+taken before the disturbance. In Powell's original definition of this
+class of rivers, he said that the valleys of the Uinta mountains are
+occupied by "drainage that was established antecedent to the
+corrugation or displacement of the beds by faulting or folding."[1] No
+limit is set to the amount of corrugation or displacement or to the
+strength of the faulting or folding. It therefore seems advisable to
+consider what variations there may be from the strongly marked
+antecedent type; one extreme being in those cases where the
+displacement was a minimum and the perseverance of the streams a
+maximum, the other where the displacement was a maximum and the
+successful perseverance of the streams a minimum, or zero. The simplest
+examples of antecedent rivers are therefore found in regions that have
+been broadly elevated with the gentlest changes of slope, so as to
+enter a new cycle of topographic development, all the streams retaining
+their previous courses, but gaining ability to deepen their former
+channels down to the new baselevel; such streams may be called
+"revived." Examples of revived streams are very common; nearly all the
+streams of the Highlands of New Jersey are of this kind; all the
+streams of central and western Pennsylvania seem to belong in the same
+class. From these simple and common examples, we shall some day, when
+our knowledge of rivers is better developed, be able to form a complete
+series leading to what is generally understood as the typical
+antecedent river, which has outlived deformation as well as elevation
+without suffering either deflection or ponding. Large rivers of strong
+slope, well enclosed in steep-sided valleys, or in other words vigorous
+adolescent rivers have the best opportunity to persist across a belt of
+rising or writhing country,[2] because a great deformation would be
+required to throw them from their courses. Small streams or large ones
+of faint slope in an open low country are more easily deflected. From
+the typical antecedent river, the series may be continued by examples
+in which even the larger streams are less or more ponded or deflected
+by the deformation, until at the end of the series there is a complete
+extinction of the antecedent drainage and the establishment of an
+entirely original consequent drainage. The perfectly typical antecedent
+river, in the middle of this series, is certainly of rare occurrence,
+and is perhaps unknown.
+
+[Footnote 1: Colorado river of the West, 163.]
+
+[Footnote 2: Stur's expression "Gebirgshub oder Gebirgschub" suggested
+to me the terms here employed.]
+
+Consequent streams, whose course is taken on a relatively thin,
+unconformably overlying mass, for a time preserve their initial
+courses, even though they may be quite out of accord with the
+underlying structures on which they have descended. Such streams were
+first recognized by Marvine, and afterwards named "superimposed,"
+"inherited" or "epigenetic" by various authors. A full collection of
+examples of this class should begin with streams that depart from true
+consequent courses only locally, where they have discovered a small
+portion of the underlying formation, like the Merrimack at Manchester
+and other water-power towns of New Hampshire, where the stream has sunk
+upon rocky ledges beneath the surface drift and sands; or like the
+Mississippi and other rivers in Minnesota which have in places cut
+through the drift sheet to the underlying crystallines. The series
+would conclude with streams that have stripped off the cover on which
+they were consequent, and have thus become superimposed on the
+underlying formation in their whole length.
+
+There is a curious intermediate type of drainage lately recognized by
+McGee in the southern states, a superimposed drainage that is not
+inconsequent upon the buried surface beneath the unconformably
+overlying surface layer. It occurs in regions where a well-marked
+drainage had been established; a brief submergence then allowed the
+deposition of a relatively thin mask of sediments; an elevation brought
+the masked surface up again, and as it rose, the streams took
+possession of lines essentially identical with the courses of their
+ancestors, because the mask of newer deposits had not extinguished the
+antecedent topography. McGee proposes to call such streams
+"resurrected."
+
+Rivers of all classes as a rule develop during their adolescence and
+more mature growth certain "subsequent" branches that were not in any
+way represented in the early youth of the system. Thus the indefinite
+members of the consequent drainage of the Jura mountains have developed
+subsequent streams on soft beds of monoclinal and anticlinal
+structures, where there could not possibly have been any consequent
+drainage lines at the birth of this system, unless we admit the
+supposed fracturing of the anticlinal crests, which seems unnecessary
+to say the least. Even in the simplest style of drainage, growing on a
+level surface, many of the branches must be "subsequent," or as McGee
+has called them in such cases, "autogenetic."
+
+Rivers of all classes are subject to spontaneous re-arrangement or
+adjustment of their courses to a greater or less extent, in accordance
+with the weaker structural lines. This results from the migration of
+divides and the consequent abstraction or capture of one stream by
+another. The capture is generally made by the headward development of
+some subsequent branch. But after this kind of change has advanced to a
+certain extent, the divides become stable, and further change ceases.
+The rivers may then be said to be maturely adjusted. Under certain
+conditions, chiefly great initial altitude of surface, and great
+diversity of structure, that is, in mountainous regions, the changes
+arising from adjustments of this spontaneous kind are very great, so
+that the courses of a river's middle age may have little resemblance to
+those of its youth, as Löwl has pointed out and as I have tried to show
+in the case of the Pennsylvanian rivers. It may be difficult to
+recognize in such cases whether the youthful courses of a river system
+were consequent, antecedent or superimposed. Adjustments of this kind
+were not discussed by Powell, although he makes brief mention of what I
+have called subsequent streams. The first appreciation that I gained of
+river adjustments came from the writings of Löwl; but I have since
+found that the general principles governing their opportunity were
+stated by Gilbert in his monograph on the Henry Mountains of Utah (pp.
+141, 149), and by Heim in his Mechanismus der Gebirgsbildung (i, 272,
+etc., ii, 79, 320).
+
+Where do the rivers of northern New Jersey stand in this general scheme
+of river classification? We must again postpone the answer to the
+question, while reviewing the history of the general geographical
+development of the region.[3]
+
+[Footnote 3: The more detailed statement of this history may be found
+in an essay prepared by the author with the collaboration of Mr. J. W.
+Wood, Jr., of the class of 1888 in Harvard College, the study being
+undertaken as a joint thesis by instructor and student in a second
+course in Physical Geography. The essay is published in the Proceedings
+of the Boston Society of Natural History, 1889.]
+
+[Illustration: FIG. 1.]
+
+The topography of northern New Jersey may be briefly described as made
+up of valleys and lowlands that have been etched in the now elevated
+surface of what may be called the Schooley peneplain on the Cretaceous
+baselevel. The topographical atlas of New Jersey should be constantly
+referred to, in order to follow such a statement as this; but in order
+that the reader may without undue difficulty apprehend the meaning of
+my descriptions and recognize the various localities yet to be named
+without the trouble of searching for them on the maps of the atlas, I
+have attempted to draw a generalized bird's eye view of northern New
+Jersey, as it would be seen by an observer about seventy miles
+vertically above the center of southern New Jersey. The meridians are
+vertical and east and west lines are horizontal, but oblique azimuths
+are foreshortened. The result is hardly more than a geographical
+caricature, and I publish it in part to experiment upon the usefulness
+of so imperfect an effort. An active imagination may perceive the long
+even crest line of Kittatinny Mountain on the northwest, rising beyond
+the rolling floor of the Kittatinny Valley, as the great Alleghany
+limestone lowland is here called; then come the Highland plateaus, of
+accordant altitude one with another, but without the mesa-like margin
+that my pen has not known how to avoid indicating. The Central plain
+lies in the foreground, diversified by the various trap ridges that
+rise above its surface; First and Second mountains of the double
+Watchung crescent near the Highlands; Sourland Mountain in the
+southwest; and Rocky Hill, the southwestern re-appearance of the
+Palisades intrusive trap sheet, lying a little nearer to us. The
+Central plain is also diversified by the Fall-line, a slight but rather
+distinct break in its surface from Trenton (Tr.) on the Delaware to a
+little below New Brunswick (N. B.) on the Raritan. The important
+drainage lines are: the Delaware, forming the western boundary of the
+State, trenching Kittatinny Mountain at the Water Gap, cutting a deep
+transverse valley through the Highlands where it receives longitudinal
+branches, and a shallower trench across the Kittatinny lowland and the
+Central plain; the Raritan, whose north and south branches head in the
+Highlands, while the Millstone joins it from south of the fall-line,
+cutting through Rocky Hill near Princeton (Pr.) on the way; and the
+Pequannock-Passaic, rising in the Highlands, gathering tributaries in
+the low basin behind the Watchung ridges, and escaping to the front
+country as a single stream, the Passaic, through deep gaps at
+Patterson. The terminal moraine, marking the furthest advance of the
+second glacial invasion of post-tertiary time, is indicated by an
+irregular dotted band crossing the State, from the Narrows of New York
+Bay, which it defines, on the east, passing over Second Mountain by the
+gap at Summit (S), rising midway in the Highlands over Schooley
+Mountain, and traversed by the Delaware at Belvidere (B).
+
+The Schooley peneplain is indicated by the crest and summit altitudes
+of Kittatinny Mountain, the Highland plateaus and the trap ridges. This
+peneplain once lay low and essentially horizontal, the practically
+completed work of the processes of denudation acting on a previously
+high land through a long period of time: it is now lifted and tilted,
+so that its inland portion rises to the height of the Highlands, which
+are its remnants, while its seaward portion descends slowly beneath a
+cover of unconformable Cretaceous beds, southeast of the fall-line, and
+thus hidden sinks gently beneath the Atlantic shore. The cover of
+Cretaceous sediments was laid on the southeastern part of the old
+peneplain during a moderate submergence of its seaward portion, before
+the elevation and tilting above mentioned (fig. 2, below). Much of the
+cover has been worn away since the time of elevation (figs. 3-6,
+below), which gave opportunity for the opening of deep valleys on the
+soft limestones and slates among the hard crystalline rocks of the
+Highlands; and for the production of the broad Kittatinny Valley
+lowland or peneplain on the wide belt of limestones beyond the
+Highlands; and furthermore for the development of a broad baselevelled
+plain on the weak Triassic shales and sandstones, where the old
+peneplain has been almost entirely destroyed. The Cretaceous cover
+remains only near the coast, where it stood too low to be attacked
+while the valleys and lowlands just described were carved out. An
+interesting peculiarity in the relation between the newer baselevel
+plain on the Triassic area and the old Cretaceous peneplain is that
+their surfaces mutually intersect at a small angle along the line which
+now marks the visible contact between the Triassic and Cretaceous
+formations: the newer plain standing beneath the eroded portion of the
+older one northwest of this line, while it rises above the buried part
+of the older one and obliquely truncates its Cretaceous cover to the
+southeast of the line. Finally, the land as a whole has been raised a
+little since the making of the newer plain, and shallow valleys
+interrupt its broad surface. It is no longer a true plain; it has
+become a pastplain. A few words may be allowed me concerning these
+terms, peneplain and pastplain. Given sufficient time for the action of
+denuding forces on a mass of land standing fixed with reference to a
+constant baselevel, and it must be worn down so low and so smooth, that
+it would fully deserve the name of plain. But it is very unusual for a
+mass of land to maintain a fixed position as long as is here assumed.
+Many instances might be quoted of regions which have stood still so
+long that their surface is almost reduced to its ultimate form; but the
+truly ultimate stage is seldom reached. We can select regions in which
+the valley lowlands have become broad and flat, the intermediate "doab"
+hills have wasted away lower and lower until they are reduced to forms
+of insignificant relief; and yet the surface still does not deserve the
+name of plain as unqualifiedly as do those young lands newly born from
+seas or lakes in which their geometrically level surfaces were formed.
+I have therefore elsewhere suggested[4] that an old region, nearly
+baselevelled, should be called an almost-plain; that is, a peneplain.
+
+[Footnote 4: Amer. Jour. Sci., xxxvii, 1889, 430.]
+
+On the other hand, an old baselevelled region, either a peneplain or a
+truly ultimate plain, will, when thrown by elevation into a new cycle
+of development, depart by greater and greater degrees from its simple
+featureless form, as young narrow valleys are sunk beneath its surface
+by its revived streams. It therefore no longer fully deserves the name
+that was properly applicable before its elevation. It must not again be
+called a peneplain, for it is now not approaching and almost attaining
+a smooth surface, but is becoming rougher and rougher. It has passed
+beyond the stage of minimum relief, and this significant fact deserves
+implication, at least, in a name. I would therefore call such a region
+a pastplain. The area of the weak Triassic shales was, until its late
+elevation, as good an example of an ultimate baselevelled plain as any
+that I have found; but now it is a pastplain, as any one may see while
+traveling across it on the train: its doabs are broad and continuous,
+and its valleys are relatively narrow and shallow. The Kittatinny
+lowland is intersected by streams whose valleys sink below its
+generally even, gently rolling surface; but it was never so smooth as
+the Triassic plain. It was only a peneplain, and it is now a roughened
+peneplain. Perhaps the more adventurous terminologist will call it a
+past-peneplain; but I dare not venture quite so far as that. When the
+Highlands were lowlands, their surface well deserved the name of
+peneplain; but they were lifted so long ago into so high a position
+that they are now cut into a complicated mass of rugged uplands. They
+no longer deserve the name of peneplain; and if in preceding paragraphs
+I have referred to them as constituting an old peneplain, it is because
+no satisfactory name has yet been applied to the particular stage of
+development of plains and plateaus in which they now stand. Having
+tried in vain to invent a term with which to name the Highlands, let me
+now advertise for one in the pages of our Magazine.
+
+       *       *       *       *       *
+
+WANTED: a name applicable to those broken, rugged regions that have
+been developed by the normal processes of denudation from the once
+continuous surface of a plain or peneplain. The name should be if
+possible homologous with the words, _plain_, _peneplain_ and
+_pastplain_; it should be of simple, convenient and euphonious form; it
+must be satisfactory to many other persons than its inventor; and its
+etymological construction should not be embarrassed by the attempt to
+crowd too much meaning into it. The mere suggestion that it was once a
+plain and that it is now maturely diversified will suffice.
+
+       *       *       *       *       *
+
+The topography of northern New Jersey is therefore, like its structure,
+polygenetic. It exhibits very clearly a series of forms developed under
+three different geographic cycles, and closer search will doubtless
+discover forms belonging to yet other cycles, less complete and of
+briefer duration than these three. There is the tilted and deeply
+eroded peneplain of the Highlands, whose initial form may be called the
+Schooley peneplain, from the distinct exhibition of one of its remnants
+on Schooley's mountain; this was the product of Jurassic and Cretaceous
+denudation. There is the younger central baselevelled plain, developed
+during Tertiary time, or thereabouts, on the weaker Triassic and
+Cretaceous beds; and the associated valleys of the same age that have
+been sunk into the weakest rocks of the Highlands. There are the
+shallow valleys in the Central plain, of the latest post-tertiary
+cycle, requiring the name of this region to be changed from plain, as
+it was lately, to pastplain, as it is now. The first cycle, in which
+the Schooley peneplain was produced, witnessed the accomplishment of a
+great work; it included in its later part, besides various other
+oscillations, the sub-cycle when the seaward or southeastern part of
+the peneplain was gently submerged and buried to a slight depth under
+Cretaceous deposits. The second cycle was shorter; being a time
+sufficient to baselevel the softer beds, but not seriously to consume
+the harder parts of the pre-existing surface. We are still in the third
+cycle, of which but a small part has elapsed. The question with which
+this essay opened may now be taken up.
+
+The streams and rivers of northern New Jersey may be examined, with the
+intention of classifying them according to their conditions of origin,
+to their degree of complexity as indicated by the number of geographic
+cycles through which they have lived, and to the advance made toward
+their mature adjustment.
+
+The Musconetcong may be taken as the type of the Highland streams. It
+flows southwestward along a narrow limestone valley between crystalline
+plateaus on either side, entering the Delaware a little below Easton,
+Pa., (E, fig. 1). It drains a country that has been enormously denuded,
+and during the Jura-Cretaceous cycle of this deep denudation, there
+must have been time for it and its fellows to become thoroughly
+adjusted to the structure of the region; it must be chiefly for this
+reason that it flows so closely along the weak limestone belt, and has
+its divides close by on the adjoining harder crystallines, (M, fig. 2).
+Whatever its origin, it has lost every initial feature that was
+discordant with the deep structures that it discovered beneath the
+initial surface; it is maturely adjusted to its environment. It endured
+to an old age during the baselevelling of the Schooley peneplain, and
+is now a "revived" stream, in at least its second cycle of work. Most
+of the other streams of the Highlands and the country farther inland
+are also of this well adjusted, revived kind. The streams of the
+Kittatinny valley lowland show not only the first revival of the kind
+just described, but also a second revival, in consequence of the recent
+uplift that has introduced the third cycle of development; this not
+being so clearly manifested in the Highlands, where the rocks are
+harder, and the valleys of the second cycle are narrower.
+
+Look now at the drainage of the crescentic Watchung mountains; the
+curved edges of two great warped lava-flows of the Triassic belt. The
+noteworthy feature of this district is that the small streams in the
+southern part of the crescent rise on the back slope of the inner
+mountain and cut gaps in both mountains in order to reach the outer
+part of the Central Plain. If these streams were descended directly or
+by revival from ancestors antecedent to or consequent upon the
+monoclinal tilting of the Triassic formation, they could not possibly,
+in the long time and deep denudation that the region has endured, have
+down to the present time maintained courses so little adjusted to the
+structure of their basins. In so long a time as has elapsed since the
+tilting of the Triassic formation, the divides would have taken their
+places on the crest of the trap ridges and not behind the crest on the
+back slope. They cannot be subsequent streams, for such could not have
+pushed their sources headwards through a hard trap ridge. Subsequent
+streams are developed in accordance with structural details, not in
+violation of them. Their courses must have been taken _not long ago_,
+else they must surely have lost their heads back of the second
+mountain; some piratical subsequent branch of a larger transverse
+stream, like the Passaic, would have beheaded them.
+
+The only method now known by which these several doubly transverse
+streams could have been established in the not too distant past, is by
+superimposition from the Cretaceous cover that was laid upon the old
+Schooley peneplain. It has already been stated that when the Highlands
+and this region together had been nearly baselevelled, the coastal
+portion of the resulting peneplain was submerged and buried by an
+unconformable cover of waste derived from the non-submerged portion:
+hence when the whole area was lifted to something like its present
+height, a new system of consequent streams was born on the revealed sea
+bottom. Since then, time enough may have passed to allow the streams to
+sink their channels through the unconformable cover and strip it off,
+and thus superimpose themselves on the Triassic rocks below: we should
+therefore find them, in so far as they have not yet been re-adjusted,
+following inconsequent, discordant courses on the under formation. The
+existing overlap of the Cretaceous beds on the still buried Triassic
+portion of the old Schooley peneplain makes it evident that such an
+origin for the Watchung streams is possible; but it has not yet been
+independently proved that the Cretaceous cover ever reached so far
+inland as to cross the Watchung ridges.
+
+Want of other explanation for the Watchung streams is not satisfactory
+evidence in favor of the explanation here suggested. There should be
+external evidence that the Triassic area has actually been submerged
+and buried after it was baselevelled to the Schooley peneplain and
+before it was uplifted to its present altitude; other streams as well
+as the ones thus far indicated, should bear signs of superimposition;
+and if adjustment of the superimposed courses has begun, it should be
+systematically carried farthest near the largest streams. I shall not
+here state more than in brief form, the sufficient evidence that can be
+quoted in favor of the first and second requisites. Suffice it to say
+that the overlap of the Cretaceous beds (which contain practically no
+Triassic fragments) on the bevelled Triassic strata at Amboy and
+elsewhere indicates submergence after baselevelling; and that the
+pebbles, sands and marls of the Cretaceous series point clearly to the
+Highlands as their source. The submergence must therefore have reached
+inland across the Triassic formation at least to the margin of the
+crystalline rocks. Some shore-line cutting must have been done at the
+margin of the Highlands during Cretaceous time, but the generally
+rolling surface of the old peneplain leads me to ascribe its origin
+chiefly to subaërial wasting. Moreover, the North Branch of the
+Raritan, between Mendham and Peapack (* Fig. 1) and the Lockatong (L),
+a small branch of the Delaware on the West Hunterdon sandstone plateau,
+give striking indications of superimposition in the discordance of
+their courses with the weaker structural lines of their basins, so
+unlike the thoroughly adjusted course of the Musconetcong and its
+fellows, the Pohatcong, the Lopatcong, and others.
+
+The third requisite of the proof of the inland extension of the
+Cretaceous, and the resulting superimposed origin of the Watchung
+streams may be stated in detail, as being more in the line of this
+essay: has the adjustment that accompanies superimposition
+systematically advanced farther near the large streams than near the
+small ones? The character of this adjustment should be first examined
+deductively. Given a series of streams of different volumes, flowing
+southeastward, in the direction of the present dip of the remnant of
+the Cretaceous cover, over the former inland extension of this
+superposed formation; how will these streams react on one another when
+they sink their channels into the underlying Triassic formation?
+
+[Illustration: FIG. 2.]
+
+The conditions during the formation of the cover of Cretaceous beds are
+illustrated in fig. 2, where the Triassic portion of the peneplain is
+submerged, and the shore-line of the transgressing ocean has reached
+the margin of the crystalline rocks. The waste from the crystallines is
+spread out as a series of gravels, sands and marls on the baselevelled
+Triassic area.
+
+[Illustration: FIG. 3.]
+
+Then follows the elevation and tilting of the peneplain with the cover
+on its back; and with this regression of the sea, there is an
+equivalent gain of new land; a smooth gently sloping plain is revealed
+as the shore line retreats; streams run out across it from the
+crystalline area, or begin on its open surface, growing mouthward as
+the land rises. Three such streams, A, C, D, are shown in fig. 3; their
+opportunity for deep valley-cutting is indicated by the depth of the
+new baselevel, BL, below the general surface of the country. While
+these streams are deepening their channels in the Cretaceous cover,
+which is unshaded with marginal contour lines in the figures, their
+subsequent, autogenetic branches are irregularly disposed, because
+there is no lateral variation of structure to guide them; but after a
+time, the baselevelled surface of the buried Triassic beds is reached,
+as is shown by linear shading in the valley bottoms of figs. 4, 5, 6,
+7. The growth of the subsequent branches then developed, will be along
+the strike of the Triassic softer beds, that is, about square to the
+course of the three transverse streams under consideration. The most
+rapid growth will be found on the branches of the largest stream, A,
+because it will most quickly cut down its channel close to the
+baselevel of the time and thus provide steep sloping valley-sides, from
+which the subsequent branches cut backwards most energetically. In due
+time the main streams discover the particularly resistant transverse
+lava sheets in the underlying formation; and then the subsequent
+branches of the largest transverse stream on the up-stream side of the
+obstructions, for example, F and G, fig. 4, will have a great advantage
+over those of the smaller streams. The most rapidly growing subsequent
+branch, G, fig. 5, of the largest transverse master stream, A, may grow
+headwards so fast as to push away the divide, X, which separates it
+from the head of the opposing subsequent branch, J, of the next
+adjacent smaller transverse stream, C, and thus finally to capture and
+divert the headwaters, H, of the smaller transverse stream to the
+larger one, as in fig. 6. The divide creeps while the two opposing
+subsequent branches are in contest; it leaps when the successful
+subsequent branch reaches the channel of the conquered stream. The
+first stream captured in this way must necessarily be the nearest to
+the large stream. The diversion of the considerable volume of
+headwaters, H, to the channel of the small subsequent branch, G, causes
+it to deepen its channel rapidly; the same effect is perceptible in H
+for a distance above its point of capture and diversion: the increased
+load of sediment thus given to G will be in great part dropped in a
+fan-delta where it enters the flat valley of the master stream, A,
+(fig. 6).
+
+[Illustration: FIG. 4.]
+
+[Illustration: FIG. 5.]
+
+[Illustration: FIG. 6.]
+
+Gaining strength by conquest, other captures are made, faster for a
+time, but with decreasing slowness as the head of the diverting
+subsequent branch recedes from the original master: and at last,
+equilibrium may be gained when the headwater slope of the diverting
+branch is no greater than that of the opposing subsequent branch of the
+next uncaptured transverse stream. After the capture of a transverse
+stream has been effected in this way, the divide, Y, between its
+diverted upper portions, H, fig. 6, and its beheaded lower portion, C,
+will be pushed down stream by the growth of an inverted stream, V. This
+goes on until equilibrium is attained and further shifting is prevented
+on reaching the hard transverse lava sheets, Z, fig. 7; here the divide
+is maturely established. In the case of a system of transverse streams,
+C, D, etc., fig. 7, successively captured by the subsequent branch of a
+single master, the divides (Z, Y'), between the inverted (V, V') and
+beheaded (C, D) portions of the captured streams will for a time
+present different stages of approach to establishment. The divide on
+the line of that one of the original streams, C, that is nearest to the
+master stream, A, may reach a final stable position, Z; while on the
+next stream further away from the master, the beheaded portion, D, may
+still retain a short piece above the gap in the upper lava sheet, not
+yet secured by the inverted stream, V'; and a third stream, further
+away still from the master (not shown in figure 7) might remain
+uncaptured and independent.
+
+[Illustration: FIG. 7.]
+
+It is by such tests as these that we may hope to recognize the
+occurrence of partial adjustment in the streams of the Watchung
+crescent as a result of their superimposition on the Triassic formation
+from its former Cretaceous cover. The greater the degree of complexity
+in the tests proposed, the more confidence we shall have in the theory
+when the tests successfully meet the facts. Hence the reason for
+deductively carrying out the theoretical conditions to their extremest
+consequences in order to increase the complexity of the tests that are
+to be confronted with the facts. This, as a matter of method, seems to
+me of great practical importance in any attempt to decipher the past
+progress of geographical development.
+
+The admirable contoured topographic maps of New Jersey, issued by the
+Geological Survey of that state under the leadership of the late
+Professor George H. Cook, afforded means of applying the deductive
+tests above outlined without the necessity of plodding over all the
+country concerned; but however good the maps are, it is hardly
+necessary to say that they can be interpreted with a better
+appreciation of the facts that they represent after an excursion on the
+ground has given the student some personal acquaintance with it. This I
+have tried to gain on various occasions, maps in hand.
+
+Atlas sheet number six, including the Central red-sandstone area, and
+the five-mile-to-an-inch geological map of the state present in the
+clearest manner the facts of form and structure involved in our
+problem; and to my mind, the correspondence between theory and fact is
+very striking. The Pequannock-Passaic is the master transverse stream
+of the region: its preëminence was probably due in the beginning to its
+gathering, from the unsubmerged Highlands, a greater amount of drainage
+than belonged to any other stream that ran southeastward down the
+gentle slope of the newly revealed Cretaceous cover. It was at that
+time a compound, composite river:[5] compound because it drained areas
+of different ages; composite, because these areas were of different
+structures. Existing examples of compound, composite rivers are seen in
+the Catawba, the Yadkin-Pedee, the Cape Fear and the Neuse rivers of
+North Carolina, which all rise on the inland crystalline area, and
+traverse the coastal quaternary plain before reaching the sea. But
+unlike these, there must have been, when the old submerged land rose
+with the Cretaceous cover on its back, numerous small streams whose
+drainage area lay entirely within the Cretaceous plain. These were
+simple streams, flowing over a structure of one kind and one age. Their
+modern homologues are seen in the Maurice, the Great and Little Egg
+Harbor and the Wading rivers of southern New Jersey, and I suppose also
+in various relatively short streams of North Carolina, such as the
+Lumber, Great Cohera and Moccassin.
+
+[Footnote 5: See terminology suggested by the author. Nat. Geogr. Mag.,
+i, 1889, 218.]
+
+It cannot be supposed that the original Pequannock-Passaic possessed
+the large southern branch, which I shall call the upper Passaic, by
+which Great Swamp is now drained;[6] for had this been the case, the
+divides between the branches of the upper Passaic and the heads of the
+small streams that now still cross both of the trap ridges, must have
+long ago been driven to a stable position on the crest line of the
+inner ridge. The upper Passaic member of the Pequannock-Passaic system
+must be regarded as a branch of subsequent development, guided by some
+of the softer Triassic beds when they were reached beneath the
+Cretaceous cover, and very successful in capturing and diverting other
+transverse streams that were smaller than its master. For some distance
+on either side from the Pequannock-Passaic gap in the trap ridges at
+Patterson, the existing streams are perfectly adjusted to the Triassic
+structure; that is, the ridges are persistent divides, and the lateral
+subsequent branches of the master flow along the strike of the softer
+shales and sandstones, except where lately thrown off their courses by
+glacial drift barriers. This I interpret as meaning that the
+Pequannock-Passaic master stream hereabouts made so early a capture of
+adjacent superimposed streams that all traces of their initial
+discordant courses have been obliterated by the development of
+structurally accordant subsequent streams.
+
+[Footnote 6: It should be recognized that the present round-about
+drainage of the Great Swamp is a post-glacial feature, determined by
+the morainic barrier that crosses the basin from Summit (S) to
+Morristown (M): the pre-glacial drainage of the southern part of the
+inner crescent was undoubtedly of a simpler and more direct pattern.]
+
+The Watchung ridges extend only about eight miles northward of the
+Paterson gaps, but reach thirty miles southwestward. It is therefore
+chiefly in the latter direction that we may expect to find examples of
+incomplete adjustment following superimposition and capture. At
+Milburn, there is a deep gap in First mountain, and opposite this at
+Summit (S, fig. 1) a partly drift-filled gap in Second mountain: this I
+am disposed to regard as the former outlet of the Rockaway-Rahway
+river, which on account of its considerable size was not captured by
+the Passaic until it had cut its passage across the trap sheets almost
+to a safe depth. The diverted upper portion--the Rockaway--now joins
+the Passaic; its crooked course from the Highlands via Boonton (Bn)
+being a post-glacial irregularity; the beheaded lower portion--the
+Rahway--heads on the ridge of Second mountain, retains the pair of
+subsequent streams between the two ridges, and flows in diminished
+volume to the sea: the divide between the two portions being in its
+mature stable position on Second mountain.
+
+South of the Milburn gap, there are three streams that maintain water
+gaps in First mountain, and five head branches of these three streams
+rise behind the crest of Second mountain. These must be interpreted as
+remnants of streams that once rose further inland, and whose upper
+courses have been captured by the victorious upper Passaic; but it is
+noteworthy that here, at the greatest distance from the gap of the
+master stream at Paterson, the divides between the diverted and
+beheaded portions of these southern streams should lie in unstable
+positions, back of the crest line of Second mountain. This is exactly
+what the hypothesis of a superimposed origin for these streams would
+require; and if the complexity of accordance between deduction and fact
+here presented be duly considered, I believe new confidence may be
+gained in the hypothesis of superimposition, already rendered likely
+from other evidence.
+
+The rectangular courses of the streams that cross First and Second
+mountains southwest of Milburn do not militate against their initial
+obliquely superimposed courses; for, as Gilbert has shown, oblique
+courses across tilted beds, alternately hard and soft, will gradually
+shift until they follow rectangular courses, along the strike of the
+soft beds and square across the strike of the hard beds. Middle Brook,
+at the southern bend of First mountain near Bound Brook (B, B),
+presents the peculiarity of branching east and west while on the trap
+sheet of the mountain: this may be due to a retention here, where the
+dip is moderate, of an initially superimposed bifurcation; or to
+guidance by fractures at this point where the course of the mountain
+changes rather abruptly; the facts at hand do not serve to make choice
+between these alternatives.
+
+The lesson of greatest importance in this study lies, to my mind, in
+the gradual development of accordant subsequent streams in a region
+where the unchanged superimposed drainage would show no such
+accordance. Similar adjustment of subsequent streams to structural
+features may characterize drainage systems that were originally
+antecedent: and with this principle in mind, I have recently read over
+with renewed interest Powell's classic study of the Green river where
+it crosses the Uinta mountains.[7] The Green river and the smaller
+streams of its lateral cañons and valleys are all regarded as
+antecedent. Let us examine the arguments on which this conclusion
+rests.
+
+[Footnote 7: Exploration of the Colorado river of the west, Washington,
+1875, 152-166. See also the geological map in the Geology of the Uinta
+mountains, 1876.]
+
+The Green river itself rises many miles north of the Uinta range,
+traverses a relatively low basin before reaching the flank of the
+mountains, and then instead of turning away, it boldly enters the great
+uplift and trenches it from side to side in a profound cañon, flowing
+out to the southwest on its way to the Colorado. There is relatively
+low ground at the eastern end of the range, several thousand feet lower
+than the summits of the range on either side of the Green river cañon,
+and many thousand feet lower than the restored crest of the great
+uplift; but the river does not follow this open round-about course.
+Powell says that the river cut through, instead of running around, the
+great obstruction, because it "had the right of way; ... it was running
+ere the mountains were formed." Had the mountain fold been formed
+suddenly, it would have turned the river around it to the east; "but
+the emergence of the fold above the general surface of the country was
+little or no faster than the progress of the corrasion of the
+channel." ... "The river preserved its level, but the mountains were
+lifted up.... The river was the saw which cut the mountains in two"
+(152, 153). If this interpretation is correct, the Green river would be
+the type of a perfect antecedent stream: but it appears to me that the
+case is probably overstated in that respect. Perhaps it would have been
+more deliberately stated in a later volume if Powell's intention of
+describing more fully the three chief kinds of drainage of the region
+had been carried out.[8] Not having seen the region, my comments may
+have little value; but the context of Powell's report, the description
+of the immense series of lacustrine beds, over a mile thick, north of
+the mountains, and the eastward deflection of the river where it
+traverses the mountains all seem to me to indicate that the Green was
+by no means continuously successful in maintaining its antecedent
+course across the uplift. It is by no means a typical antecedent river.
+The great series of lacustrine beds up-stream from the cañon, with
+conglomerates where they rest on the northern flank of the mountains,
+are fully recognized in the report, and must mean that the upper
+portion of the river was for a time shut back, or ponded. During part
+of this time, there may have been no overflow across the growing
+mountains, for the lower lacustrine beds contain fossils indicative of
+brackish water.[9] The intermittent growth of the mountains and the
+repeated return of lacustrine conditions, with gradually freshening
+water, is indicated by the strong unconformities that occur at various
+points in the lacustrine beds, and by the change in the fossil fauna.
+It must be conceded from this that the upper portion of Green river was
+repeatedly ponded back by mountain growth across its middle course; we
+therefore have not now any close indication of its pre-lacustrine
+course above the mountains; the ancient, or pre-Uinta, upper portion of
+the river was extinguished by the lacustrine sediments, and to that
+extent the Green river departs from the perfect antecedent type.
+
+[Footnote 8: Geol. Uinta mountain, page v.]
+
+[Footnote 9: Geology of the Uinta mountains, 1876, 84; Chapter III, by
+C. A. White.]
+
+In the second place, if the original Green river existed upon the upper
+surface of the beds that were at a subsequent date raised to form the
+Uinta uplift, it does not appear to be clearly proved that its course
+at that early time was closely coincident with its present course in
+the mountainous area. The first deformations of the mountain growth may
+have temporarily interrupted its flow, as is made likely by the
+lacustrine deposits already referred to; and when the rise in the level
+of the waters of the lake overtook the uplift, probably at a time of
+slower mountain growth than that which first formed the lake, the point
+of overflow may have been many miles to one side of its previous
+drowned-out course. The moderate elevation of the eastern end of the
+range, where it connects with the Yampa plateau, may possibly have then
+been a little higher than a point farther west, where the overflow was
+consequently located. This is perhaps hardly as probable as the
+postulates involved in arguing a truly antecedent course for the river;
+but its impossibility is not as strictly proved as would be necessary
+before a definite conclusion as to the continuous persistence of an
+antecedent river could be finally accepted. Such continuity of action
+must be rare and should be rigorously demonstrated if possible.
+
+It must, moreover, be remembered that Emmons[10] is of the opinion that
+the Colorado river is not antecedent at all, but is superimposed on the
+eastern portion of the Uinta range from a course that it had chosen
+upon a sheet of horizontal sediments--the Wyoming conglomerate--which
+he supposes once stretched unconformably all over the previously deeply
+eroded surface of the uplifted range, where the cañon is now cut. He
+quotes facts of two kinds in evidence of this; first, the remnants of
+the Wyoming conglomerate still lie on ridges as high as those that
+enclose the river cañons; second, the Green and certain of its branches
+possess tortuous courses, out of accord with the structure of the
+range. It might be added that the wide open valley of Brown's park, in
+the middle of the range is best explained as the product of a
+pre-Wyoming cycle of erosion by rivers that were extinguished when the
+Wyoming beds were laid over the mountains. The strongest objection to
+Emmons' conclusion seems to be the great amount of erosion that it
+requires; erosion sufficient not only to remove the Wyoming
+conglomerate from nearly all its former overlap on the Uinta range,
+where it had buried and extinguished a pre-Wyoming drainage, but also
+to carry away a vast extension of the formation at the same height
+north of the range. It may be best to conclude that both antecedent and
+superimposed processes must be called on: for one must hesitate before
+admitting that the Wyoming beds stretched all across the country north
+and east of the Uinta range up to the height at which the remnants are
+now found on the range; it seems more likely that some part of the
+height of these remnants is due to a relatively local elevation. As far
+as this is the case, it gives reason for regarding the Green as an
+antecedent river; that is, antecedent to the local elevation of the
+Wyoming beds, but long posterior to the elevation of the Uinta range:
+but as the river now flows--according to Emmons' theory--on beds lying
+unconformably below those on which its course was chosen, it is for
+this reason to be classed as superimposed.
+
+[Footnote 10: Fortieth Parallel Survey, ii, 1877, 194, 205, 206.]
+
+The Green river therefore certainly departs from the type of an
+antecedent stream; the departure is distinct in its repeated ponding,
+whereby its upper course was broadly and indeterminately shifted from
+its original location; and is at least possible if not probable in its
+defeat at the line of uplift and subsequent superimposition on a new
+line of overflow. The mountains wrenched the saw that afterwards cut
+them in two.
+
+A study of the Jura drainage, of which a fuller account may be given at
+some future time, has led to the provisional conclusion that many of
+its streams show a combination of consequent and antecedent
+characteristics. They appear to be consequent on the early stages of
+the deformation but antecedent to its later growth, and for this kind
+of a stream I have no satisfactory name to suggest at present.
+
+Heim has shown that the Reuss and the adjacent smaller transverse
+streams of northern Switzerland near Lucerne are in part persistent
+across a series of folds, and in part slightly shifted from one course
+to another and ponded in Lake Lucerne; but unless the other ranges of
+the Alps rise hereafter faster than they have heretofore, the geologist
+of the future will reasonably regard the more mature Reuss as an
+essentially successful antecedent river.
+
+The Sutlej and other rivers that escape from the inner valleys of the
+Himalaya by deep gaps in the outer ranges, are described by Medlicott
+as antecedent to the elevation of the ranges through which they flow:
+their antecedent origin being argued from the delta-like structure of
+the upturned beds in the outer gorges, as if the rivers were now
+cutting down the deformed deltas of an earlier time; but the heavy
+gravel and sand deposits in their upper valleys indicates that they
+were nearly if not quite ponded for a time during the deformation.
+
+Rivers seem to have the habit of cutting down their upturned deltas.
+Bonney refers to several such examples among the rivers that flow
+northward from the Alps, and transect particularly thick portions of
+the upturned marginal conglomerates and sandstones, which he regards as
+the deltas formed by the same rivers at an earlier time, when the
+mountain folding had not extended outward as far as it does now from
+the axis of the Alps. I have suspected that the same kind of evidence
+might be used to indicate that the Delaware above Trenton, between
+Pennsylvania and New Jersey, is in part of even pre-Triassic origin;
+for where it now enters the Triassic belt, there is a particularly
+heavy and coarse sandstone, sometimes conglomeratic. Being a large
+stream, it might persist in an anaclinal course through the
+northwestward monocline formed by the Jurassic uplift of the Triassic
+beds, although the smaller streams of the region were then probably
+extinguished, to be replaced by a new system consequent upon the new
+order of things.
+
+Large rivers, more or less persistent in the face of opposing
+disturbance, therefore appear to be generally recognized; but it is
+noticeable that those quoted from the Himalaya and the Alps presumably
+occupied, at the time of disturbance, well enclosed valleys, from which
+it would have been difficult for them to escape backwards or laterally;
+and that, even if successful in the end, they for a time suffered
+defeat or ponding of greater or less extent and duration. There is no
+evidence that the Green river was well enclosed immediately north of
+the Uinta mountains at the time of their first elevation; hence the
+likelihood of its temporary ponding or enclosure is increased.
+
+It is stated by Powell that not only the Green but even the smaller
+streams of the Uintas are of origin antecedent to the mountains. He
+writes: "the explanation of the cañons of Green river will assist us in
+understanding the origin of the lateral valleys and cañons. The streams
+were there before the mountains were made--that is, the streams carved
+out the valleys and left the mountains. The direction of the streams is
+indisputable evidence that the elevation of the fold was so slow as not
+to divert the streams, although the total amount of elevation was many
+thousands of feet. Had the fold been lifted more rapidly than the
+principal streams could have cut their channels, Green river would have
+been turned about it, and all the smaller streams and waterways would
+have been cataclinal" (Colorado River, 162).
+
+This appears to me an unproved conclusion, and the evidence of it needs
+careful attention. It appears that there are several streams which
+descend from the crest of the mountains towards the flanks, but instead
+of running all the way out to the margin of the fold, they turn along
+the strike of a monoclinal valley, and thus reach the main river by a
+short cut. Such streams are cataclinal for a time, then monoclinal. It
+is in reference to these that it is said, "the streams were there
+before the mountains were made;" and again that "the drainage was
+established antecedent to the corrugation or displacement of the beds
+by faulting and folding" (163). In approaching this conclusion, Powell
+says these streams cannot be consequent; for "valleys consequent upon
+the corrugation, which was one of the conditions of the origin of the
+Uinta mountains, could not have taken the direction observed in this
+system; they would have all been cataclinal, as they ran down from the
+mountains, and turned into synclinal valleys at the foot, forming a
+very different system from that which now obtains" (166). Nor can the
+streams be superimposed, for the "later sedimentary beds, both to the
+north and south, were found not to have been continuous over the
+mountain system, but to have been deposited in waters whose shores were
+limited by the lower reaches of the range" (166). Therefore the
+discordant streams must be antecedent.
+
+It appears to me that the possibility of error in this argument lies in
+the omission of all consideration of the migration of divides and the
+resulting adjustment of stream courses to deep internal structure; but
+at the time of the exploration of the Colorado river, this important
+process in the development of rivers was not understood. It now seems
+only natural that the original, consequent, cataclinal streams, flowing
+down the slopes of the range from crest to flanks, should have
+permitted the opening of subsequent monoclinal branches on the soft
+beds that they discovered; and that the shifting of divides in these
+monoclinal valleys should have led to the capture of several cataclinal
+streams by that particular one of the subsequent branches that grew out
+from the master stream, the Green river itself. Thus it must happen
+that the streams "which head near the summit of the range, and, running
+down the flank, turn into the Green river, are, in their upper courses,
+cataclinal, and when they turn to follow the strike of the rocks into
+Green river, are monoclinal" (161): this being a normal result of river
+work in cutting down the thousands of feet of rocks of various
+hardnesses, here concerned. The smaller streams of the Uinta range are
+therefore certainly not of necessity antecedent to the Uinta uplift:
+the probability is that they were originally purely consequent, and
+that at present they are nicely adjusted to the structures that they
+have discovered.
+
+I have learned so much from the doctrine of baselevelling, as presented
+in Major Powell's writings, that I shall hope to profit by the lesson
+of the Uinta drainage as well: that is, the possibility that an
+apparently sound conclusion may be overturned when new processes that
+bear upon it are discovered. It is here said that the drainage of the
+Watchung crescent in New Jersey is an example of partial adjustment
+following a superimposed origin: hence the necessity of watching
+closely for the discovery of new principles in the history of river
+work that may call for a revision of this conclusion.
+
+There are two other examples of peculiar accidents in the history of
+rivers in New Jersey, to which I wish to call attention; both of them
+in the latest cycle of the development of the State, that is, in the
+cycle which has changed the central region from its even baselevelled
+lowland surface, to the pastplain as we now see it. Like the uplift of
+the Schooley (Highland) peneplain, the uplift of the Central plain, in
+passing from the second to the third cycle, was not uniform throughout,
+but was greater in one place than in another. In the neighborhood of
+the lower Raritan river, a distinct though gentle slope to the
+northwest is apparent in the unconsumed surface of the pastplain; but
+this strong river runs southeastward against the slope; it is an
+anaclinal stream. The tilting of the pastplain is moderate, and its
+rocks are weak; the river is large and strong. Its anaclinal course is
+therefore best explained by regarding it as a mild example of an
+antecedent stream. But Ambrose's brook, a small stream to one side of
+the Raritan, flows northwest with the gentle slope that was given to
+the pastplain. Ambrose's brook therefore most likely is not a survivor
+from the previous cycle, but is a new stream consequent on the slight
+deformation by which the latest cycle here considered was ushered in.
+Manalapan and Assanpink are apparently of the same kind. (See fig. 1).
+
+The Millstone river appears to be intermediate as respects origin
+between the Raritan and Ambrose's brook. It appears still to lie for
+the most part in the channel that it occupied before the elevation and
+tilting of the baselevelled Central plain, but the tilting of the plain
+seems to have reversed its direction of flow. It rises near the center
+of the State and flows northwestward till it joins the Raritan near
+Somerville, and on the way it crosses from the thrown or depressed to
+the heaved or elevated side of the "fall-line,"[11] and passes through
+a deep gap in the trap ridge of Rocky Hill back of Princeton. I believe
+there is no other Atlantic river which runs against the fall-line in
+this way; and it is certainly at first sight remarkable that a stream
+of moderate size like the Millstone should have held its own against a
+displacement that sufficed to deflect great rivers like the Delaware
+and the Susquehanna from their courses.
+
+[Footnote 11: For an account of the "fall-line" displacement, see
+McGee, Seventh Ann. Rep., U. S. G. S., 1888, 616.]
+
+The Millstone appears to have been a stream of the normal kind in the
+previous cycle, before the tilting of the Central plain, when it
+probably ran southeastward with its fellows, and carried off its share
+of waste in the baselevelling process of that time. No other
+supposition than this seems consistent with the general history of the
+region. It was during that cycle that the deep gap was cut in the Rocky
+Hill trap ridge. Then came the deformation of the baselevelled plain,
+the relatively recent elevation and gentle tilting that have permitted
+the streams to carve it into a pastplain; and with this, the
+dislocation along the fall-line. The inclination of the interstream
+surfaces of the pastplain leaves no doubt that it was tilted to the
+northwest, and to this tilting we must ascribe the present direction of
+the Millstone flow: but why did not the accompanying dislocation on the
+fall-line throw this moderate sized stream off of its track and divert
+it southwestward to the Delaware at Trenton, or northeastward to the
+Raritan below New Brunswick. The effect of the dislocation appears with
+considerable distinctness along a line from Trenton towards Amboy, in
+the less altitude of the general surface of the pastplain to the
+southeast than to the northwest of the line, the difference of altitude
+of the two parts being about a hundred feet. The persistence of the
+Millstone against such a dislocation seems to require that we should
+postulate a slower and smaller movement here than that which deflected
+the Delaware.
+
+The reversed course of the Millstone cannot be regarded as an example
+of inversion following a capture of its ancient northern headwaters by
+a branch of the Raritan; for in such a case, surely the inversion could
+not have progressed farther south than the hard trap ridge of Rocky
+Hill, where a stable divide would have been formed: nor can the
+Millstone be regarded as an original stream, first developed and
+consequent upon the deformation of the Central plain, for in that case,
+it should consist of two separate parts; one part running from the
+actual head of the river to the fall-line, where it would turn
+southwest and cross the faint flat divide that separates it from the
+Delaware; the other part beginning by Princeton north of the fall-line,
+and running thence north to the Raritan. The continuity of these two
+parts in the actual Millstone seems to be explicable only by regarding
+the river as the upper portion of a single larger river that had
+reached an old age in the previous cycle; it was then broken in two at
+the head of the present river where the greatest elevation of the
+Central plain occurred, and thus had its former head waters reversed
+from a southeast to a northwest direction of flow across and against
+the fall-line break by the tilting of the plain. Only in this way can
+the deep gap in Rocky Hill be explained. The river is thus consequent
+on the tilting of the plain, and yet antecedent to the accompanying
+faulting. It cannot be called an original stream, for it had an
+ancestor in its very channel. It is not a purely consequent stream, for
+it runs against the heaved side of a fault. It is not a strictly
+antecedent stream, for it flows in a direction determined by a
+disturbance that occurred late in its life. It is too exceptional a
+stream to have a generic name. We cannot expect to find many others
+like it.
+
+The result that has been of the greatest interest to me in these
+studi

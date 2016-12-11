@@ -74,15 +74,9 @@ public class Peer implements RMIInterface{
             e.printStackTrace();
         }
 
-
         new Thread(MC_channel).start();
         new Thread(MDB_channel).start();
         new Thread(MDR_channel).start();
-
-        if(args.length==8)
-            p.backupFile("texto1.txt",1,false);
-        //p.restoreFile("texto2.txt");
-        //p.deleteFile("texto1.txt");
 
         //================= 3.4 ENHANCEMENT =================== */
         if(delete_enhancement_ON){
@@ -94,34 +88,44 @@ public class Peer implements RMIInterface{
 
     /* METHODS */
 
-    private void initAttr(String args[]){
+    private void initAttr(String args[]) {
 
-        if(args.length == 0){
+        if (args.length == 0) {
             System.err.println("Incorrect number of args");
             System.exit(1);
         }
 
         id = args[0];
 
-        if(!id.matches("\\d+")){
+        if (!id.matches("\\d+")) {
             System.err.println("Incorrect Peer Id");
             System.exit(1);
         }
 
-        /*if(args.length > 1)
-            if(args[1].equals("BACKUPENH"))
-                backup_enhancement_ON =true;
-            else if(args[1].equals("DELETEENH"))
+        if (args.length == 2 || args.length == 8){
+            if (args[1].equals("BACKUPENH"))
+                backup_enhancement_ON = true;
+            else if (args[1].equals("DELETEENH"))
                 delete_enhancement_ON = true;
-            else { System.out.println("Wrong argument:" + args[1]); System.exit(1);}*/
+            else {
+                System.out.println("Wrong argument:" + args[1]);
+                System.exit(1);
+            }
+        }
 
-        if(args.length > 1) { //reconfigure MCchannel's ip/port
-            MC_ip = args[1];
-            MC_port = Integer.parseInt(args[2]);
-            MDB_ip = args[3];
-            MDB_port = Integer.parseInt(args[4]);
-            MDR_ip = args[5];
-            MDR_port = Integer.parseInt(args[6]);
+        int i= -1; //um pouca trolha mas desperate times require desperate mesures
+        if(args.length == 7)
+            i = 1;
+        else if(args.length == 8)
+            i = 2;
+
+        if(args.length >=7) {
+            MC_ip = args[i];
+            MC_port = Integer.parseInt(args[i+1]);
+            MDB_ip = args[i+2];
+            MDB_port = Integer.parseInt(args[i+3]);
+            MDR_ip = args[i+4];
+            MDR_port = Integer.parseInt(args[i+5]);
         }
 
         try {
@@ -140,7 +144,6 @@ public class Peer implements RMIInterface{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static MCChannel getMC_channel() {
